@@ -9,159 +9,137 @@
 <meta property="og:title" content="Age Calculator – How Old Am I?">
 <meta property="og:description" content="Find your exact age in years, months, days, hours and minutes. Free and instant.">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://yourdomain.com/">
+<link rel="canonical" href="https://quickagecalc.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
 <!-- REPLACE THIS WITH YOUR ADSENSE CODE -->
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 
 <style>
   :root {
-    --bg: #0c0c0f;
-    --surface: #16161d;
-    --border: #2a2a38;
-    --accent: #c8f060;
-    --accent2: #7c6af7;
-    --text: #f0f0f5;
-    --muted: #7a7a8c;
-    --card: #1c1c26;
+    --bg: #f7f8fa;
+    --white: #ffffff;
+    --border: #e2e6ea;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --text: #1a202c;
+    --muted: #6b7280;
+    --green: #16a34a;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --radius: 14px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Lato', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    overflow-x: hidden;
   }
 
-  /* Background grid effect */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(200,240,96,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,240,96,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
 
   /* Header */
-  header { padding: 28px 0 0; text-align: center; }
-  .site-tag {
-    display: inline-block;
-    font-size: 11px;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: rgba(200,240,96,.08);
-    border: 1px solid rgba(200,240,96,.2);
-    padding: 5px 14px;
-    border-radius: 20px;
-    margin-bottom: 20px;
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    margin-bottom: 32px;
   }
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    line-height: 1.1;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-  h1 em { color: var(--accent); font-style: italic; }
-  .subtitle { font-size: 16px; color: var(--muted); margin-bottom: 36px; }
+  header .wrap { padding-top: 0; padding-bottom: 0; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
+  .logo span { color: var(--text); }
 
-  /* Ad slot top */
-  .ad-top {
-    background: var(--surface);
+  .hero { text-align: center; margin-bottom: 28px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--muted); font-size: 16px; font-weight: 300; }
+
+  /* Ad slot */
+  .ad-slot {
+    background: var(--white);
     border: 1px dashed var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius);
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--muted);
     font-size: 12px;
-    margin-bottom: 32px;
-    /* Remove this placeholder once AdSense is active */
-  }
-
-  /* Main card */
-  .main-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 36px;
     margin-bottom: 24px;
   }
 
-  .input-row {
+  /* Card */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .input-row, .date-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1.5fr;
     gap: 12px;
     margin-bottom: 20px;
   }
 
   .field label {
     display: block;
-    font-size: 11px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
   }
 
-  .field select, .field input[type="number"] {
+  .field select, .field input {
     width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    padding: 13px 16px;
-    outline: none;
+    background: var(--white);
     transition: border-color .2s;
-    appearance: none;
+    outline: none;
   }
   .field select:focus, .field input:focus { border-color: var(--accent); }
 
-  .section-label {
-    font-size: 11px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 20px 0 12px;
-  }
-
-  .date-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-  }
-
   .calc-btn {
     width: 100%;
-    margin-top: 24px;
+    padding: 15px;
     background: var(--accent);
-    color: #0c0c0f;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
+    color: white;
     border: none;
-    border-radius: 12px;
-    padding: 16px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
     cursor: pointer;
-    transition: transform .15s, opacity .15s;
-    letter-spacing: .02em;
+    letter-spacing: .03em;
+    transition: background .2s, transform .1s;
   }
-  .calc-btn:hover { opacity: .9; transform: translateY(-1px); }
+  .calc-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
   .calc-btn:active { transform: translateY(0); }
 
   /* Results */
@@ -169,70 +147,69 @@
 
   .result-hero {
     text-align: center;
-    padding: 28px 0 20px;
+    padding: 24px 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 24px;
   }
-  .result-hero .age-num {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(3rem, 10vw, 6rem);
+  .age-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 12vw, 7rem);
     color: var(--accent);
     line-height: 1;
     display: block;
   }
-  .result-hero .age-label {
-    font-size: 16px;
-    color: var(--muted);
-    margin-top: 6px;
-  }
+  .age-label { font-size: 16px; color: var(--muted); margin-top: 4px; }
 
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
   }
   .stat-box {
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 16px;
+    border-radius: 10px;
+    padding: 16px 12px;
     text-align: center;
-    transition: border-color .2s;
   }
-  .stat-box:hover { border-color: var(--accent2); }
   .stat-val {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.8rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
     color: var(--text);
     display: block;
     line-height: 1.1;
   }
-  .stat-lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
 
   .birthday-box {
-    background: linear-gradient(135deg, rgba(124,106,247,.12), rgba(200,240,96,.06));
-    border: 1px solid rgba(124,106,247,.3);
-    border-radius: 14px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
+    background: var(--accent-light);
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  .birthday-box .bd-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
-  .birthday-box .bd-val { font-size: 18px; font-weight: 500; color: var(--text); }
-  .birthday-box .bd-days {
-    display: inline-block;
-    background: var(--accent2);
+  .birthday-box .bd-label { font-size: 12px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+  .birthday-box .bd-val { font-size: 17px; font-weight: 700; color: var(--text); }
+  .bd-badge {
+    background: var(--accent);
     color: white;
-    font-size: 12px;
-    padding: 3px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
     border-radius: 20px;
-    margin-top: 8px;
+    white-space: nowrap;
   }
 
-  .fun-facts { margin-bottom: 8px; }
   .fun-facts h3 {
-    font-size: 13px;
-    letter-spacing: .08em;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 12px;
@@ -242,33 +219,19 @@
     align-items: center;
     gap: 10px;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,.04);
+    border-bottom: 1px solid var(--border);
     font-size: 14px;
     color: var(--text);
   }
   .fact-item:last-child { border-bottom: none; }
-  .fact-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .fact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
-  /* Middle ad */
-  .ad-mid {
-    background: var(--surface);
-    border: 1px dashed var(--border);
-    border-radius: 12px;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-size: 12px;
-    margin: 28px 0;
-  }
-
-  /* Other calculators */
-  .other-tools { margin: 32px 0; }
+  /* Other tools */
+  .other-tools { margin-bottom: 20px; }
   .other-tools h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    margin-bottom: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
     color: var(--text);
   }
   .tools-grid {
@@ -277,57 +240,56 @@
     gap: 10px;
   }
   .tool-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
     padding: 18px;
     text-decoration: none;
     color: var(--text);
-    transition: border-color .2s, transform .15s;
+    transition: border-color .2s, box-shadow .2s;
     display: block;
   }
-  .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .tool-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
   .tool-card .tc-icon { font-size: 22px; margin-bottom: 8px; display: block; }
-  .tool-card .tc-name { font-size: 14px; font-weight: 500; }
+  .tool-card .tc-name { font-size: 14px; font-weight: 700; }
   .tool-card .tc-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
   /* FAQ */
-  .faq { margin: 36px 0; }
-  .faq h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 16px; }
-  .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
-  .faq-q { font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-  .faq-q::after { content: '+'; color: var(--accent); font-size: 20px; transition: transform .2s; }
-  .faq-item.open .faq-q::after { transform: rotate(45deg); }
-  .faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; padding-top: 10px; display: none; }
+  .faq h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 14px; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    font-size: 15px;
+  }
+  .faq-q::after { content: '+'; color: var(--accent); font-size: 22px; line-height: 1; }
+  .faq-item.open .faq-q::after { content: '−'; }
+  .faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; padding-bottom: 16px; display: none; }
   .faq-item.open .faq-a { display: block; }
 
   /* Footer */
   footer {
     text-align: center;
-    padding: 32px 0;
+    padding: 28px 0 0;
     font-size: 13px;
     color: var(--muted);
     border-top: 1px solid var(--border);
-    margin-top: 40px;
+    margin-top: 32px;
   }
   footer a { color: var(--muted); text-decoration: none; }
   footer a:hover { color: var(--accent); }
 
   @media (max-width: 540px) {
-    .input-row, .date-row { grid-template-columns: 1fr; }
-    .main-card { padding: 22px 18px; }
+    .input-row, .date-row { grid-template-columns: 1fr 1fr; }
+    .card { padding: 20px 16px; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
   }
-
-  /* Animation */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .anim { animation: fadeUp .4s ease both; }
 </style>
 
-<!-- Schema.org -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -341,18 +303,25 @@
 </head>
 <body>
 
-<div class="wrap">
-  <header>
-    <span class="site-tag">Free Online Tool</span>
-    <h1>How Old Am I? <em>Exact</em> Age Calculator</h1>
-    <p class="subtitle">Find your precise age in years, months, days — and much more.</p>
-  </header>
+<header>
+  <div class="wrap">
+    <a class="logo" href="/"><span>Quick</span>AgeCalc</a>
+    <span style="font-size:13px;color:var(--muted)">Free · Instant · Accurate</span>
+  </div>
+</header>
 
-  <!-- AD SLOT TOP (728x90 leaderboard) — replace placeholder with real AdSense unit -->
-  <div class="ad-top">Advertisement — AdSense unit here (728×90)</div>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>How Old Am I? <span>Exact Age Calculator</span></h1>
+    <p>Find your precise age in years, months, days, hours, and minutes — instantly.</p>
+  </div>
+
+  <!-- AD SLOT TOP -->
+  <div class="ad-slot">Advertisement (728×90)</div>
 
   <!-- MAIN TOOL -->
-  <div class="main-card">
+  <div class="card">
     <div class="section-label">Your date of birth</div>
     <div class="input-row">
       <div class="field">
@@ -377,7 +346,7 @@
       </div>
     </div>
 
-    <div class="section-label">Age at date (optional — leave for today)</div>
+    <div class="section-label">Age at date (optional — leave blank for today)</div>
     <div class="date-row">
       <div class="field">
         <label>Month</label>
@@ -405,7 +374,7 @@
   </div>
 
   <!-- RESULTS -->
-  <div id="results" class="main-card anim">
+  <div id="results" class="card">
     <div class="result-hero">
       <span class="age-num" id="ageYears">—</span>
       <div class="age-label">years old</div>
@@ -421,9 +390,11 @@
     </div>
 
     <div class="birthday-box">
-      <div class="bd-label">Next Birthday</div>
-      <div class="bd-val" id="nextBirthday">—</div>
-      <div><span class="bd-days" id="daysUntilBd">— days away</span></div>
+      <div>
+        <div class="bd-label">🎂 Next Birthday</div>
+        <div class="bd-val" id="nextBirthday">—</div>
+      </div>
+      <span class="bd-badge" id="daysUntilBd">— days away</span>
     </div>
 
     <div class="fun-facts">
@@ -432,11 +403,11 @@
     </div>
   </div>
 
-  <!-- AD MID (300x250) -->
-  <div class="ad-mid">Advertisement — AdSense unit here (300×250)</div>
+  <!-- AD MID -->
+  <div class="ad-slot" style="height:250px;margin-bottom:24px;">Advertisement (300×250)</div>
 
-  <!-- OTHER CALCULATORS — link to your other pages / subpages -->
-  <div class="other-tools">
+  <!-- OTHER CALCULATORS -->
+  <div class="other-tools card">
     <h2>More Date Calculators</h2>
     <div class="tools-grid">
       <a class="tool-card" href="/date-difference/">
@@ -463,10 +434,10 @@
   </div>
 
   <!-- AD BOTTOM -->
-  <div class="ad-mid" style="height:90px">Advertisement — AdSense unit here (728×90)</div>
+  <div class="ad-slot" style="margin-bottom:24px;">Advertisement (728×90)</div>
 
-  <!-- FAQ — SEO content -->
-  <div class="faq">
+  <!-- FAQ -->
+  <div class="faq card">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">How is my exact age calculated?</div>
@@ -487,9 +458,10 @@
   </div>
 
   <footer>
-    <p>© 2025 Age Calculator · <a href="/privacy/">Privacy Policy</a> · <a href="/about/">About</a></p>
+    <p>© 2025 QuickAgeCalc · <a href="/privacy/">Privacy Policy</a> · <a href="/about/">About</a></p>
     <p style="margin-top:8px">Free online tools for everyone.</p>
   </footer>
+
 </div>
 
 <script>
@@ -513,7 +485,6 @@ function calculate() {
 
   if (birth > target) { alert('Date of birth cannot be after the target date.'); return; }
 
-  // Years, months, days
   let years = target.getFullYear() - birth.getFullYear();
   let months = target.getMonth() - birth.getMonth();
   let days = target.getDate() - birth.getDate();
@@ -525,7 +496,6 @@ function calculate() {
   }
   if (months < 0) { years--; months += 12; }
 
-  // Total calculations
   const msPerDay = 86400000;
   const totalMs = target - birth;
   const totalDays = Math.floor(totalMs / msPerDay);
@@ -535,7 +505,6 @@ function calculate() {
   const totalMinutes = Math.floor(totalMs / 60000);
   const totalSeconds = Math.floor(totalMs / 1000);
 
-  // Display
   document.getElementById('ageYears').textContent = years;
   document.getElementById('rMonths').textContent = totalMonths.toLocaleString();
   document.getElementById('rWeeks').textContent = totalWeeks.toLocaleString();
@@ -544,7 +513,6 @@ function calculate() {
   document.getElementById('rMinutes').textContent = totalMinutes.toLocaleString();
   document.getElementById('rSeconds').textContent = totalSeconds.toLocaleString();
 
-  // Next birthday
   const now = new Date();
   let nextBd = new Date(now.getFullYear(), bM - 1, bD);
   if (nextBd <= now) nextBd.setFullYear(now.getFullYear() + 1);
@@ -553,7 +521,6 @@ function calculate() {
   document.getElementById('nextBirthday').textContent = monthNames[nextBd.getMonth()] + ' ' + bD + ', ' + nextBd.getFullYear();
   document.getElementById('daysUntilBd').textContent = daysUntil === 0 ? '🎉 Today!' : daysUntil + ' days away';
 
-  // Fun facts
   const heartbeats = Math.round(totalMinutes * 70);
   const breaths = Math.round(totalMinutes * 15);
   const sleepDays = Math.round(totalDays * 0.33);
