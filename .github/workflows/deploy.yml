@@ -16,6 +16,11 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Prepare public folder
+        run: |
+          mkdir -p public
+          cp -r index.html robots.txt sitemap.xml about age-difference birthday-countdown contact date-difference privacy retirement-calculator public/
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
