@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "quickagecalc",
   "compatibility_date": "2026-05-02",
-  "account_id": 6afc03c9cded2c2ed43b2c4fbfa55e4e,
+  "account_id": "6afc03c9cded2c2ed43b2c4fbfa55e4e",
   "assets": {
     "directory": ".",
     "not_found_handling": "404-page"
