@@ -19,8 +19,11 @@ jobs:
       - name: Prepare public folder
         run: |
           mkdir -p public
-          cp -r index.html robots.txt sitemap.xml about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-* public/
-
+          - name: Prepare public folder
+        run: |
+          mkdir -p public
+          cp -r index.html robots.txt sitemap.xml about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year public/
+          find . -maxdepth 1 -name "born-in-*" -type d -exec cp -r {} public/ \;
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
