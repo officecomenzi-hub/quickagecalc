@@ -2,8 +2,12 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "quickagecalc",
   "compatibility_date": "2026-05-02",
+  "observability": {
+    "enabled": true
+  },
   "assets": {
     "directory": ".",
     "not_found_handling": "404-page"
-  }
+  },
+  "account_id": 6afc03c9cded2c2ed43b2c4fbfa55e4e
 }
