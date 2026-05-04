@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Age Calculator – Dog Years to Human Years | QuickAgeCalc</title>
+<meta name="description" content="Convert your dog's age to human years instantly. Find out how old your dog is in human years based on breed size. Free dog age calculator — accurate and instant.">
+<meta name="keywords" content="dog age calculator, dog years to human years, how old is my dog in human years, dog age in human years, dog years calculator">
+<link rel="canonical" href="https://quickagecalc.com/dog-age/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Dog Age Calculator",
+  "description": "Convert your dog's age to human years based on breed size. Accurate dog age calculator.",
+  "url": "https://quickagecalc.com/dog-age/",
+  "applicationCategory": "UtilityApplication",
+  "offers": { "@type": "Offer", "price": "0" }
+}
+</script>
+<style>
+  :root {
+    --bg: #f7f8fa; --white: #ffffff; --border: #e2e6ea;
+    --accent: #2563eb; --accent-light: #eff6ff;
+    --text: #1a202c; --muted: #6b7280;
+    --dog: #d97706; --dog-light: #fffbeb;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07); --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); }
+  header { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 0; margin-bottom: 32px; }
+  header .inner { max-width: 760px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
+  .logo span { color: var(--text); }
+  nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  nav a { font-size: 13px; color: var(--muted); text-decoration: none; padding: 5px 10px; border-radius: 6px; transition: background .2s, color .2s; white-space: nowrap; }
+  nav a:hover { background: var(--accent-light); color: var(--accent); }
+  nav a.active { background: var(--dog-light); color: var(--dog); font-weight: 700; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
+  .hero { text-align: center; margin-bottom: 28px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.2; margin-bottom: 10px; }
+  .hero h1 span { color: var(--dog); }
+  .hero p { color: var(--muted); font-size: 16px; font-weight: 300; }
+  .ad-slot { background: var(--white); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; margin-bottom: 24px; }
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); margin-bottom: 20px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .size-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 20px; }
+  .size-btn { padding: 12px 8px; border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; text-align: center; font-size: 13px; font-weight: 700; color: var(--muted); transition: all .2s; background: var(--white); }
+  .size-btn:hover { border-color: var(--dog); color: var(--dog); }
+  .size-btn.active { border-color: var(--dog); background: var(--dog-light); color: var(--dog); }
+  .size-btn .size-icon { font-size: 20px; display: block; margin-bottom: 4px; }
+  .size-btn .size-lbs { font-size: 10px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+  .size-btn.active .size-lbs { color: var(--dog); }
+  .age-input-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .age-input-row label { font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap; }
+  .age-slider-wrap { flex: 1; min-width: 200px; }
+  .age-slider { width: 100%; }
+  .age-display { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--dog); min-width: 80px; text-align: center; }
+  .calc-btn { width: 100%; padding: 15px; background: var(--dog); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; font-family: 'Lato', sans-serif; cursor: pointer; transition: background .2s, transform .1s; }
+  .calc-btn:hover { background: #b45309; transform: translateY(-1px); }
+  #results { display: none; }
+  .result-hero { text-align: center; padding: 28px; background: var(--dog-light); border: 1px solid #fde68a; border-radius: var(--radius); margin-bottom: 20px; }
+  .result-hero .r-label { font-size: 13px; font-weight: 700; color: var(--dog); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+  .result-hero .r-num { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 15vw, 7rem); color: var(--dog); line-height: 1; display: block; }
+  .result-hero .r-sub { font-size: 16px; color: var(--muted); margin-top: 8px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+  .stat-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; }
+  .stat-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text); display: block; line-height: 1.1; }
+  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+  .life-stage-box { border-radius: 10px; padding: 18px 22px; margin-bottom: 16px; border: 1.5px solid var(--border); }
+  .life-stage-box .ls-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--dog); margin-bottom: 4px; }
+  .life-stage-box .ls-val { font-size: 18px; font-weight: 700; color: var(--text); }
+  .life-stage-box .ls-desc { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .comparison-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .comparison-table th { background: var(--bg); padding: 10px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .comparison-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+  .comparison-table tr.highlight td { background: var(--dog-light); font-weight: 700; color: var(--dog); }
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .tool-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 18px; text-decoration: none; color: var(--text); transition: border-color .2s, box-shadow .2s; display: block; }
+  .tool-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+  .tool-card .tc-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .tool-card .tc-name { font-size: 14px; font-weight: 700; }
+  .tool-card .tc-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .content h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; }
+  .content p { font-size: 15px; color: #374151; line-height: 1.8; margin-bottom: 14px; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q { font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; font-size: 15px; }
+  .faq-q::after { content: '+'; color: var(--accent); font-size: 22px; }
+  .faq-item.open .faq-q::after { content: '−'; }
+  .faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; padding-bottom: 16px; display: none; }
+  .faq-item.open .faq-a { display: block; }
+  footer { text-align: center; padding: 28px 0; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 32px; }
+  footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
+  footer a:hover { color: var(--accent); }
+  @media (max-width: 540px) {
+    .size-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .card { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <a class="logo" href="/"><span>Quick</span>AgeCalc</a>
+    <nav>
+      <a href="/">🎂 Age Calc</a>
+      <a href="/date-difference/">📅 Date Diff</a>
+      <a href="/pregnancy-due-date/">🤰 Due Date</a>
+      <a href="/dog-age/" class="active">🐕 Dog Age</a>
+      <a href="/born-in-year/">📆 By Year</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Dog Age Calculator<br><span>Dog Years to Human Years</span></h1>
+    <p>Find out how old your dog is in human years — based on breed size for accurate results.</p>
+  </div>
+
+  <div class="ad-slot">Advertisement (728×90)</div>
+
+  <div class="card">
+    <div class="section-label">Your dog's size</div>
+    <div class="size-grid">
+      <button class="size-btn active" id="sizeSmall" onclick="selectSize('small')">
+        <span class="size-icon">🐩</span>Small
+        <div class="size-lbs">Under 20 lbs</div>
+      </button>
+      <button class="size-btn" id="sizeMedium" onclick="selectSize('medium')">
+        <span class="size-icon">🐕</span>Medium
+        <div class="size-lbs">21–50 lbs</div>
+      </button>
+      <button class="size-btn" id="sizeLarge" onclick="selectSize('large')">
+        <span class="size-icon">🦮</span>Large
+        <div class="size-lbs">51–90 lbs</div>
+      </button>
+      <button class="size-btn" id="sizeGiant" onclick="selectSize('giant')">
+        <span class="size-icon">🐕‍🦺</span>Giant
+        <div class="size-lbs">Over 90 lbs</div>
+      </button>
+    </div>
+
+    <div class="section-label">Your dog's age</div>
+    <div class="age-input-row">
+      <label>Dog's age:</label>
+      <div class="age-slider-wrap">
+        <input type="range" class="age-slider" id="dogAgeSlider" min="0" max="20" value="3" step="0.5" oninput="updateSlider()">
+      </div>
+      <div class="age-display" id="dogAgeDisplay">3 yrs</div>
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">Calculate Dog Age →</button>
+  </div>
+
+  <div id="results">
+    <div class="result-hero">
+      <div class="r-label">🐾 Your Dog in Human Years</div>
+      <span class="r-num" id="humanAge">—</span>
+      <div class="r-sub" id="humanAgeSub">—</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box"><span class="stat-val" id="rDogAge">—</span><div class="stat-lbl">Dog Years</div></div>
+      <div class="stat-box"><span class="stat-val" id="rLifeExpect">—</span><div class="stat-lbl">Life Expectancy</div></div>
+      <div class="stat-box"><span class="stat-val" id="rLifePercent">—</span><div class="stat-lbl">Life Lived</div></div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Life Stage</div>
+      <div class="life-stage-box" id="lifeStageBox">
+        <div class="ls-label" id="lifeStageLabel">—</div>
+        <div class="ls-val" id="lifeStageVal">—</div>
+        <div class="ls-desc" id="lifeStageDesc">—</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">Age Comparison Table</div>
+      <table class="comparison-table" id="compTable">
+        <thead><tr><th>Dog Years</th><th>Small / Medium</th><th>Large</th><th>Giant</th></tr></thead>
+        <tbody id="compTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="ad-slot" style="height:250px;margin-bottom:24px;">Advertisement (300×250)</div>
+
+  <div class="card content">
+    <h2>How Are Dog Years Calculated?</h2>
+    <p>The old "1 dog year = 7 human years" rule is an oversimplification. Dogs age much faster in their early years and more slowly as they get older. A 1-year-old dog is roughly equivalent to a 15-year-old human in terms of maturity.</p>
+    <p>Breed size also matters significantly. Smaller dogs live longer than larger breeds. A 10-year-old small dog is around 56 in human years, while a 10-year-old giant breed is closer to 66. Our calculator uses size-adjusted tables based on veterinary research.</p>
+    <p>A 2019 study from UC San Diego found that dogs age rapidly in their first few years and then slow down — a pattern similar to humans but compressed. The DNA methylation method they used suggests dog aging is far more complex than a simple multiplier.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is 1 dog year really 7 human years?</div>
+      <div class="faq-a">Not exactly. The 7:1 ratio is a rough average but not accurate at any specific age. Dogs age much faster early in life — a 1-year-old dog is equivalent to about 15 human years. The ratio slows down significantly after age 2.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why do small dogs live longer than large dogs?</div>
+      <div class="faq-a">Larger dogs age faster at the cellular level. Bigger breeds grow quickly and this rapid growth is linked to faster biological aging. A Great Dane may live 7–10 years while a Chihuahua can live 15–20 years.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How old is a 2-year-old dog in human years?</div>
+      <div class="faq-a">A 2-year-old dog is approximately 24 human years old for small breeds, and around 27 for large breeds. After the first two years, dogs age roughly 5–7 human years per dog year depending on size.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is considered old for a dog?</div>
+      <div class="faq-a">For small breeds, senior status begins around 10–12 years. For medium breeds, around 8–10 years. Large and giant breeds are considered senior at 6–8 years, since they have shorter lifespans.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">More Calculators</h2>
+    <div class="tools-grid">
+      <a class="tool-card" href="/"><span class="tc-icon">🎂</span><div class="tc-name">Age Calculator</div><div class="tc-desc">Your exact age today</div></a>
+      <a class="tool-card" href="/pregnancy-due-date/"><span class="tc-icon">🤰</span><div class="tc-name">Due Date Calculator</div><div class="tc-desc">Find your baby's due date</div></a>
+      <a class="tool-card" href="/birthday-countdown/"><span class="tc-icon">⏳</span><div class="tc-name">Birthday Countdown</div><div class="tc-desc">Days until your birthday</div></a>
+      <a class="tool-card" href="/age-difference/"><span class="tc-icon">👫</span><div class="tc-name">Age Difference</div><div class="tc-desc">Compare two birthdays</div></a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 QuickAgeCalc · <a href="/privacy/">Privacy Policy</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a></p>
+    <p style="margin-top:8px">Free online tools for everyone.</p>
+  </footer>
+</div>
+
+<script>
+let selectedSize = 'small';
+
+const dogData = {
+  small: {
+    lifeExpect: 15,
+    years: [15,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100],
+    stages: [
+      { max: 1, label: 'Puppy', desc: 'Rapid growth, learning basic behaviors, socialization period.' },
+      { max: 3, label: 'Junior', desc: 'Full size reached, still energetic and playful, social development.' },
+      { max: 7, label: 'Adult', desc: 'Prime years, fully mature, consistent energy and behavior.' },
+      { max: 11, label: 'Mature Adult', desc: 'Slightly less active, may need more rest, still healthy and playful.' },
+      { max: 15, label: 'Senior', desc: 'Slower pace, may need senior food, regular vet checkups recommended.' },
+      { max: 99, label: 'Geriatric', desc: 'Very senior, needs special care, comfort and quality of life focus.' },
+    ]
+  },
+  medium: {
+    lifeExpect: 13,
+    years: [15,24,28,32,36,42,47,51,56,61,65,70,74,78,83,87,92,96,101,105,109],
+    stages: [
+      { max: 1, label: 'Puppy', desc: 'Rapid growth, learning basic behaviors, socialization period.' },
+      { max: 3, label: 'Junior', desc: 'Full size reached, still energetic and playful.' },
+      { max: 7, label: 'Adult', desc: 'Prime years, fully mature and consistent.' },
+      { max: 10, label: 'Mature Adult', desc: 'Slightly less active, may benefit from senior nutrition.' },
+      { max: 13, label: 'Senior', desc: 'Slower pace, regular vet checkups important.' },
+      { max: 99, label: 'Geriatric', desc: 'Special care and comfort focus.' },
+    ]
+  },
+  large: {
+    lifeExpect: 11,
+    years: [15,24,28,32,36,45,50,55,61,66,72,77,82,88,93,99,104,109,115,120,125],
+    stages: [
+      { max: 1, label: 'Puppy', desc: 'Fast growth phase, bones still developing.' },
+      { max: 2, label: 'Junior', desc: 'Reaching physical maturity, still high energy.' },
+      { max: 6, label: 'Adult', desc: 'Prime years for large breeds.' },
+      { max: 9, label: 'Mature Adult', desc: 'Aging more visibly, may develop joint issues.' },
+      { max: 11, label: 'Senior', desc: 'Slower, needs joint support and senior diet.' },
+      { max: 99, label: 'Geriatric', desc: 'Needs gentle exercise and comfort care.' },
+    ]
+  },
+  giant: {
+    lifeExpect: 9,
+    years: [15,22,31,38,45,49,56,61,66,71,76,80,85,90,95,99,104,109,113,118,123],
+    stages: [
+      { max: 1, label: 'Puppy', desc: 'Extremely fast growth, careful nutrition essential.' },
+      { max: 2, label: 'Junior', desc: 'Still maturing, bones and joints developing.' },
+      { max: 5, label: 'Adult', desc: 'Prime years for giant breeds are shorter.' },
+      { max: 7, label: 'Mature Adult', desc: 'Early aging signs, joint care important.' },
+      { max: 9, label: 'Senior', desc: 'Significant slowdown, comfort and quality of life.' },
+      { max: 99, label: 'Geriatric', desc: 'Very senior giant breed, special care needed.' },
+    ]
+  }
+};
+
+function selectSize(size) {
+  selectedSize = size;
+  ['small','medium','large','giant'].forEach(s => {
+    document.getElementById('size' + s.charAt(0).toUpperCase() + s.slice(1)).classList.toggle('active', s === size);
+  });
+}
+
+function updateSlider() {
+  const val = parseFloat(document.getElementById('dogAgeSlider').value);
+  document.getElementById('dogAgeDisplay').textContent = val + ' yr' + (val !== 1 ? 's' : '');
+}
+
+function calculate() {
+  const dogAge = parseFloat(document.getElementById('dogAgeSlider').value);
+  const data = dogData[selectedSize];
+  const idx = Math.min(Math.floor(dogAge), data.years.length - 1);
+  const humanAge = data.years[idx];
+  const lifePercent = Math.round((dogAge / data.lifeExpect) * 100);
+
+  const sizeLabels = { small: 'Small breed', medium: 'Medium breed', large: 'Large breed', giant: 'Giant breed' };
+
+  document.getElementById('humanAge').textContent = humanAge;
+  document.getElementById('humanAgeSub').textContent = 'A ' + dogAge + '-year-old ' + sizeLabels[selectedSize].toLowerCase() + ' equals a ' + humanAge + '-year-old human';
+  document.getElementById('rDogAge').textContent = dogAge + ' yrs';
+  document.getElementById('rLifeExpect').textContent = data.lifeExpect + ' yrs';
+  document.getElementById('rLifePercent').textContent = Math.min(100, lifePercent) + '%';
+
+  const stage = data.stages.find(s => dogAge <= s.max) || data.stages[data.stages.length - 1];
+  document.getElementById('lifeStageLabel').textContent = stage.label;
+  document.getElementById('lifeStageVal').textContent = 'Life stage: ' + stage.label;
+  document.getElementById('lifeStageDesc').textContent = stage.desc;
+
+  const tableData = [
+    [1, 15, 15, 15, 15],
+    [2, 24, 24, 24, 22],
+    [3, 28, 28, 28, 31],
+    [5, 36, 36, 36, 45],
+    [7, 44, 47, 50, 56],
+    [10, 56, 65, 66, 71],
+    [12, 64, 74, 77, 80],
+    [15, 76, 87, 93, 95],
+  ];
+
+  const tbody = document.getElementById('compTableBody');
+  tbody.innerHTML = tableData.map(row => {
+    const isHighlight = row[0] === Math.floor(dogAge);
+    return `<tr class="${isHighlight ? 'highlight' : ''}">
+      <td>${row[0]} years</td>
+      <td>${row[1]} / ${row[2]}</td>
+      <td>${row[3]}</td>
+      <td>${row[4]}</td>
+    </tr>`;
+  }).join('');
+
+  const r = document.getElementById('results');
+  r.style.display = 'block';
+  r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
+
+updateSlider();
+</script>
+</body>
+</html>
