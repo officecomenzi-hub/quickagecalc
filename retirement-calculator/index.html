@@ -2,302 +2,228 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retirement Age Calculator – When Can I Retire? | QuickAgeCalc</title>
-<meta name="description" content="Find out exactly when you can retire. Enter your birthday and target retirement age to calculate your retirement date, days remaining, and years left to work.">
-<meta name="keywords" content="retirement age calculator, when can I retire, retirement date calculator, how many years until retirement, retirement countdown">
+<title>Pensionable Age Calculator — When Can I Retire? | QuickAgeCalc</title>
+<meta name="description" content="Free pensionable age calculator. Find out exactly when you can retire, your retirement age by country, and how many years until you reach pensionable age. Instant results.">
+<meta name="keywords" content="pensionable age calculator, retirement age calculator, when can i retire, year of retirement calculator, pension age calculator, how many years until retirement">
 <link rel="canonical" href="https://quickagecalc.com/retirement-calculator/">
+<meta property="og:title" content="Pensionable Age Calculator — When Can I Retire?">
+<meta property="og:description" content="Find out exactly when you can retire and how many years until you reach pensionable age. Free and instant.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="/nav.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Retirement Age Calculator",
-  "description": "Calculate exactly when you can retire based on your birthday and target retirement age.",
-  "url": "https://quickagecalc.com/retirement-calculator/",
-  "applicationCategory": "UtilityApplication",
-  "offers": { "@type": "Offer", "price": "0" }
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the pensionable age?", "acceptedAnswer": {"@type": "Answer", "text": "Pensionable age (also called retirement age) is the age at which you become eligible for state pension benefits. In the US it is 67, UK is 66, Canada is 65, Australia is 67. Use the calculator above to find your exact retirement year."}},
+    {"@type": "Question", "name": "How do I calculate my pensionable age?", "acceptedAnswer": {"@type": "Answer", "text": "Enter your date of birth and country above. The calculator adds the official pensionable age to your birth year to find your retirement year, then calculates how many years and months remain."}},
+    {"@type": "Question", "name": "When can I retire?", "acceptedAnswer": {"@type": "Answer", "text": "Your retirement date depends on your country's pensionable age and your birth date. Enter your details above to find your exact retirement year and how many years remain."}},
+    {"@type": "Question", "name": "What is the retirement age in the US?", "acceptedAnswer": {"@type": "Answer", "text": "In the United States, the full Social Security retirement age is 67 for anyone born in 1960 or later. Early retirement is possible from age 62 with reduced benefits."}}
+  ]
 }
 </script>
 <style>
-  :root {
-    --bg: #f7f8fa; --white: #ffffff; --border: #e2e6ea;
-    --accent: #2563eb; --accent-light: #eff6ff;
-    --green: #16a34a; --green-light: #f0fdf4;
-    --text: #1a202c; --muted: #6b7280;
-    --shadow: 0 2px 12px rgba(0,0,0,0.07); --radius: 14px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); }
-  header { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 0; margin-bottom: 32px; }
-  header .inner { max-width: 760px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
-  .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
-  .logo span { color: var(--text); }
-  nav a { font-size: 13px; color: var(--muted); text-decoration: none; margin-left: 16px; }
-  nav a:hover { color: var(--accent); }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
-  .hero { text-align: center; margin-bottom: 28px; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.2; margin-bottom: 10px; }
-  .hero h1 span { color: var(--accent); }
-  .hero p { color: var(--muted); font-size: 16px; font-weight: 300; }
-  .ad-slot { background: var(--white); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; margin-bottom: 24px; }
-  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); margin-bottom: 20px; }
-  .section-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-  .input-row { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 12px; margin-bottom: 20px; }
-  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-  .field select, .field input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 15px; font-family: 'Lato', sans-serif; color: var(--text); background: var(--white); outline: none; transition: border-color .2s; }
-  .field select:focus, .field input:focus { border-color: var(--accent); }
-  .retire-age-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .retire-btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-  .age-btn { padding: 8px 16px; border: 1.5px solid var(--border); border-radius: 20px; font-size: 14px; font-weight: 700; font-family: 'Lato', sans-serif; cursor: pointer; background: var(--white); color: var(--text); transition: all .2s; }
-  .age-btn:hover, .age-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-  .calc-btn { width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; font-family: 'Lato', sans-serif; cursor: pointer; transition: background .2s, transform .1s; }
-  .calc-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
-  #results { display: none; }
-  .result-hero { text-align: center; padding: 28px 0; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
-  .retire-date { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--green); display: block; margin-bottom: 6px; }
-  .retire-sub { font-size: 15px; color: var(--muted); }
-  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-  .stat-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; }
-  .stat-val { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text); display: block; }
-  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
-  .progress-section { margin-bottom: 16px; }
-  .progress-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
-  .progress-bar { background: var(--border); border-radius: 10px; height: 12px; overflow: hidden; }
-  .progress-fill { background: var(--accent); height: 100%; border-radius: 10px; transition: width 1s ease; }
-  .info-box { background: var(--green-light); border: 1px solid #86efac; border-radius: 10px; padding: 18px 22px; font-size: 14px; color: var(--text); line-height: 1.7; }
-  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
-  .tool-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 18px; text-decoration: none; color: var(--text); transition: border-color .2s, box-shadow .2s; display: block; }
-  .tool-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
-  .tool-card .tc-icon { font-size: 22px; margin-bottom: 8px; display: block; }
-  .tool-card .tc-name { font-size: 14px; font-weight: 700; }
-  .tool-card .tc-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .content h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; }
-  .content p { font-size: 15px; color: #374151; line-height: 1.8; margin-bottom: 14px; }
-  .content ul { padding-left: 20px; margin-bottom: 14px; }
-  .content ul li { font-size: 15px; color: #374151; line-height: 1.8; margin-bottom: 6px; }
-  .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-q { font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; font-size: 15px; }
-  .faq-q::after { content: '+'; color: var(--accent); font-size: 22px; }
-  .faq-item.open .faq-q::after { content: '−'; }
-  .faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; padding-bottom: 16px; display: none; }
-  .faq-item.open .faq-a { display: block; }
-  footer { text-align: center; padding: 28px 0; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 32px; }
-  footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
-  footer a:hover { color: var(--accent); }
-  @media (max-width: 540px) {
-    .input-row { grid-template-columns: 1fr 1fr; }
-    .retire-age-row { grid-template-columns: 1fr; }
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    .card { padding: 20px 16px; }
-  }
+  :root{--bg:#f7f8fa;--white:#ffffff;--border:#e2e6ea;--accent:#2563eb;--accent-light:#eff6ff;--text:#1a202c;--muted:#6b7280;--green:#16a34a;--green-light:#eaf3de;--shadow:0 2px 12px rgba(0,0,0,0.07);--radius:14px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px 60px;}
+  .hero{text-align:center;margin-bottom:28px;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.2;margin-bottom:10px;}
+  .hero h1 span{color:var(--accent);}
+  .hero p{color:var(--muted);font-size:16px;font-weight:300;}
+  .ad-slot{background:var(--white);border:1px dashed var(--border);border-radius:var(--radius);height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;margin-bottom:24px;}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:20px;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+  .input-row{display:grid;grid-template-columns:2fr 1fr 1.5fr;gap:12px;margin-bottom:20px;}
+  .input-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
+  .field select,.field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Lato',sans-serif;color:var(--text);background:var(--white);outline:none;transition:border-color .2s;}
+  .field select:focus,.field input:focus{border-color:var(--accent);}
+  .calc-btn{width:100%;padding:15px;background:var(--accent);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;font-family:'Lato',sans-serif;cursor:pointer;transition:background .2s,transform .1s;}
+  .calc-btn:hover{background:#1d4ed8;transform:translateY(-1px);}
+  #results{display:none;}
+  .result-hero{text-align:center;padding:28px;background:var(--green-light);border:1px solid #bbf7d0;border-radius:var(--radius);margin-bottom:20px;}
+  .retire-year{font-family:'Playfair Display',serif;font-size:clamp(4rem,15vw,7rem);color:var(--green);line-height:1;display:block;}
+  .retire-label{font-size:1.1rem;color:var(--muted);margin-top:6px;}
+  .retire-date{font-size:1.2rem;font-weight:700;color:var(--text);margin-top:12px;}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+  .stat-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px 12px;text-align:center;}
+  .stat-val{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);display:block;line-height:1.1;}
+  .stat-lbl{font-size:11px;color:var(--muted);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .content h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:10px;margin-top:16px;}
+  .content p{font-size:15px;color:#374151;line-height:1.8;margin-bottom:14px;}
+  .content ul{margin-left:20px;margin-bottom:14px;line-height:2;}
+  .country-table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:14px;}
+  .country-table th{background:var(--accent-light);color:var(--accent);font-weight:700;padding:10px 14px;text-align:left;border:1px solid var(--border);}
+  .country-table td{padding:9px 14px;border:1px solid var(--border);color:var(--text);}
+  .country-table tr:nth-child(even) td{background:var(--bg);}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:15px;}
+  .faq-q::after{content:'+';color:var(--accent);font-size:22px;}
+  .faq-item.open .faq-q::after{content:'−';}
+  .faq-a{font-size:14px;color:var(--muted);line-height:1.7;padding-bottom:16px;display:none;}
+  .faq-item.open .faq-a{display:block;}
+  .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;}
+  .tool-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .2s;display:block;}
+  .tool-card:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+  .tool-card .tc-icon{font-size:22px;margin-bottom:8px;display:block;}
+  .tool-card .tc-name{font-size:14px;font-weight:700;}
+  .tool-card .tc-desc{font-size:12px;color:var(--muted);margin-top:4px;}
+  @media(max-width:540px){.input-row{grid-template-columns:1fr 1fr;}.input-row-2{grid-template-columns:1fr;}.stats-grid{grid-template-columns:1fr 1fr;}.card{padding:20px 16px;}}
 </style>
 </head>
 <body>
-<header>
-  <div class="inner">
-    <a class="logo" href="/"><span>Quick</span>AgeCalc</a>
-    <nav>
-      <a href="/">🎂 Age Calc</a>
-      <a href="/date-difference/">📅 Date Diff</a>
-      <a href="/birthday-countdown/">⏳ Birthday</a>
-      <a href="/age-difference/">👫 Age Diff</a>
-      <a href="/retirement-calculator/">🏖️ Retirement</a>
-    </nav>
-
-  </div>
-</header>
 <div class="wrap">
   <div class="hero">
-    <h1>Retirement Age Calculator<br><span>When Can I Retire?</span></h1>
-    <p>Enter your birthday and target retirement age to find your exact retirement date and countdown.</p>
+    <h1>Pensionable Age Calculator<br><span>When Can I Retire?</span></h1>
+    <p>Find your exact retirement year and how many years until you reach pensionable age — free and instant.</p>
   </div>
-  <div class="ad-slot">Advertisement (728×90)</div>
+
+  <div class="ad-slot">Advertisement (728x90)</div>
+
   <div class="card">
     <div class="section-label">Your date of birth</div>
     <div class="input-row">
-      <div class="field">
-        <label>Month</label>
-        <select id="bm"><option value="">Month</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select>
-      </div>
-      <div class="field">
-        <label>Day</label>
-        <input type="number" id="bd" placeholder="Day" min="1" max="31">
-      </div>
-      <div class="field">
-        <label>Year</label>
-        <input type="number" id="by" placeholder="Year" min="1940" max="2010">
-      </div>
+      <div class="field"><label>Month</label><select id="bMonth"><option value="">Month</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></div>
+      <div class="field"><label>Day</label><input type="number" id="bDay" placeholder="Day" min="1" max="31"></div>
+      <div class="field"><label>Year</label><input type="number" id="bYear" placeholder="Year" min="1940" max="2010"></div>
     </div>
-
-    <div class="section-label">Target retirement age</div>
-    <div class="retire-btn-group">
-      <button class="age-btn" onclick="setAge(60)">60</button>
-      <button class="age-btn active" onclick="setAge(65)">65</button>
-      <button class="age-btn" onclick="setAge(67)">67</button>
-      <button class="age-btn" onclick="setAge(70)">70</button>
-      <button class="age-btn" onclick="setAge(72)">72</button>
+    <div class="input-row-2">
+      <div class="field"><label>Country</label><select id="country">
+        <option value="67">United States (age 67)</option>
+        <option value="66">United Kingdom (age 66)</option>
+        <option value="65">Canada (age 65)</option>
+        <option value="67">Australia (age 67)</option>
+        <option value="67">Germany (age 67)</option>
+        <option value="64">France (age 64)</option>
+        <option value="67">Netherlands (age 67)</option>
+        <option value="67">Ireland (age 67)</option>
+        <option value="65">New Zealand (age 65)</option>
+        <option value="65">Singapore (age 65)</option>
+        <option value="65">Other (age 65)</option>
+      </select></div>
+      <div class="field"><label>Or set custom retirement age</label><input type="number" id="customAge" placeholder="e.g. 65" min="50" max="80"></div>
     </div>
-    <div class="retire-age-row">
-      <div class="field">
-        <label>Or enter custom age</label>
-        <input type="number" id="retireAge" value="65" min="50" max="90" placeholder="e.g. 65">
-      </div>
-      <div class="field">
-        <label>Country (retirement age guide)</label>
-        <select id="country" onchange="setCountryAge()">
-          <option value="0">Select country...</option>
-          <option value="67">🇺🇸 United States (67)</option>
-          <option value="67">🇬🇧 United Kingdom (67)</option>
-          <option value="67">🇩🇪 Germany (67)</option>
-          <option value="62">🇫🇷 France (62)</option>
-          <option value="67">🇦🇺 Australia (67)</option>
-          <option value="65">🇨🇦 Canada (65)</option>
-          <option value="65">🇳🇱 Netherlands (65)</option>
-        </select>
-      </div>
-    </div>
-    <button class="calc-btn" onclick="calculate()">Calculate My Retirement Date →</button>
+    <button class="calc-btn" onclick="calculate()">Calculate My Retirement Year →</button>
   </div>
 
   <div id="results">
-    <div class="card">
-      <div class="result-hero">
-        <span class="retire-date" id="retireDate">—</span>
-        <div class="retire-sub" id="retireSub">—</div>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-box"><span class="stat-val" id="rYears">—</span><div class="stat-lbl">Years Left</div></div>
-        <div class="stat-box"><span class="stat-val" id="rMonths">—</span><div class="stat-lbl">Months Left</div></div>
-        <div class="stat-box"><span class="stat-val" id="rDays">—</span><div class="stat-lbl">Days Left</div></div>
-        <div class="stat-box"><span class="stat-val" id="rCurrentAge">—</span><div class="stat-lbl">Current Age</div></div>
-        <div class="stat-box"><span class="stat-val" id="rRetireAge">—</span><div class="stat-lbl">Retire At</div></div>
-        <div class="stat-box"><span class="stat-val" id="rWorkdays">—</span><div class="stat-lbl">Workdays Left*</div></div>
-      </div>
-      <div class="progress-section">
-        <div class="progress-label"><span>Career progress</span><span id="progressPct">—%</span></div>
-        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-      </div>
-      <div class="info-box" id="infoBox"></div>
+    <div class="result-hero">
+      <span class="retire-year" id="retireYear">—</span>
+      <div class="retire-label">your retirement year</div>
+      <div class="retire-date" id="retireDate">—</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><span class="stat-val" id="rYears">—</span><div class="stat-lbl">Years to Go</div></div>
+      <div class="stat-box"><span class="stat-val" id="rMonths">—</span><div class="stat-lbl">Months to Go</div></div>
+      <div class="stat-box"><span class="stat-val" id="rAge">—</span><div class="stat-lbl">Retirement Age</div></div>
     </div>
   </div>
 
-  <div class="ad-slot" style="height:250px;margin-bottom:24px;">Advertisement (300×250)</div>
+  <div class="ad-slot" style="height:250px;">Advertisement (300x250)</div>
 
   <div class="card content">
-    <h2>What Is the Standard Retirement Age?</h2>
-    <p>The official retirement age varies by country and is often linked to when you can start receiving full state pension or social security benefits. Common retirement ages around the world include:</p>
-    <ul>
-      <li><strong>United States:</strong> Full retirement age is 67 for those born after 1960</li>
-      <li><strong>United Kingdom:</strong> State pension age is currently 66, rising to 67 by 2028</li>
-      <li><strong>Germany:</strong> Standard retirement age is 67</li>
-      <li><strong>France:</strong> Legal minimum retirement age is 62</li>
-      <li><strong>Australia:</strong> Age pension eligibility starts at 67</li>
-      <li><strong>Canada:</strong> Standard retirement age is 65</li>
-    </ul>
-    <h2>Can I Retire Early?</h2>
-    <p>Many people aim for early retirement through careful savings and investment strategies — sometimes called FIRE (Financial Independence, Retire Early). Use our calculator with a custom retirement age of 50, 55, or 60 to see how far away your early retirement date is.</p>
-  </div>
+    <h2>What Is Pensionable Age?</h2>
+    <p>Pensionable age (also called retirement age or state pension age) is the minimum age at which you become eligible to receive state pension or Social Security benefits. It varies by country and is periodically adjusted upward as life expectancy increases.</p>
 
-  <div class="card">
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">More Date & Age Tools</h2>
-    <div class="tools-grid">
-      <a class="tool-card" href="/"><span class="tc-icon">🎂</span><div class="tc-name">Age Calculator</div><div class="tc-desc">Your exact age in years & days</div></a>
-      <a class="tool-card" href="/date-difference/"><span class="tc-icon">📅</span><div class="tc-name">Date Difference</div><div class="tc-desc">Days between two dates</div></a>
-      <a class="tool-card" href="/birthday-countdown/"><span class="tc-icon">⏳</span><div class="tc-name">Birthday Countdown</div><div class="tc-desc">Days until your birthday</div></a>
-      <a class="tool-card" href="/age-difference/"><span class="tc-icon">👫</span><div class="tc-name">Age Difference</div><div class="tc-desc">Compare two birthdays</div></a>
-    </div>
-  </div>
+    <h2>Pensionable Age by Country in 2026</h2>
+    <table class="country-table">
+      <tr><th>Country</th><th>Pensionable Age</th><th>Notes</th></tr>
+      <tr><td>United States</td><td>67</td><td>Full Social Security. Early at 62 (reduced).</td></tr>
+      <tr><td>United Kingdom</td><td>66</td><td>Rising to 67 between 2026-2028.</td></tr>
+      <tr><td>Canada</td><td>65</td><td>CPP/OAS. Early at 60 (reduced).</td></tr>
+      <tr><td>Australia</td><td>67</td><td>Age Pension from July 2023.</td></tr>
+      <tr><td>Germany</td><td>67</td><td>Gradually rising from 65 to 67.</td></tr>
+      <tr><td>France</td><td>64</td><td>Raised from 62 in 2023 reform.</td></tr>
+      <tr><td>Netherlands</td><td>67</td><td>AOW pension age.</td></tr>
+      <tr><td>Ireland</td><td>66</td><td>State pension age.</td></tr>
+      <tr><td>New Zealand</td><td>65</td><td>NZ Superannuation.</td></tr>
+      <tr><td>Singapore</td><td>65</td><td>CPF Life payout eligibility.</td></tr>
+    </table>
 
-  <div class="ad-slot" style="margin-bottom:24px;">Advertisement (728×90)</div>
+    <h2>How to Calculate Your Pensionable Age</h2>
+    <p>Your retirement year is calculated by adding your country's pensionable age to your birth year. For example, if you were born in 1970 and live in the US, your pensionable age is 67 — meaning you can retire in 2037 (1970 + 67). If your birthday has already passed in that year, you retire that year. If not, you retire the following year.</p>
+
+    <h2>Early Retirement vs Full Pensionable Age</h2>
+    <p>Most countries allow early retirement with reduced benefits. In the United States, you can claim Social Security from age 62, but your monthly benefit is permanently reduced by up to 30% compared to waiting until full retirement age (67). Delaying beyond 67 increases your benefit by 8% per year up to age 70.</p>
+
+    <h2>How Many Years Until I Reach Pensionable Age?</h2>
+    <p>Enter your birth date and country above to get your exact answer. The calculation accounts for your specific birth month and day — someone born in December 1960 reaches retirement age several months later than someone born in January 1960, even though they are both "born in 1960".</p>
+
+    <h2>Year of Retirement Calculator</h2>
+    <p>The year of retirement calculator above gives you three key pieces of information: your retirement year, exactly how many years and months remain until you reach pensionable age, and your retirement age based on your country's current rules. Use the custom age field if your country is not listed or if you plan to retire early or late.</p>
+  </div>
 
   <div class="card">
     <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">When can I retire in the US?</div>
-      <div class="faq-a">In the United States, the full retirement age for Social Security benefits is 67 for anyone born in 1960 or later. You can start receiving reduced benefits at 62, or delay until 70 for higher monthly payments.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How many years until I can retire?</div>
-      <div class="faq-a">Enter your date of birth and target retirement age above. The calculator will show you exactly how many years, months, and days remain until your retirement date.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What is FIRE (Financial Independence, Retire Early)?</div>
-      <div class="faq-a">FIRE is a financial movement where people aggressively save and invest with the goal of retiring much earlier than the traditional retirement age — often in their 40s or 50s. Use our calculator with a custom retirement age to plan your FIRE date.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is this retirement calculator free?</div>
-      <div class="faq-a">Yes, completely free. No sign-up, no personal data collected. All calculations happen instantly in your browser.</div>
-    </div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the pensionable age in the US?</div><div class="faq-a">In the United States, the full pensionable age (Social Security retirement age) is 67 for anyone born in 1960 or later. Early retirement is available from age 62 with permanently reduced benefits. Delaying past 67 increases your monthly benefit by 8% per year up to age 70.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I calculate my year of retirement?</div><div class="faq-a">Add your country's pensionable age to your birth year. For example: born 1968 in the UK (pensionable age 66) = retirement year 2034. If your birthday falls later in that year, you may not reach 66 until the following year — the calculator above accounts for this automatically.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When can I retire?</div><div class="faq-a">Your retirement date depends on your birth date and your country's pensionable age. Enter both above to get your exact retirement year, month, and how many years remain.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the pensionable age in the UK?</div><div class="faq-a">The UK State Pension age is currently 66 for both men and women. It is scheduled to rise to 67 between 2026 and 2028, and further increases are planned for the 2040s.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I retire before pensionable age?</div><div class="faq-a">Yes — most countries allow early retirement with reduced state pension benefits. In the US you can retire at 62 (reduced benefits), in Canada at 60 (CPP with reduction), and in the UK you can access private pensions from age 55. The calculator above shows your official state pensionable age.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many years until I reach pensionable age?</div><div class="faq-a">Enter your birth date and country in the calculator above to get the exact number of years and months remaining until you reach your country's pensionable age.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is pensionable age the same as retirement age?</div><div class="faq-a">Yes — pensionable age and retirement age are used interchangeably. Both refer to the age at which you become eligible for state pension or Social Security benefits. The official term varies by country.</div></div>
   </div>
 
-  <footer>
-    <a href="/">Home</a><a href="/about/">About</a><a href="/privacy/">Privacy Policy</a><a href="/contact/">Contact</a>
-    <p style="margin-top:10px">© 2025 QuickCalcs · quickagecalc.com</p>
-  </footer>
+  <div class="card">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">More Date Calculators</h2>
+    <div class="tools-grid">
+      <a class="tool-card" href="/"><span class="tc-icon">🎂</span><div class="tc-name">Age Calculator</div><div class="tc-desc">Your exact age today</div></a>
+      <a class="tool-card" href="/birthday-countdown/"><span class="tc-icon">⏳</span><div class="tc-name">Birthday Countdown</div><div class="tc-desc">Days until your birthday</div></a>
+      <a class="tool-card" href="/date-difference/"><span class="tc-icon">📅</span><div class="tc-name">Date Difference</div><div class="tc-desc">Days between two dates</div></a>
+      <a class="tool-card" href="/born-in-year/"><span class="tc-icon">📆</span><div class="tc-name">Age By Year</div><div class="tc-desc">Find age by birth year</div></a>
+    </div>
+  </div>
 </div>
 
 <script>
-function setAge(age) {
-  document.getElementById('retireAge').value = age;
-  document.querySelectorAll('.age-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-}
-function setCountryAge() {
-  const val = document.getElementById('country').value;
-  if (val !== '0') document.getElementById('retireAge').value = val;
-}
+var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
 function calculate() {
-  const bm = parseInt(document.getElementById('bm').value);
-  const bd = parseInt(document.getElementById('bd').value);
-  const by = parseInt(document.getElementById('by').value);
-  const retireAge = parseInt(document.getElementById('retireAge').value);
-  if (!bm||!bd||!by||!retireAge) { alert('Please enter your date of birth and retirement age.'); return; }
+  var bM = parseInt(document.getElementById('bMonth').value);
+  var bD = parseInt(document.getElementById('bDay').value);
+  var bY = parseInt(document.getElementById('bYear').value);
+  var customAge = parseInt(document.getElementById('customAge').value);
+  var countryAge = parseInt(document.getElementById('country').value);
+  var retireAge = customAge || countryAge;
 
-  const birth = new Date(by, bm-1, bd);
-  const now = new Date();
-  const retireDate = new Date(by + retireAge, bm-1, bd);
-  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  if (!bM || !bD || !bY) { alert('Please enter your complete birth date.'); return; }
 
-  if (retireDate <= now) {
-    document.getElementById('retireDate').textContent = '🎉 You can already retire!';
-    document.getElementById('retireSub').textContent = `You reached retirement age on ${monthNames[retireDate.getMonth()]} ${bd}, ${by + retireAge}`;
+  var today = new Date();
+  var retireDate = new Date(bY + retireAge, bM - 1, bD);
+
+  if (retireDate <= today) {
+    document.getElementById('retireYear').textContent = 'Now';
+    document.getElementById('retireDate').textContent = 'You have already reached pensionable age!';
+    document.getElementById('rYears').textContent = '0';
+    document.getElementById('rMonths').textContent = '0';
+    document.getElementById('rAge').textContent = retireAge;
     document.getElementById('results').style.display = 'block';
     return;
   }
 
-  const diff = retireDate - now;
-  const daysLeft = Math.floor(diff / 86400000);
-  const weeksLeft = Math.floor(daysLeft / 7);
-  const workdaysLeft = Math.floor(daysLeft * 5/7);
-  let yearsLeft = retireDate.getFullYear() - now.getFullYear();
-  let monthsLeft = retireDate.getMonth() - now.getMonth();
-  if (monthsLeft < 0) { yearsLeft--; monthsLeft += 12; }
+  var years = retireDate.getFullYear() - today.getFullYear();
+  var months = retireDate.getMonth() - today.getMonth();
+  if (months < 0) { years--; months += 12; }
+  var totalMonths = years * 12 + months;
 
-  let currentAge = now.getFullYear() - by;
-  if (now.getMonth() < bm-1 || (now.getMonth() === bm-1 && now.getDate() < bd)) currentAge--;
+  document.getElementById('retireYear').textContent = retireDate.getFullYear();
+  document.getElementById('retireDate').textContent = monthNames[retireDate.getMonth()] + ' ' + bD + ', ' + retireDate.getFullYear();
+  document.getElementById('rYears').textContent = years;
+  document.getElementById('rMonths').textContent = totalMonths;
+  document.getElementById('rAge').textContent = retireAge;
 
-  const careerStart = 22;
-  const totalCareer = retireAge - careerStart;
-  const doneYears = currentAge - careerStart;
-  const pct = Math.max(0, Math.min(100, Math.round(doneYears / totalCareer * 100)));
-
-  document.getElementById('retireDate').textContent = `${monthNames[retireDate.getMonth()]} ${bd}, ${by + retireAge}`;
-  document.getElementById('retireSub').textContent = `${daysLeft.toLocaleString()} days from today`;
-  document.getElementById('rYears').textContent = yearsLeft;
-  document.getElementById('rMonths').textContent = (yearsLeft * 12 + monthsLeft).toLocaleString();
-  document.getElementById('rDays').textContent = daysLeft.toLocaleString();
-  document.getElementById('rCurrentAge').textContent = currentAge;
-  document.getElementById('rRetireAge').textContent = retireAge;
-  document.getElementById('rWorkdays').textContent = workdaysLeft.toLocaleString();
-  document.getElementById('progressPct').textContent = pct + '%';
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('infoBox').innerHTML = `You are currently <strong>${currentAge} years old</strong> and will retire at <strong>${retireAge}</strong>. You have <strong>${yearsLeft} years and ${monthsLeft} months</strong> left until your retirement date of <strong>${monthNames[retireDate.getMonth()]} ${bd}, ${by + retireAge}</strong>. That's approximately <strong>${workdaysLeft.toLocaleString()} working days</strong> remaining. *Estimate based on 5-day work week.`;
-
-  document.getElementById('results').style.display = 'block';
-  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  var r = document.getElementById('results');
+  r.style.display = 'block';
+  r.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
+
 function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
 </script>
 </body>
