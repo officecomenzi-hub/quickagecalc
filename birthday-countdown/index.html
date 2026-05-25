@@ -2,251 +2,235 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Countdown – Days Until My Next Birthday | QuickAgeCalc</title>
-<meta name="description" content="Find out exactly how many days until your next birthday. Free birthday countdown calculator — see days, hours, minutes and seconds until your special day.">
-<meta name="keywords" content="birthday countdown, days until my birthday, how many days until my birthday, birthday countdown calculator, next birthday calculator">
+<title>How Many Days Until My Birthday? Free Birthday Countdown | QuickAgeCalc</title>
+<meta name="description" content="Find out exactly how many days until your next birthday. Free birthday countdown calculator — see days, hours, and minutes until your special day. Instant results.">
+<meta name="keywords" content="how many days until my birthday, days until my birthday, birthday countdown, how many days until birthday, birthday countdown calculator, days until my next birthday">
 <link rel="canonical" href="https://quickagecalc.com/birthday-countdown/">
-<meta property="og:title" content="Birthday Countdown – Days Until My Next Birthday">
-<meta property="og:description" content="How many days until your next birthday? Find out instantly with our free birthday countdown calculator.">
+<meta property="og:title" content="How Many Days Until My Birthday? Free Countdown">
+<meta property="og:description" content="Find out exactly how many days until your next birthday — free and instant.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="/nav.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Birthday Countdown Calculator",
-  "description": "Calculate exactly how many days, hours, and minutes until your next birthday.",
-  "url": "https://quickagecalc.com/birthday-countdown/",
-  "applicationCategory": "UtilityApplication",
-  "offers": { "@type": "Offer", "price": "0" }
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How many days until my birthday?", "acceptedAnswer": {"@type": "Answer", "text": "Enter your birth date above to find out exactly how many days until your next birthday. The calculator updates daily and shows days, hours, and minutes until your special day."}},
+    {"@type": "Question", "name": "How do I calculate days until my birthday?", "acceptedAnswer": {"@type": "Answer", "text": "To calculate days until your birthday, find the next occurrence of your birth date and subtract today's date. If your birthday has already passed this year, count to next year's birthday."}},
+    {"@type": "Question", "name": "What day of the week is my birthday this year?", "acceptedAnswer": {"@type": "Answer", "text": "Enter your birth date in the calculator above to see what day of the week your birthday falls on this year."}},
+    {"@type": "Question", "name": "How many days until my birthday if I was born in July?", "acceptedAnswer": {"@type": "Answer", "text": "If you were born in July and today is late May 2026, your birthday is approximately 30-60 days away. Enter your exact birth date above for a precise countdown."}}
+  ]
 }
 </script>
 <style>
-  :root {
-    --bg: #f7f8fa; --white: #ffffff; --border: #e2e6ea;
-    --accent: #2563eb; --accent-light: #eff6ff;
-    --text: #1a202c; --muted: #6b7280;
-    --shadow: 0 2px 12px rgba(0,0,0,0.07); --radius: 14px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); }
-  header { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 0; margin-bottom: 32px; }
-  header .inner { max-width: 760px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
-  .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
-  .logo span { color: var(--text); }
-  nav a { font-size: 13px; color: var(--muted); text-decoration: none; margin-left: 16px; }
-  nav a:hover { color: var(--accent); }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
-  .hero { text-align: center; margin-bottom: 28px; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.2; margin-bottom: 10px; }
-  .hero h1 span { color: var(--accent); }
-  .hero p { color: var(--muted); font-size: 16px; font-weight: 300; }
-  .ad-slot { background: var(--white); border: 1px dashed var(--border); border-radius: var(--radius); height: 90px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 12px; margin-bottom: 24px; }
-  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); margin-bottom: 20px; }
-  .section-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-  .input-row { display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 12px; margin-bottom: 20px; }
-  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-  .field select, .field input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 15px; font-family: 'Lato', sans-serif; color: var(--text); background: var(--white); outline: none; transition: border-color .2s; }
-  .field select:focus, .field input:focus { border-color: var(--accent); }
-  .calc-btn { width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; font-family: 'Lato', sans-serif; cursor: pointer; transition: background .2s, transform .1s; }
-  .calc-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
-  #results { display: none; }
-  .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-  .count-box { background: var(--accent); color: white; border-radius: 12px; padding: 20px 10px; text-align: center; }
-  .count-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; display: block; line-height: 1; }
-  .count-lbl { font-size: 11px; opacity: .8; margin-top: 6px; text-transform: uppercase; letter-spacing: .08em; }
-  .birthday-info { background: var(--accent-light); border: 1px solid #bfdbfe; border-radius: 10px; padding: 20px 22px; margin-bottom: 16px; }
-  .birthday-info .date { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .birthday-info .sub { font-size: 13px; color: var(--muted); }
-  .zodiac-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--text); }
-  .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
-  .tool-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 18px; text-decoration: none; color: var(--text); transition: border-color .2s, box-shadow .2s; display: block; }
-  .tool-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
-  .tool-card .tc-icon { font-size: 22px; margin-bottom: 8px; display: block; }
-  .tool-card .tc-name { font-size: 14px; font-weight: 700; }
-  .tool-card .tc-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .content h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; }
-  .content p { font-size: 15px; color: #374151; line-height: 1.8; margin-bottom: 14px; }
-  .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-q { font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; font-size: 15px; }
-  .faq-q::after { content: '+'; color: var(--accent); font-size: 22px; }
-  .faq-item.open .faq-q::after { content: '−'; }
-  .faq-a { font-size: 14px; color: var(--muted); line-height: 1.7; padding-bottom: 16px; display: none; }
-  .faq-item.open .faq-a { display: block; }
-  footer { text-align: center; padding: 28px 0; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 32px; }
-  footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
-  footer a:hover { color: var(--accent); }
-  @media (max-width: 540px) {
-    .input-row { grid-template-columns: 1fr 1fr; }
-    .countdown-grid { grid-template-columns: repeat(2, 1fr); }
-    .card { padding: 20px 16px; }
-  }
+  :root{--bg:#f7f8fa;--white:#ffffff;--border:#e2e6ea;--accent:#2563eb;--accent-light:#eff6ff;--text:#1a202c;--muted:#6b7280;--pink:#db2777;--pink-light:#fdf2f8;--shadow:0 2px 12px rgba(0,0,0,0.07);--radius:14px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px 60px;}
+  .hero{text-align:center;margin-bottom:28px;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.2;margin-bottom:10px;}
+  .hero h1 span{color:var(--accent);}
+  .hero p{color:var(--muted);font-size:16px;font-weight:300;}
+  .ad-slot{background:var(--white);border:1px dashed var(--border);border-radius:var(--radius);height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;margin-bottom:24px;}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:20px;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+  .input-row{display:grid;grid-template-columns:2fr 1fr 1.5fr;gap:12px;margin-bottom:20px;}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
+  .field select,.field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Lato',sans-serif;color:var(--text);background:var(--white);outline:none;transition:border-color .2s;}
+  .field select:focus,.field input:focus{border-color:var(--accent);}
+  .calc-btn{width:100%;padding:15px;background:var(--accent);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;font-family:'Lato',sans-serif;cursor:pointer;transition:background .2s,transform .1s;}
+  .calc-btn:hover{background:#1d4ed8;transform:translateY(-1px);}
+  #results{display:none;}
+  .countdown-hero{text-align:center;padding:28px;background:var(--accent-light);border:1px solid #bfdbfe;border-radius:var(--radius);margin-bottom:20px;}
+  .countdown-num{font-family:'Playfair Display',serif;font-size:clamp(4rem,15vw,7rem);color:var(--accent);line-height:1;display:block;}
+  .countdown-label{font-size:1.1rem;color:var(--muted);margin-top:6px;}
+  .birthday-date{font-size:1.2rem;font-weight:700;color:var(--text);margin-top:12px;}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+  .stat-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:16px 12px;text-align:center;}
+  .stat-val{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);display:block;line-height:1.1;}
+  .stat-lbl{font-size:11px;color:var(--muted);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .zodiac-box{background:var(--pink-light);border:1px solid #fbcfe8;border-radius:10px;padding:18px 22px;margin-bottom:18px;text-align:center;}
+  .zodiac-box .z-sign{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--pink);font-weight:700;}
+  .zodiac-box .z-label{font-size:13px;color:var(--muted);margin-top:4px;}
+  .content h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:10px;margin-top:16px;}
+  .content p{font-size:15px;color:#374151;line-height:1.8;margin-bottom:14px;}
+  .content ul{margin-left:20px;margin-bottom:14px;line-height:2;}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:15px;}
+  .faq-q::after{content:'+';color:var(--accent);font-size:22px;}
+  .faq-item.open .faq-q::after{content:'\u2212';}
+  .faq-a{font-size:14px;color:var(--muted);line-height:1.7;padding-bottom:16px;display:none;}
+  .faq-item.open .faq-a{display:block;}
+  .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;}
+  .tool-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .2s;display:block;}
+  .tool-card:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+  .tool-card .tc-icon{font-size:22px;margin-bottom:8px;display:block;}
+  .tool-card .tc-name{font-size:14px;font-weight:700;}
+  .tool-card .tc-desc{font-size:12px;color:var(--muted);margin-top:4px;}
+  @media(max-width:540px){.input-row{grid-template-columns:1fr 1fr;}.stats-grid{grid-template-columns:1fr 1fr;}.card{padding:20px 16px;}}
 </style>
 </head>
 <body>
-<header>
-  <div class="inner">
-    <a class="logo" href="/"><span>Quick</span>AgeCalc</a>
-    <nav>
-      <a href="/">🎂 Age Calc</a>
-      <a href="/date-difference/">📅 Date Diff</a>
-      <a href="/birthday-countdown/">⏳ Birthday</a>
-      <a href="/age-difference/">👫 Age Diff</a>
-      <a href="/retirement-calculator/">🏖️ Retirement</a>
-    </nav>
-    
-  </div>
-</header>
 <div class="wrap">
   <div class="hero">
-    <h1>🎂 Birthday Countdown<br><span>Days Until My Next Birthday</span></h1>
-    <p>Find out exactly how many days, hours, and minutes until your next birthday.</p>
+    <h1>How Many Days Until <span>My Birthday?</span></h1>
+    <p>Find out exactly how many days, hours, and minutes until your next birthday — free and instant.</p>
   </div>
-  <div class="ad-slot">Advertisement (728×90)</div>
+
+  <div class="ad-slot">Advertisement (728x90)</div>
+
   <div class="card">
-    <div class="section-label">Enter your date of birth</div>
+    <div class="section-label">Your date of birth</div>
     <div class="input-row">
-      <div class="field">
-        <label>Month</label>
-        <select id="bm">
-          <option value="">Month</option>
-          <option value="1">January</option><option value="2">February</option>
-          <option value="3">March</option><option value="4">April</option>
-          <option value="5">May</option><option value="6">June</option>
-          <option value="7">July</option><option value="8">August</option>
-          <option value="9">September</option><option value="10">October</option>
-          <option value="11">November</option><option value="12">December</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Day</label>
-        <input type="number" id="bd" placeholder="Day" min="1" max="31">
-      </div>
-      <div class="field">
-        <label>Year</label>
-        <input type="number" id="by" placeholder="Year" min="1900" max="2025">
-      </div>
+      <div class="field"><label>Month</label><select id="bMonth"><option value="">Month</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></div>
+      <div class="field"><label>Day</label><input type="number" id="bDay" placeholder="Day" min="1" max="31"></div>
+      <div class="field"><label>Year</label><input type="number" id="bYear" placeholder="Year" min="1900" max="2026"></div>
     </div>
-    <button class="calc-btn" onclick="calculate()">Calculate Birthday Countdown →</button>
+    <button class="calc-btn" onclick="calculate()">Count Days Until My Birthday →</button>
   </div>
 
   <div id="results">
-    <div class="card">
-      <div class="section-label">⏳ Countdown to your next birthday</div>
-      <div class="countdown-grid">
-        <div class="count-box"><span class="count-num" id="cDays">0</span><div class="count-lbl">Days</div></div>
-        <div class="count-box"><span class="count-num" id="cHours">0</span><div class="count-lbl">Hours</div></div>
-        <div class="count-box"><span class="count-num" id="cMins">0</span><div class="count-lbl">Minutes</div></div>
-        <div class="count-box"><span class="count-num" id="cSecs">0</span><div class="count-lbl">Seconds</div></div>
-      </div>
-      <div class="birthday-info">
-        <div class="date" id="bdDate">—</div>
-        <div class="sub" id="bdSub">—</div>
-      </div>
-      <div class="zodiac-box" id="zodiacBox"></div>
+    <div class="countdown-hero">
+      <span class="countdown-num" id="daysLeft">—</span>
+      <div class="countdown-label">days until your next birthday</div>
+      <div class="birthday-date" id="nextBdDate">—</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box"><span class="stat-val" id="rWeeks">—</span><div class="stat-lbl">Weeks Away</div></div>
+      <div class="stat-box"><span class="stat-val" id="rHours">—</span><div class="stat-lbl">Hours Away</div></div>
+      <div class="stat-box"><span class="stat-val" id="rAge">—</span><div class="stat-lbl">Turning Age</div></div>
+    </div>
+
+    <div class="zodiac-box">
+      <div class="z-sign" id="zodiacSign">—</div>
+      <div class="z-label" id="zodiacLabel">—</div>
     </div>
   </div>
 
-  <div class="ad-slot" style="height:250px;margin-bottom:24px;">Advertisement (300×250)</div>
+  <div class="ad-slot" style="height:250px;">Advertisement (300x250)</div>
 
   <div class="card content">
-    <h2>Why Use a Birthday Countdown?</h2>
-    <p>Whether you're planning a birthday party, waiting excitedly for your own special day, or counting down for a friend or family member — a birthday countdown adds fun and anticipation to the celebration. Our calculator shows you the precise time remaining in days, hours, minutes, and seconds.</p>
-    <h2>What Else Can You Find Out?</h2>
-    <p>Beyond the countdown, our calculator also shows your zodiac sign based on your birth date, and tells you the exact date of your next birthday. It's the perfect tool for birthday planning and sharing with friends.</p>
-  </div>
+    <h2>How Many Days Until My Birthday?</h2>
+    <p>To find out how many days until your birthday, enter your birth date above and our calculator will give you the exact countdown — updated every day. The result includes days, weeks, hours, and the day of the week your birthday falls on this year.</p>
 
-  <div class="card">
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">More Date & Age Tools</h2>
-    <div class="tools-grid">
-      <a class="tool-card" href="/"><span class="tc-icon">🎂</span><div class="tc-name">Age Calculator</div><div class="tc-desc">Your exact age in years & days</div></a>
-      <a class="tool-card" href="/date-difference/"><span class="tc-icon">📅</span><div class="tc-name">Date Difference</div><div class="tc-desc">Days between two dates</div></a>
-      <a class="tool-card" href="/age-difference/"><span class="tc-icon">👫</span><div class="tc-name">Age Difference</div><div class="tc-desc">Compare two birthdays</div></a>
-      <a class="tool-card" href="/retirement-calculator/"><span class="tc-icon">🏖️</span><div class="tc-name">Retirement Calc</div><div class="tc-desc">When can you retire?</div></a>
-    </div>
-  </div>
+    <h2>How to Calculate Days Until Your Birthday</h2>
+    <p>The calculation depends on whether your birthday has already passed this year or not:</p>
+    <ul>
+      <li><strong>Birthday not yet passed:</strong> count the days from today to your birthday this year</li>
+      <li><strong>Birthday already passed:</strong> count the days from today to your birthday next year</li>
+    </ul>
+    <p>For example, if your birthday is July 15 and today is May 24, 2026, your birthday is 51 days away. If your birthday was March 10, it already passed — your next birthday is March 10, 2027, which is 290 days away.</p>
 
-  <div class="ad-slot" style="margin-bottom:24px;">Advertisement (728×90)</div>
+    <h2>What Day of the Week Is My Birthday This Year?</h2>
+    <p>Your birthday falls on a different day of the week each year. Birthdays shift forward by 1 day each year, and by 2 days after a leap year. The calculator above shows you exactly what day of the week your birthday falls on in 2026.</p>
+
+    <h2>How Many Days Until My Birthday — By Month</h2>
+    <p>Approximate days until upcoming birthdays from late May 2026:</p>
+    <ul>
+      <li>June birthday: approximately 7 to 37 days away</li>
+      <li>July birthday: approximately 38 to 68 days away</li>
+      <li>August birthday: approximately 69 to 99 days away</li>
+      <li>September birthday: approximately 100 to 129 days away</li>
+      <li>December birthday: approximately 191 to 221 days away</li>
+    </ul>
+
+    <h2>Your Zodiac Sign and Birthday</h2>
+    <p>Your Zodiac sign is determined by your birthday. The calculator above shows your sign automatically. Birthdays in late May fall under Gemini (May 21 to June 20). Each sign has different date ranges that shift slightly depending on the exact time of year.</p>
+
+    <h2>The Most Common Birthday Month</h2>
+    <p>September is statistically the most common birth month globally. The most common single birthday in the United States is September 9. The least common birthday is February 29, which only exists in leap years — meaning people born on that date only have a real birthday every 4 years.</p>
+  </div>
 
   <div class="card">
     <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How many days until my birthday?</div>
-      <div class="faq-a">Enter your birth month, day, and year above and click calculate. You'll see the exact number of days, hours, minutes, and seconds until your next birthday.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What if my birthday is today?</div>
-      <div class="faq-a">If today is your birthday, the calculator will show 0 days and display a special birthday message. Happy Birthday! 🎉</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Does the calculator account for leap year birthdays?</div>
-      <div class="faq-a">Yes — if you were born on February 29th, the calculator automatically handles leap year birthdays correctly, showing the next February 29th or March 1st depending on the year.</div>
-    </div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many days until my birthday?</div><div class="faq-a">Enter your birth date in the calculator above to find the exact number of days until your next birthday. The result updates daily so you always have the current countdown.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I calculate days until my birthday manually?</div><div class="faq-a">Count the remaining days in the current month, then add all days in the months between now and your birth month, then add the days in your birth month up to your birth day. Remember to check whether your birthday has already passed this year — if so, count to next year.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many days until my birthday if I was born in July?</div><div class="faq-a">If you were born in July and today is late May 2026, your birthday is approximately 38 to 68 days away depending on your exact birth date. Enter your date above for the precise countdown.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What day of the week is my birthday this year?</div><div class="faq-a">Enter your birth date in the calculator above. It will show you exactly what day of the week your birthday falls on in 2026, along with your Zodiac sign.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many weeks until my birthday?</div><div class="faq-a">Divide the number of days until your birthday by 7. For example, if your birthday is 70 days away, it is exactly 10 weeks away. The calculator shows both days and weeks automatically.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the most common birthday?</div><div class="faq-a">The most common birthday in the United States is September 9. September is also the most common birth month globally. The least common birthday is February 29 (leap day), which only occurs every 4 years.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many hours until my birthday?</div><div class="faq-a">Multiply the days until your birthday by 24. For example, if your birthday is 30 days away, it is approximately 720 hours away. The calculator above shows the exact hours count automatically.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is a golden birthday?</div><div class="faq-a">A golden birthday (also called lucky birthday) is when you turn the age that matches your birth date. For example, turning 15 on the 15th of any month. If you were born on the 25th, your golden birthday is when you turn 25.</div></div>
   </div>
 
-  <footer>
-    <a href="/">Home</a><a href="/about/">About</a><a href="/privacy/">Privacy Policy</a><a href="/contact/">Contact</a>
-    <p style="margin-top:10px">© 2025 QuickCalcs · quickagecalc.com</p>
-  </footer>
+  <div class="card">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">More Date Calculators</h2>
+    <div class="tools-grid">
+      <a class="tool-card" href="/"><span class="tc-icon">🎂</span><div class="tc-name">Age Calculator</div><div class="tc-desc">Your exact age today</div></a>
+      <a class="tool-card" href="/age-difference/"><span class="tc-icon">👫</span><div class="tc-name">Age Difference</div><div class="tc-desc">Compare two birthdays</div></a>
+      <a class="tool-card" href="/date-difference/"><span class="tc-icon">📅</span><div class="tc-name">Date Difference</div><div class="tc-desc">Days between two dates</div></a>
+      <a class="tool-card" href="/pregnancy-due-date/"><span class="tc-icon">🤰</span><div class="tc-name">Due Date Calculator</div><div class="tc-desc">Find your baby's due date</div></a>
+      <a class="tool-card" href="/born-in-year/"><span class="tc-icon">📆</span><div class="tc-name">Age By Year</div><div class="tc-desc">Find age by birth year</div></a>
+    </div>
+  </div>
 </div>
 
 <script>
-let timer;
-function calculate() {
-  const bm = parseInt(document.getElementById('bm').value);
-  const bd = parseInt(document.getElementById('bd').value);
-  const by = parseInt(document.getElementById('by').value);
-  if (!bm || !bd || !by) { alert('Please enter your date of birth.'); return; }
+var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var zodiacSigns = [
+  {name:'♑ Capricorn',dates:'December 22 - January 19'},
+  {name:'♒ Aquarius',dates:'January 20 - February 18'},
+  {name:'♓ Pisces',dates:'February 19 - March 20'},
+  {name:'♈ Aries',dates:'March 21 - April 19'},
+  {name:'♉ Taurus',dates:'April 20 - May 20'},
+  {name:'♊ Gemini',dates:'May 21 - June 20'},
+  {name:'♋ Cancer',dates:'June 21 - July 22'},
+  {name:'♌ Leo',dates:'July 23 - August 22'},
+  {name:'♍ Virgo',dates:'August 23 - September 22'},
+  {name:'♎ Libra',dates:'September 23 - October 22'},
+  {name:'♏ Scorpio',dates:'October 23 - November 21'},
+  {name:'♐ Sagittarius',dates:'November 22 - December 21'},
+];
 
-  clearInterval(timer);
-  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-  function update() {
-    const now = new Date();
-    let nextBd = new Date(now.getFullYear(), bm - 1, bd);
-    if (nextBd <= now) nextBd.setFullYear(now.getFullYear() + 1);
-    const diff = nextBd - now;
-    const days = Math.floor(diff / 86400000);
-    const hours = Math.floor((diff % 86400000) / 3600000);
-    const mins = Math.floor((diff % 3600000) / 60000);
-    const secs = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cDays').textContent = days;
-    document.getElementById('cHours').textContent = hours;
-    document.getElementById('cMins').textContent = mins;
-    document.getElementById('cSecs').textContent = secs;
-    const isToday = days === 0 && hours === 0 && mins < 5;
-    document.getElementById('bdDate').textContent = isToday ? '🎉 Happy Birthday!' : `Next birthday: ${monthNames[nextBd.getMonth()]} ${bd}, ${nextBd.getFullYear()}`;
-    document.getElementById('bdSub').textContent = isToday ? 'Today is your special day!' : `That's ${days} days, ${hours} hours, and ${mins} minutes away`;
-  }
-
-  const zodiac = getZodiac(bm, bd);
-  document.getElementById('zodiacBox').innerHTML = `Your zodiac sign: <strong>${zodiac.sign} ${zodiac.emoji}</strong> — ${zodiac.desc}`;
-
-  update();
-  timer = setInterval(update, 1000);
-  document.getElementById('results').style.display = 'block';
-  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+function getZodiac(month, day) {
+  var dates = [[20,1],[18,2],[20,3],[19,4],[20,5],[20,6],[22,7],[22,8],[22,9],[22,10],[21,11],[21,12]];
+  var idx = month - 1;
+  if (day <= dates[idx][0]) return zodiacSigns[idx];
+  return zodiacSigns[(idx + 1) % 12];
 }
 
-function getZodiac(m, d) {
-  const signs = [
-    { sign: 'Capricorn', emoji: '♑', desc: 'Ambitious, disciplined, patient', end: [1,19] },
-    { sign: 'Aquarius', emoji: '♒', desc: 'Independent, original, humanitarian', end: [2,18] },
-    { sign: 'Pisces', emoji: '♓', desc: 'Compassionate, artistic, intuitive', end: [3,20] },
-    { sign: 'Aries', emoji: '♈', desc: 'Courageous, energetic, enthusiastic', end: [4,19] },
-    { sign: 'Taurus', emoji: '♉', desc: 'Reliable, patient, practical', end: [5,20] },
-    { sign: 'Gemini', emoji: '♊', desc: 'Versatile, expressive, curious', end: [6,20] },
-    { sign: 'Cancer', emoji: '♋', desc: 'Intuitive, emotional, protective', end: [7,22] },
-    { sign: 'Leo', emoji: '♌', desc: 'Generous, creative, enthusiastic', end: [8,22] },
-    { sign: 'Virgo', emoji: '♍', desc: 'Analytical, hardworking, practical', end: [9,22] },
-    { sign: 'Libra', emoji: '♎', desc: 'Diplomatic, gracious, fair-minded', end: [10,22] },
-    { sign: 'Scorpio', emoji: '♏', desc: 'Resourceful, brave, passionate', end: [11,21] },
-    { sign: 'Sagittarius', emoji: '♐', desc: 'Generous, idealistic, adventurous', end: [12,21] },
-    { sign: 'Capricorn', emoji: '♑', desc: 'Ambitious, disciplined, patient', end: [12,31] },
-  ];
-  return signs.find(s => m < s.end[0] || (m === s.end[0] && d <= s.end[1]));
+function calculate() {
+  var bM = parseInt(document.getElementById('bMonth').value);
+  var bD = parseInt(document.getElementById('bDay').value);
+  var bY = parseInt(document.getElementById('bYear').value);
+  if (!bM || !bD || !bY) { alert('Please enter your complete birth date.'); return; }
+
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var thisYear = today.getFullYear();
+
+  var nextBd = new Date(thisYear, bM-1, bD);
+  if (nextBd <= today) nextBd = new Date(thisYear+1, bM-1, bD);
+
+  var daysLeft = Math.ceil((nextBd - today) / 86400000);
+  var weeksLeft = Math.floor(daysLeft / 7);
+  var hoursLeft = daysLeft * 24;
+
+  var birth = new Date(bY, bM-1, bD);
+  var turningAge = nextBd.getFullYear() - bY;
+
+  document.getElementById('daysLeft').textContent = daysLeft.toLocaleString();
+  document.getElementById('nextBdDate').textContent = 
+    dayNames[nextBd.getDay()] + ', ' + monthNames[nextBd.getMonth()] + ' ' + bD + ', ' + nextBd.getFullYear();
+  document.getElementById('rWeeks').textContent = weeksLeft.toLocaleString();
+  document.getElementById('rHours').textContent = hoursLeft.toLocaleString();
+  document.getElementById('rAge').textContent = turningAge;
+
+  var z = getZodiac(bM, bD);
+  document.getElementById('zodiacSign').textContent = z.name;
+  document.getElementById('zodiacLabel').textContent = z.dates;
+
+  var r = document.getElementById('results');
+  r.style.display = 'block';
+  r.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
