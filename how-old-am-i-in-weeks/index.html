@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Old Am I In Weeks? Calculate Your Age in Weeks | QuickAgeCalc</title>
+<meta name="description" content="Find out exactly how many weeks old you are. Free age in weeks calculator — enter your birthday and get your total weeks alive instantly.">
+<link rel="canonical" href="https://quickagecalc.com/how-old-am-i-in-weeks/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="/nav.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{{"@type":"Question","name":"How many weeks old am I?","acceptedAnswer":{{"@type":"Answer","text":"Enter your birth date above to find your exact age in weeks. The calculator accounts for all leap years between your birth date and today."}}}},{{"@type":"Question","name":"How do I calculate my age in weeks?","acceptedAnswer":{{"@type":"Answer","text":"Divide your total days alive by 7. For example, a 30-year-old has lived approximately 10,958 days, which equals about 1,565 weeks."}}}},{{"@type":"Question","name":"How many weeks old am I if I was born in 1990?","acceptedAnswer":{{"@type":"Answer","text":"If you were born in 1990, you are approximately 1,870 to 1,885 weeks old in 2026, depending on your exact birth date."}}}}]
+}
+</script>
+<style>
+  :root{--bg:#f7f8fa;--white:#ffffff;--border:#e2e6ea;--accent:#2563eb;--accent-light:#eff6ff;--text:#1a202c;--muted:#6b7280;--shadow:0 2px 12px rgba(0,0,0,0.07);--radius:14px;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px 60px;}
+  .hero{text-align:center;margin-bottom:28px;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.2;margin-bottom:10px;}
+  .hero h1 span{color:var(--accent);}
+  .hero p{color:var(--muted);font-size:16px;font-weight:300;}
+  .ad-slot{background:var(--white);border:1px dashed var(--border);border-radius:var(--radius);height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;margin-bottom:24px;}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);margin-bottom:20px;}
+  .result-box{text-align:center;padding:28px;background:var(--accent-light);border:1px solid #bfdbfe;border-radius:var(--radius);margin-bottom:20px;display:none;}
+  .big-num{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,10vw,5rem);color:var(--accent);line-height:1;display:block;}
+  .big-label{font-size:1.1rem;color:var(--muted);margin-top:6px;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+  .input-row{display:grid;grid-template-columns:2fr 1fr 1.5fr;gap:12px;margin-bottom:20px;}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;}
+  .field select,.field input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:'Lato',sans-serif;color:var(--text);background:var(--white);outline:none;transition:border-color .2s;}
+  .field select:focus,.field input:focus{border-color:var(--accent);}
+  .calc-btn{width:100%;padding:15px;background:var(--accent);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;font-family:'Lato',sans-serif;cursor:pointer;transition:background .2s,transform .1s;}
+  .calc-btn:hover{background:#1d4ed8;transform:translateY(-1px);}
+  .content h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:10px;margin-top:16px;}
+  .content p{font-size:15px;color:#374151;line-height:1.8;margin-bottom:14px;}
+  .content ul{margin-left:20px;margin-bottom:14px;line-height:2;}
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:15px;}
+  .faq-q::after{content:'+';color:var(--accent);font-size:22px;}
+  .faq-item.open .faq-q::after{content:'−';}
+  .faq-a{font-size:14px;color:var(--muted);line-height:1.7;padding-bottom:16px;display:none;}
+  .faq-item.open .faq-a{display:block;}
+  .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;}
+  .tool-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .2s;display:block;}
+  .tool-card:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+  .tool-card .tc-icon{font-size:22px;margin-bottom:8px;display:block;}
+  .tool-card .tc-name{font-size:14px;font-weight:700;}
+  .tool-card .tc-desc{font-size:12px;color:var(--muted);margin-top:4px;}
+  @media(max-width:540px){.input-row{grid-template-columns:1fr 1fr;}.card{padding:20px 16px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>How Old Am I In <span>Weeks</span>?</h1>
+    <p>Enter your birthday to find out exactly how many weeks old you are — instantly.</p>
+  </div>
+  <div class="ad-slot">Advertisement (728x90)</div>
+  <div class="card">
+    <div class="section-label">Your date of birth</div>
+    <div class="input-row">
+      <div class="field"><label>Month</label><select id="bMonth"><option value="">Month</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></div>
+      <div class="field"><label>Day</label><input type="number" id="bDay" placeholder="Day" min="1" max="31"></div>
+      <div class="field"><label>Year</label><input type="number" id="bYear" placeholder="Year" min="1900" max="2026"></div>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Calculate My Age in Weeks →</button>
+  </div>
+  <div class="result-box" id="resultBox">
+    <span class="big-num" id="mainResult">—</span>
+    <div class="big-label">weeks old since you were born</div>
+  </div>
+  <div class="ad-slot" style="height:250px;">Advertisement (300x250)</div>
+  <div class="card content">
+    <h2>How Old Am I In Weeks?</h2>
+    <p>To find how many weeks old you are, divide your total days alive by 7. Since each week has exactly 7 days, this gives a precise count of complete weeks you have lived.</p>
+    <h2>How to Calculate Your Age in Weeks</h2>
+    <p>First find your total days alive (years × 365 + leap years + remaining days), then divide by 7 and round down to get complete weeks. The calculator above does this automatically.</p>
+    <h2>Age in Weeks by Age</h2>
+    <ul>
+      <li>Age 10: approximately <strong>521 weeks</strong></li>
+      <li>Age 20: approximately <strong>1,043 weeks</strong></li>
+      <li>Age 30: approximately <strong>1,565 weeks</strong></li>
+      <li>Age 40: approximately <strong>2,087 weeks</strong></li>
+      <li>Age 50: approximately <strong>2,608 weeks</strong></li>
+      <li>Age 80: approximately <strong>4,173 weeks</strong></li>
+    </ul>
+    <h2>The 2,000 Week Milestone</h2>
+    <p>Your 2,000th week alive happens at approximately age 38 years and 5 months. If you live to 80, you will experience approximately 4,173 weeks total — a number that many people find surprisingly small when they think about how precious each week is.</p>
+    <h2>Why Count Age in Weeks?</h2>
+    <p>Weeks are a natural unit of time for most people — work weeks, school weeks, and planning cycles are all weekly. Knowing your age in weeks gives a meaningful perspective on how many "units" of productive time you have lived and how many remain.</p></div>
+  <div class="card">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">Frequently Asked Questions</h2>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many weeks old am I?</div><div class="faq-a">Enter your birth date above to find your exact age in weeks. The calculator accounts for all leap years between your birth date and today.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I calculate my age in weeks?</div><div class="faq-a">Divide your total days alive by 7. For example, a 30-year-old has lived approximately 10,958 days, which equals about 1,565 weeks.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many weeks old am I if I was born in 1990?</div><div class="faq-a">If you were born in 1990, you are approximately 1,870 to 1,885 weeks old in 2026, depending on your exact birth date.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many weeks in a year?</div><div class="faq-a">There are exactly 52 weeks and 1 day in a standard year, and 52 weeks and 2 days in a leap year. This is why your birthday shifts forward by 1 day each year.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How many weeks old am I if I was born in 2000?</div><div class="faq-a">If you were born in 2000, you are approximately 1,340 to 1,356 weeks old in 2026, depending on your exact birth date.</div></div>
+  </div>
+  <div class="card">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">More Age Calculators</h2>
+    <div class="tools-grid">
+      <a class="tool-card" href="/"><span class="tc-icon">🎂</span><div class="tc-name">Age Calculator</div><div class="tc-desc">Full age breakdown</div></a>
+      <a class="tool-card" href="/how-old-am-i-in-days/"><span class="tc-icon">📅</span><div class="tc-name">Age in Days</div><div class="tc-desc">Total days alive</div></a>
+      <a class="tool-card" href="/how-old-am-i-in-weeks/"><span class="tc-icon">📆</span><div class="tc-name">Age in Weeks</div><div class="tc-desc">Total weeks alive</div></a>
+      <a class="tool-card" href="/how-old-am-i-in-hours/"><span class="tc-icon">⏰</span><div class="tc-name">Age in Hours</div><div class="tc-desc">Total hours alive</div></a>
+      <a class="tool-card" href="/birthday-countdown/"><span class="tc-icon">⏳</span><div class="tc-name">Birthday Countdown</div><div class="tc-desc">Days until birthday</div></a>
+    </div>
+  </div>
+</div>
+<script>
+function calculate(){
+  var bM=parseInt(document.getElementById('bMonth').value);
+  var bD=parseInt(document.getElementById('bDay').value);
+  var bY=parseInt(document.getElementById('bYear').value);
+  if(!bM||!bD||!bY){alert('Please enter your complete birth date.');return;}
+  var birth=new Date(bY,bM-1,bD);
+  var today=new Date();
+  if(birth>today){alert('Birth date cannot be in the future.');return;}
+  var ms=today-birth;
+  var totalDays=Math.floor(ms/86400000);
+  var result;
+  var unit='weeks';
+  if(unit==='days') result=totalDays;
+  else if(unit==='weeks') result=Math.floor(totalDays/7);
+  else if(unit==='months'){
+    var years=today.getFullYear()-birth.getFullYear();
+    var months=today.getMonth()-birth.getMonth();
+    if(today.getDate()<birth.getDate()) months--;
+    if(months<0){years--;months+=12;}
+    result=years*12+months;
+  }
+  else if(unit==='hours') result=Math.floor(ms/3600000);
+  else if(unit==='minutes') result=Math.floor(ms/60000);
+  document.getElementById('mainResult').textContent=result.toLocaleString();
+  var box=document.getElementById('resultBox');
+  box.style.display='block';
+  box.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}
+</script>
+</body>
+</html>
