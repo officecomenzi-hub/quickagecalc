@@ -19,7 +19,7 @@ jobs:
       - name: Prepare public folder
         run: |
           mkdir -p public
-          cp -r index.html robots.txt sitemap.xml favicon.ico nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes public/
+          cp -r index.html robots.txt sitemap.xml favicon.ico nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s public/
           cp -r born-pages/* public/
 
       - name: Deploy to Cloudflare Workers
