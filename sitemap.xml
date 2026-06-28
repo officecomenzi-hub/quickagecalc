@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://quickagecalc.com/sitemap-tools.xml</loc>
-    <lastmod>2026-06-28</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://quickagecalc.com/sitemap-born-1960-1989.xml</loc>
-    <lastmod>2026-06-28</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://quickagecalc.com/sitemap-born-1990-2025.xml</loc>
-    <lastmod>2026-06-28</lastmod>
-  </sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://quickagecalc.com/</loc><lastmod>2026-06-28</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://quickagecalc.com/date-difference/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://quickagecalc.com/birthday-countdown/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://quickagecalc.com/age-difference/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://quickagecalc.com/pregnancy-due-date/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://quickagecalc.com/dog-age/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://quickagecalc.com/retirement-calculator/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-year/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://quickagecalc.com/how-old-am-i-in-days/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://quickagecalc.com/how-old-am-i-in-weeks/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://quickagecalc.com/how-old-am-i-in-months/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://quickagecalc.com/how-old-am-i-in-hours/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://quickagecalc.com/how-old-am-i-in-minutes/</loc><lastmod>2026-06-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-the-1960s/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-1961/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-1962/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-1965/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-1990/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-1996/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-1999/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://quickagecalc.com/born-in-2001/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://quickagecalc.com/about/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://quickagecalc.com/contact/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://quickagecalc.com/privacy/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+</urlset>
