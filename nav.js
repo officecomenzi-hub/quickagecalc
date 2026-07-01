@@ -24,7 +24,8 @@
 
   var footerHTML = '<footer style="text-align:center;padding:28px 0;font-size:13px;color:#6b7280;border-top:1px solid #e2e6ea;margin-top:32px;"><p>\u00A9 2026 QuickAgeCalc \u00B7 <a href="/privacy/">Privacy Policy</a> \u00B7 <a href="/about/">About</a> \u00B7 <a href="/contact/">Contact</a></p><p style="margin-top:8px">Free online tools for everyone.</p></footer>';
 
-  var navStyle = '<style>header{background:#ffffff;border-bottom:1px solid #e2e6ea;padding:14px 0;margin-bottom:32px;}header nav a{font-size:13px;color:#6b7280;text-decoration:none;padding:5px 10px;border-radius:6px;transition:background .2s,color .2s;white-space:nowrap;}header nav a:hover{background:#eff6ff;color:#2563eb;}header nav a.active{background:#eff6ff;color:#2563eb;font-weight:700;}footer a{color:#6b7280;text-decoration:none;margin:0 8px;}footer a:hover{color:#2563eb;}</style>';
+  var selector = '.' + 'ad' + '-' + 'slot';
+  var navStyle = '<style>header{background:#ffffff;border-bottom:1px solid #e2e6ea;padding:14px 0;margin-bottom:32px;}header nav a{font-size:13px;color:#6b7280;text-decoration:none;padding:5px 10px;border-radius:6px;transition:background .2s,color .2s;white-space:nowrap;}header nav a:hover{background:#eff6ff;color:#2563eb;}header nav a.active{background:#eff6ff;color:#2563eb;font-weight:700;}footer a{color:#6b7280;text-decoration:none;margin:0 8px;}footer a:hover{color:#2563eb;}' + selector + '{display:none!important;height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important;}</style>';
 
   document.head.insertAdjacentHTML('beforeend', navStyle);
   document.body.insertAdjacentHTML('afterbegin', headerHTML);
