@@ -19,8 +19,53 @@ jobs:
       - name: Prepare public folder
         run: |
           mkdir -p public
-          cp -r index.html robots.txt sitemap.xml favicon.ico nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s public/
+          cp -r index.html robots.txt sitemap.xml favicon.ico social-card.jpg nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s public/
           cp -r born-pages/* public/
+
+      - name: Add social preview metadata and update footer year
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          image_url = "https://quickagecalc.com/social-card.jpg"
+
+          for path in Path("public").rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+
+              # Keep the visible copyright year current on every page.
+              text = text.replace("© 2025 QuickAgeCalc", "© 2026 QuickAgeCalc")
+              text = text.replace("&copy; 2025 QuickAgeCalc", "&copy; 2026 QuickAgeCalc")
+
+              # Upgrade existing Twitter cards to the large-image layout.
+              text = text.replace(
+                  '<meta name="twitter:card" content="summary">',
+                  '<meta name="twitter:card" content="summary_large_image">'
+              )
+
+              tags = []
+              if 'property="og:image"' not in text:
+                  tags.extend([
+                      f'<meta property="og:image" content="{image_url}">',
+                      '<meta property="og:image:type" content="image/jpeg">',
+                      '<meta property="og:image:width" content="400">',
+                      '<meta property="og:image:height" content="210">',
+                      '<meta property="og:image:alt" content="QuickAgeCalc free age and date calculators">',
+                  ])
+
+              if 'name="twitter:card"' not in text:
+                  tags.append('<meta name="twitter:card" content="summary_large_image">')
+
+              if 'name="twitter:image"' not in text:
+                  tags.append(f'<meta name="twitter:image" content="{image_url}">')
+
+              if 'name="twitter:image:alt"' not in text:
+                  tags.append('<meta name="twitter:image:alt" content="QuickAgeCalc free age and date calculators">')
+
+              if tags and "</head>" in text:
+                  text = text.replace("</head>", "\n".join(tags) + "\n</head>", 1)
+
+              path.write_text(text, encoding="utf-8")
+          PY
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
