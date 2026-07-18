@@ -19,24 +19,39 @@ jobs:
       - name: Prepare public folder
         run: |
           mkdir -p public
-          cp -r index.html robots.txt sitemap.xml favicon.ico social-card.jpg nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s public/
+          cp -r index.html robots.txt sitemap.xml favicon.ico social-card.jpg nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s age-questions age-in-any-year what-year-was-i-born what-generation-am-i public/
           cp -r born-pages/* public/
 
-      - name: Add social preview metadata and update footer year
+      - name: Apply global metadata and annual updates
         run: |
           python - <<'PY'
+          from datetime import datetime
           from pathlib import Path
+          import re
 
+          current_year = datetime.utcnow().year
           image_url = "https://quickagecalc.com/social-card.jpg"
+
+          old_2025_card = '<a class="year-link" href="/born-in-2025/"><span class="yl-year">2025</span><span class="yl-age">0 or 1 years old</span><span class="yl-gen gen-alpha">Gen Alpha</span></a>'
+          new_2026_card = '<a class="year-link" href="/born-in-2026/"><span class="yl-year">2026</span><span class="yl-age">0 years old</span><span class="yl-gen gen-alpha">Gen Alpha</span></a>'
 
           for path in Path("public").rglob("*.html"):
               text = path.read_text(encoding="utf-8")
 
-              # Keep the visible copyright year current on every page.
-              text = text.replace("© 2025 QuickAgeCalc", "© 2026 QuickAgeCalc")
-              text = text.replace("&copy; 2025 QuickAgeCalc", "&copy; 2026 QuickAgeCalc")
+              # Keep visible dates and input limits current.
+              text = re.sub(r'© 20\d{2} QuickAgeCalc', f'© {current_year} QuickAgeCalc', text)
+              text = re.sub(r'&copy; 20\d{2} QuickAgeCalc', f'&copy; {current_year} QuickAgeCalc', text)
+              text = re.sub(r'© 20\d{2} QuickCalcs', f'© {current_year} QuickCalcs', text)
+              text = text.replace('max="2025"', f'max="{current_year}"')
+              text = text.replace('bY > 2025', f'bY > {current_year}')
+              text = text.replace('1960–2025', f'1960–{current_year}')
+              text = text.replace('between 1960 and 2025', f'between 1960 and {current_year}')
 
-              # Upgrade existing Twitter cards to the large-image layout.
+              # Add the current birth-year card to the birth-year directory page.
+              if path.as_posix().endswith('born-in-year/index.html') and new_2026_card not in text:
+                  text = text.replace(old_2025_card, old_2025_card + '\n      ' + new_2026_card)
+
+              # Upgrade social cards and provide a default preview image.
               text = text.replace(
                   '<meta name="twitter:card" content="summary">',
                   '<meta name="twitter:card" content="summary_large_image">'
@@ -51,16 +66,12 @@ jobs:
                       '<meta property="og:image:height" content="210">',
                       '<meta property="og:image:alt" content="QuickAgeCalc free age and date calculators">',
                   ])
-
               if 'name="twitter:card"' not in text:
                   tags.append('<meta name="twitter:card" content="summary_large_image">')
-
               if 'name="twitter:image"' not in text:
                   tags.append(f'<meta name="twitter:image" content="{image_url}">')
-
               if 'name="twitter:image:alt"' not in text:
                   tags.append('<meta name="twitter:image:alt" content="QuickAgeCalc free age and date calculators">')
-
               if tags and "</head>" in text:
                   text = text.replace("</head>", "\n".join(tags) + "\n</head>", 1)
 
