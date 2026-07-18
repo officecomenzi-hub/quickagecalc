@@ -31,6 +31,7 @@ jobs:
 
           current_year = datetime.utcnow().year
           image_url = "https://quickagecalc.com/social-card.jpg"
+          ad_placeholder_style = '<style id="qac-hide-ad-placeholders">.ad-slot{display:none!important;height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}</style>'
 
           old_2025_card = '<a class="year-link" href="/born-in-2025/"><span class="yl-year">2025</span><span class="yl-age">0 or 1 years old</span><span class="yl-gen gen-alpha">Gen Alpha</span></a>'
           new_2026_card = '<a class="year-link" href="/born-in-2026/"><span class="yl-year">2026</span><span class="yl-age">0 years old</span><span class="yl-gen gen-alpha">Gen Alpha</span></a>'
@@ -50,6 +51,10 @@ jobs:
               # Add the current birth-year card to the birth-year directory page.
               if path.as_posix().endswith('born-in-year/index.html') and new_2026_card not in text:
                   text = text.replace(old_2025_card, old_2025_card + '\n      ' + new_2026_card)
+
+              # Hide inactive advertisement placeholders site-wide until real ads are enabled.
+              if 'id="qac-hide-ad-placeholders"' not in text and "</head>" in text:
+                  text = text.replace("</head>", ad_placeholder_style + "\n</head>", 1)
 
               # Upgrade social cards and provide a default preview image.
               text = text.replace(
