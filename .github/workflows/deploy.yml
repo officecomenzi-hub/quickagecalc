@@ -22,7 +22,7 @@ jobs:
           cp -r index.html robots.txt sitemap.xml favicon.ico social-card.jpg nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s age-questions age-in-any-year what-year-was-i-born what-generation-am-i public/
           cp -r born-pages/* public/
 
-      - name: Apply global metadata and annual updates
+      - name: Apply global metadata annual updates and analytics
         run: |
           python - <<'PY'
           from datetime import datetime
@@ -31,7 +31,16 @@ jobs:
 
           current_year = datetime.utcnow().year
           image_url = "https://quickagecalc.com/social-card.jpg"
+          measurement_id = "G-M2VQC91TBY"
           ad_placeholder_style = '<style id="qac-hide-ad-placeholders">.ad-slot{display:none!important;height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}</style>'
+          analytics_tag = f'''<!-- Google tag (gtag.js) -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id={measurement_id}"></script>
+          <script id="qac-ga4">
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){{dataLayer.push(arguments);}}
+            gtag('js', new Date());
+            gtag('config', '{measurement_id}');
+          </script>'''
 
           old_2025_card = '<a class="year-link" href="/born-in-2025/"><span class="yl-year">2025</span><span class="yl-age">0 or 1 years old</span><span class="yl-gen gen-alpha">Gen Alpha</span></a>'
           new_2026_card = '<a class="year-link" href="/born-in-2026/"><span class="yl-year">2026</span><span class="yl-age">0 years old</span><span class="yl-gen gen-alpha">Gen Alpha</span></a>'
@@ -55,6 +64,10 @@ jobs:
               # Hide inactive advertisement placeholders site-wide until real ads are enabled.
               if 'id="qac-hide-ad-placeholders"' not in text and "</head>" in text:
                   text = text.replace("</head>", ad_placeholder_style + "\n</head>", 1)
+
+              # Install Google Analytics 4 on every current and future HTML page.
+              if 'id="qac-ga4"' not in text and measurement_id not in text and "</head>" in text:
+                  text = text.replace("</head>", analytics_tag + "\n</head>", 1)
 
               # Upgrade social cards and provide a default preview image.
               text = text.replace(
