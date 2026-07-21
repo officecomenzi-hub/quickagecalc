@@ -26,6 +26,7 @@ jobs:
         run: |
           python - <<'PY'
           from datetime import datetime
+          from html import escape
           from pathlib import Path
           import re
 
@@ -101,13 +102,32 @@ jobs:
               if path.as_posix() == 'public/index.html' and 'id="qac-homepage-schema"' not in text and "</head>" in text:
                   text = text.replace("</head>", homepage_schema + "\n</head>", 1)
 
-              # Upgrade social cards and provide a default preview image.
+              # Build page-specific social metadata from the existing title, description and canonical URL.
+              title_match = re.search(r'<title>(.*?)</title>', text, re.IGNORECASE | re.DOTALL)
+              description_match = re.search(r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']\s*/?>', text, re.IGNORECASE | re.DOTALL)
+              canonical_match = re.search(r'<link\s+rel=["\']canonical["\']\s+href=["\'](.*?)["\']\s*/?>', text, re.IGNORECASE | re.DOTALL)
+
+              page_title = re.sub(r'\s+', ' ', title_match.group(1)).strip() if title_match else 'QuickAgeCalc'
+              page_description = re.sub(r'\s+', ' ', description_match.group(1)).strip() if description_match else 'Free online age and date calculators.'
+              page_url = canonical_match.group(1).strip() if canonical_match else 'https://quickagecalc.com/'
+
+              # Upgrade existing Twitter cards to large-image previews.
               text = text.replace(
                   '<meta name="twitter:card" content="summary">',
                   '<meta name="twitter:card" content="summary_large_image">'
               )
 
               tags = []
+              if 'property="og:site_name"' not in text:
+                  tags.append('<meta property="og:site_name" content="QuickAgeCalc">')
+              if 'property="og:type"' not in text:
+                  tags.append('<meta property="og:type" content="website">')
+              if 'property="og:title"' not in text:
+                  tags.append(f'<meta property="og:title" content="{escape(page_title, quote=True)}">')
+              if 'property="og:description"' not in text:
+                  tags.append(f'<meta property="og:description" content="{escape(page_description, quote=True)}">')
+              if 'property="og:url"' not in text:
+                  tags.append(f'<meta property="og:url" content="{escape(page_url, quote=True)}">')
               if 'property="og:image"' not in text:
                   tags.extend([
                       f'<meta property="og:image" content="{image_url}">',
@@ -118,6 +138,10 @@ jobs:
                   ])
               if 'name="twitter:card"' not in text:
                   tags.append('<meta name="twitter:card" content="summary_large_image">')
+              if 'name="twitter:title"' not in text:
+                  tags.append(f'<meta name="twitter:title" content="{escape(page_title, quote=True)}">')
+              if 'name="twitter:description"' not in text:
+                  tags.append(f'<meta name="twitter:description" content="{escape(page_description, quote=True)}">')
               if 'name="twitter:image"' not in text:
                   tags.append(f'<meta name="twitter:image" content="{image_url}">')
               if 'name="twitter:image:alt"' not in text:
