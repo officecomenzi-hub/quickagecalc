@@ -22,7 +22,7 @@ jobs:
           cp -r index.html robots.txt sitemap.xml favicon.ico social-card.jpg nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s age-questions age-in-any-year what-year-was-i-born what-generation-am-i public/
           cp -r born-pages/* public/
 
-      - name: Apply global metadata annual updates and analytics
+      - name: Apply global metadata annual updates analytics and homepage links
         run: |
           python - <<'PY'
           from datetime import datetime
@@ -70,6 +70,19 @@ jobs:
             ]
           }
           </script>'''
+          homepage_featured_style = '''<style id="qac-featured-tools-style">
+          .qac-featured-tools{margin:0 0 20px}.qac-featured-tools h2{font-family:'Playfair Display',serif;font-size:1.45rem;margin-bottom:8px}.qac-featured-tools>p{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:14px}.qac-featured-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.qac-featured-card{display:block;background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .2s,transform .2s}.qac-featured-card:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-1px)}.qac-featured-icon{display:block;font-size:24px;margin-bottom:8px}.qac-featured-name{display:block;font-size:15px;font-weight:700;margin-bottom:4px}.qac-featured-desc{display:block;font-size:12px;line-height:1.5;color:var(--muted)}@media(max-width:540px){.qac-featured-grid{grid-template-columns:1fr}}
+          </style>'''
+          homepage_featured_section = '''<section class="qac-featured-tools" id="qac-featured-tools" aria-labelledby="qac-featured-title">
+            <h2 id="qac-featured-title">Popular Age Tools</h2>
+            <p>Answer common age questions for past years, future years, birth years and generations.</p>
+            <div class="qac-featured-grid">
+              <a class="qac-featured-card" href="/age-in-any-year/"><span class="qac-featured-icon" aria-hidden="true">📆</span><span class="qac-featured-name">Age in Any Year</span><span class="qac-featured-desc">Find your age on a past or future date.</span></a>
+              <a class="qac-featured-card" href="/what-year-was-i-born/"><span class="qac-featured-icon" aria-hidden="true">🔎</span><span class="qac-featured-name">What Year Was I Born?</span><span class="qac-featured-desc">Calculate a birth year from an age.</span></a>
+              <a class="qac-featured-card" href="/what-generation-am-i/"><span class="qac-featured-icon" aria-hidden="true">👥</span><span class="qac-featured-name">What Generation Am I?</span><span class="qac-featured-desc">Check whether you are Gen X, Millennial, Gen Z or Gen Alpha.</span></a>
+              <a class="qac-featured-card" href="/age-questions/"><span class="qac-featured-icon" aria-hidden="true">💡</span><span class="qac-featured-name">Age Questions & Answers</span><span class="qac-featured-desc">Explore quick answers and the right calculator for each question.</span></a>
+            </div>
+          </section>'''
 
           old_2025_card = '<a class="year-link" href="/born-in-2025/"><span class="yl-year">2025</span><span class="yl-age">0 or 1 years old</span><span class="yl-gen gen-alpha">Gen Alpha</span></a>'
           new_2026_card = '<a class="year-link" href="/born-in-2026/"><span class="yl-year">2026</span><span class="yl-age">0 years old</span><span class="yl-gen gen-alpha">Gen Alpha</span></a>'
@@ -77,7 +90,6 @@ jobs:
           for path in Path("public").rglob("*.html"):
               text = path.read_text(encoding="utf-8")
 
-              # Keep visible dates and input limits current.
               text = re.sub(r'© 20\d{2} QuickAgeCalc', f'© {current_year} QuickAgeCalc', text)
               text = re.sub(r'&copy; 20\d{2} QuickAgeCalc', f'&copy; {current_year} QuickAgeCalc', text)
               text = re.sub(r'© 20\d{2} QuickCalcs', f'© {current_year} QuickCalcs', text)
@@ -86,23 +98,27 @@ jobs:
               text = text.replace('1960–2025', f'1960–{current_year}')
               text = text.replace('between 1960 and 2025', f'between 1960 and {current_year}')
 
-              # Add the current birth-year card to the birth-year directory page.
               if path.as_posix().endswith('born-in-year/index.html') and new_2026_card not in text:
                   text = text.replace(old_2025_card, old_2025_card + '\n      ' + new_2026_card)
 
-              # Hide inactive advertisement placeholders site-wide until real ads are enabled.
               if 'id="qac-hide-ad-placeholders"' not in text and "</head>" in text:
                   text = text.replace("</head>", ad_placeholder_style + "\n</head>", 1)
 
-              # Install Google Analytics 4 on every current and future HTML page.
               if 'id="qac-ga4"' not in text and measurement_id not in text and "</head>" in text:
                   text = text.replace("</head>", analytics_tag + "\n</head>", 1)
 
-              # Add site identity structured data to the homepage only.
-              if path.as_posix() == 'public/index.html' and 'id="qac-homepage-schema"' not in text and "</head>" in text:
-                  text = text.replace("</head>", homepage_schema + "\n</head>", 1)
+              if path.as_posix() == 'public/index.html':
+                  if 'id="qac-homepage-schema"' not in text and "</head>" in text:
+                      text = text.replace("</head>", homepage_schema + "\n</head>", 1)
+                  if 'id="qac-featured-tools-style"' not in text and "</head>" in text:
+                      text = text.replace("</head>", homepage_featured_style + "\n</head>", 1)
+                  if 'id="qac-featured-tools"' not in text:
+                      footer_marker = '<footer>'
+                      if footer_marker in text:
+                          text = text.replace(footer_marker, homepage_featured_section + "\n\n  " + footer_marker, 1)
+                      else:
+                          text = text.replace('</body>', homepage_featured_section + '\n</body>', 1)
 
-              # Build page-specific social metadata from the existing title, description and canonical URL.
               title_match = re.search(r'<title>(.*?)</title>', text, re.IGNORECASE | re.DOTALL)
               description_match = re.search(r'<meta\s+name=["\']description["\']\s+content=["\'](.*?)["\']\s*/?>', text, re.IGNORECASE | re.DOTALL)
               canonical_match = re.search(r'<link\s+rel=["\']canonical["\']\s+href=["\'](.*?)["\']\s*/?>', text, re.IGNORECASE | re.DOTALL)
@@ -111,7 +127,6 @@ jobs:
               page_description = re.sub(r'\s+', ' ', description_match.group(1)).strip() if description_match else 'Free online age and date calculators.'
               page_url = canonical_match.group(1).strip() if canonical_match else 'https://quickagecalc.com/'
 
-              # Upgrade existing Twitter cards to large-image previews.
               text = text.replace(
                   '<meta name="twitter:card" content="summary">',
                   '<meta name="twitter:card" content="summary_large_image">'
