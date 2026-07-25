@@ -16,6 +16,14 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install social image dependency
+        run: python -m pip install --disable-pip-version-check pillow
+
       - name: Prepare public folder
         run: |
           mkdir -p public
@@ -166,6 +174,9 @@ jobs:
 
               path.write_text(text, encoding="utf-8")
           PY
+
+      - name: Generate unique 1200x630 social images
+        run: python scripts/generate_social_images.py public
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
