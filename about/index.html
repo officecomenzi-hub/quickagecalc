@@ -4,142 +4,110 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us – QuickAgeCalc | Free Age Calculator Tools</title>
-<meta name="description" content="Learn about QuickAgeCalc — a free, fast, and accurate age calculator built by QuickCalcs. No sign-up, no data collection, just instant results.">
+<title>About QuickAgeCalc | Methodology, Privacy & Testing</title>
+<meta name="description" content="Learn how QuickAgeCalc calculates ages and dates, protects calculator inputs, tests results, reviews content and maintains its free online tools.">
 <link rel="canonical" href="https://quickagecalc.com/about/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f7f8fa;
-    --white: #ffffff;
-    --border: #e2e6ea;
-    --accent: #2563eb;
-    --accent-light: #eff6ff;
-    --text: #1a202c;
-    --muted: #6b7280;
-    --shadow: 0 2px 12px rgba(0,0,0,0.07);
-    --radius: 14px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); }
-  header { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 0; margin-bottom: 40px; }
-  header .inner { max-width: 760px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
-  .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent); text-decoration: none; }
-  .logo span { color: var(--text); }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
-  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); margin-bottom: 20px; }
-  .hero-card {
-    background: var(--accent);
-    color: white;
-    border-radius: var(--radius);
-    padding: 48px 40px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  .hero-card h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 12px; }
-  .hero-card p { font-size: 16px; opacity: .85; font-weight: 300; max-width: 500px; margin: 0 auto; line-height: 1.7; }
-  h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 16px; }
-  p { font-size: 15px; color: #374151; line-height: 1.8; margin-bottom: 12px; }
-  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 8px; }
-  .feature { background: var(--accent-light); border: 1px solid #bfdbfe; border-radius: 10px; padding: 20px; }
-  .feature .icon { font-size: 24px; margin-bottom: 10px; }
-  .feature h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-  .feature p { font-size: 13px; color: var(--muted); margin: 0; }
-  .cta { text-align: center; margin-top: 8px; }
-  .cta a {
-    display: inline-block;
-    background: var(--accent);
-    color: white;
-    padding: 14px 32px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 16px;
-    transition: background .2s;
-  }
-  .cta a:hover { background: #1d4ed8; }
-  footer { text-align: center; padding: 28px 0; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 32px; }
-  footer a { color: var(--muted); text-decoration: none; margin: 0 8px; }
-  footer a:hover { color: var(--accent); }
+  :root{--bg:#f7f8fa;--white:#fff;--border:#e2e6ea;--accent:#2563eb;--accent-light:#eff6ff;--text:#1a202c;--muted:#6b7280;--shadow:0 2px 12px rgba(0,0,0,.07);--radius:14px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text)}
+  header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 0;margin-bottom:40px}
+  header .inner{max-width:820px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);text-decoration:none}.logo span{color:var(--text)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px 60px}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);margin-bottom:20px}
+  .hero-card{background:var(--accent);color:white;border-radius:var(--radius);padding:48px 40px;margin-bottom:20px;text-align:center}
+  .hero-card h1{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:12px}.hero-card p{font-size:16px;opacity:.9;font-weight:300;max-width:610px;margin:0 auto;line-height:1.7}
+  h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:16px}h3{font-size:16px;margin:20px 0 8px}
+  p,li{font-size:15px;color:#374151;line-height:1.8}.card p{margin-bottom:12px}.card ul,.card ol{padding-left:22px;margin:8px 0 14px}
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:8px}
+  .feature{background:var(--accent-light);border:1px solid #bfdbfe;border-radius:10px;padding:20px}.feature .icon{font-size:24px;margin-bottom:10px}.feature h3{font-size:15px;margin:0 0 6px}.feature p{font-size:13px;color:var(--muted);margin:0}
+  .review-note{display:inline-block;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700;margin-top:14px}
+  .tool-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.tool-links a{display:block;border:1px solid var(--border);border-radius:10px;padding:14px;text-decoration:none;color:var(--text);background:#fafafa}.tool-links a:hover{border-color:var(--accent);background:var(--accent-light)}
+  .cta{text-align:center;margin-top:8px}.cta a{display:inline-block;background:var(--accent);color:white;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px}.cta a:hover{background:#1d4ed8}
+  footer{text-align:center;padding:28px 0;font-size:13px;color:var(--muted);border-top:1px solid var(--border);margin-top:32px}footer a{color:var(--muted);text-decoration:none;margin:0 8px}footer a:hover{color:var(--accent)}
+  @media(max-width:620px){header .inner{flex-direction:column;gap:8px}.card,.hero-card{padding:28px 22px}.hero-card h1{font-size:1.85rem}.tool-links{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header>
-  <div class="inner">
-    <a class="logo" href="/"><span>Quick</span>AgeCalc</a>
-    <a href="/" style="font-size:13px;color:var(--muted);text-decoration:none;">← Back to Calculator</a>
-  </div>
-</header>
+<header><div class="inner"><a class="logo" href="/"><span>Quick</span>AgeCalc</a><a href="/" style="font-size:13px;color:var(--muted);text-decoration:none">← Back to Calculator</a></div></header>
 <div class="wrap">
-
-  <div class="hero-card">
+  <section class="hero-card">
     <h1>About QuickAgeCalc</h1>
-    <p>A free, fast, and accurate age calculator — built for everyone who needs instant answers without the fuss.</p>
-  </div>
+    <p>Free age and date tools built to provide clear, fast answers, with transparent calculation methods and calculator inputs processed in your browser.</p>
+    <span class="review-note">Last reviewed: July 26, 2026</span>
+  </section>
 
-  <div class="card">
+  <section class="card">
     <h2>Our Mission</h2>
-    <p>At <strong>QuickCalcs</strong>, we believe useful tools should be simple, free, and accessible to everyone. QuickAgeCalc was built with one goal: give you your exact age in seconds, with no sign-up, no ads cluttering the results, and no personal data collected.</p>
-    <p>Whether you need to know how many days old you are, calculate a birthday countdown, or find out your age on a specific date — we have you covered with precise, instant results.</p>
-  </div>
+    <p>QuickAgeCalc helps people answer practical age and date questions without registration or unnecessary steps. The site covers exact age, past and future ages, birth years, generations, date differences, birthday countdowns and related calculations.</p>
+    <p>Each calculator is designed to give a direct result first, followed by explanations, examples and links to related tools when they add value.</p>
+  </section>
 
-  <div class="card">
+  <section class="card">
+    <h2>How Our Calculations Work</h2>
+    <h3>Exact age</h3>
+    <p>Exact age calculations compare the birth date with the selected comparison date in calendar order. Years are counted first, then complete months, then remaining days. This avoids treating every month as the same length.</p>
+    <h3>Leap years and month lengths</h3>
+    <p>The calculators use real calendar dates, including leap years and the different lengths of months. A leap year is normally divisible by 4, except century years that are not divisible by 400.</p>
+    <h3>Past and future ages</h3>
+    <p>When calculating an age in another year, the result depends on whether the birthday has occurred by the selected date. Pages that show two possible ages explain this distinction.</p>
+    <h3>Generations and retirement</h3>
+    <p>Generation labels use commonly cited ranges, but boundaries can vary by source. Retirement results are planning estimates and do not replace official government, pension-provider or financial advice.</p>
+  </section>
+
+  <section class="card">
+    <h2>Privacy and Analytics</h2>
+    <p>Birth dates and dates entered into QuickAgeCalc calculators are processed locally in your browser and are not submitted to QuickAgeCalc for the calculation itself.</p>
+    <p>The site uses Google Analytics 4 to understand general usage, such as visited pages, device categories and traffic sources. This helps identify broken pages and improve useful tools. Calculator input values are not intentionally sent as analytics events.</p>
+    <p>For more detail, review the <a href="/privacy/" style="color:var(--accent)">Privacy Policy</a>.</p>
+  </section>
+
+  <section class="card">
+    <h2>Testing and Editorial Process</h2>
+    <ol>
+      <li>Calculator logic is tested with dates before and after birthdays, month-end dates and leap-year cases.</li>
+      <li>New pages are checked for one clear H1, descriptive titles, meta descriptions, canonical URLs and mobile usability.</li>
+      <li>Internal links and interactive controls are reviewed before release.</li>
+      <li>Visible year references and annual age ranges are updated during deployment where appropriate.</li>
+      <li>Material changes receive a new review date; pages are not marked fresh when only minor technical metadata changes.</li>
+    </ol>
+    <p>Results can still be affected by an incorrect date entry, timezone differences around midnight or jurisdiction-specific rules. Official documents and legal, medical, pension or financial decisions should be confirmed with the appropriate authority.</p>
+  </section>
+
+  <section class="card">
     <h2>Why QuickAgeCalc?</h2>
     <div class="features">
-      <div class="feature">
-        <div class="icon">⚡</div>
-        <h3>Instant Results</h3>
-        <p>No loading screens, no servers. Everything runs in your browser in milliseconds.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">🔒</div>
-        <h3>100% Private</h3>
-        <p>We never store or transmit your birth date. Your data stays on your device.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">🎯</div>
-        <h3>Accurate</h3>
-        <p>Full leap year support. Exact years, months, days, hours, and minutes.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">📱</div>
-        <h3>Works Everywhere</h3>
-        <p>Desktop, tablet, or mobile — QuickAgeCalc works perfectly on any device.</p>
-      </div>
+      <div class="feature"><div class="icon" aria-hidden="true">⚡</div><h3>Fast</h3><p>Core calculations run directly in the browser.</p></div>
+      <div class="feature"><div class="icon" aria-hidden="true">🔒</div><h3>Input Privacy</h3><p>Calculator date entries stay in the browser for the calculation.</p></div>
+      <div class="feature"><div class="icon" aria-hidden="true">🎯</div><h3>Calendar-Based</h3><p>Real month lengths and leap years are taken into account.</p></div>
+      <div class="feature"><div class="icon" aria-hidden="true">📱</div><h3>Mobile Friendly</h3><p>Tools are designed for phones, tablets and desktop screens.</p></div>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>Our Tools</h2>
-    <p>QuickAgeCalc is part of the <strong>QuickCalcs</strong> family of free online calculators. We are constantly expanding our toolkit with new date and age calculators, including:</p>
-    <p>• <strong>Age Calculator</strong> — your exact age in years, months, days, hours, minutes<br>
-    • <strong>Date Difference Calculator</strong> — days between any two dates<br>
-    • <strong>Birthday Countdown</strong> — days until your next birthday<br>
-    • <strong>Age Difference Calculator</strong> — compare ages between two people<br>
-    • <strong>Retirement Age Calculator</strong> — when can you retire?</p>
-    <p>All tools are free, require no registration, and work instantly in your browser.</p>
-  </div>
+  <section class="card">
+    <h2>Explore Our Tools</h2>
+    <div class="tool-links">
+      <a href="/"><strong>Age Calculator</strong><br><span>Calculate exact age today.</span></a>
+      <a href="/age-in-any-year/"><strong>Age in Any Year</strong><br><span>Check a past or future age.</span></a>
+      <a href="/what-year-was-i-born/"><strong>Birth Year Calculator</strong><br><span>Find a birth year from an age.</span></a>
+      <a href="/what-generation-am-i/"><strong>Generation Calculator</strong><br><span>Explore common generation ranges.</span></a>
+      <a href="/date-difference/"><strong>Date Difference</strong><br><span>Count time between two dates.</span></a>
+      <a href="/age-questions/"><strong>Age Questions</strong><br><span>Find the right tool for common questions.</span></a>
+    </div>
+  </section>
 
-  <div class="card">
+  <section class="card">
     <h2>Contact Us</h2>
-    <p>Have a suggestion, found a bug, or want to say hello? We'd love to hear from you.</p>
+    <p>Found a calculation issue, unclear explanation or broken link? Send the exact page URL, the dates used and the result you expected.</p>
     <p>📧 <a href="mailto:hello@quickagecalc.com" style="color:var(--accent)">hello@quickagecalc.com</a></p>
-    <br>
-    <div class="cta">
-      <a href="/">Try the Age Calculator →</a>
-    </div>
-  </div>
-
+    <div class="cta"><a href="/">Try the Age Calculator →</a></div>
+  </section>
 </div>
-<footer>
-  <a href="/">Home</a>
-  <a href="/about/">About</a>
-  <a href="/privacy/">Privacy Policy</a>
-  <a href="/contact/">Contact</a>
-  <p style="margin-top:10px">© 2025 QuickCalcs · quickagecalc.com</p>
-</footer>
+<footer><a href="/">Home</a><a href="/about/">About</a><a href="/privacy/">Privacy Policy</a><a href="/contact/">Contact</a><p style="margin-top:10px">© 2026 QuickAgeCalc · quickagecalc.com</p></footer>
 </body>
 </html>
