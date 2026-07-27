@@ -124,7 +124,7 @@
 <h2>Frequently asked questions</h2>
 <details><summary>How old will I be in 2030 if I was born in 1990?</summary><p>You will be 39 before your birthday and 40 on or after your birthday in 2030.</p></details>
 <details><summary>How old will I be in 2030 if I was born in 2000?</summary><p>You will be 29 before your birthday and 30 on or after your birthday in 2030.</p></details>
-<details><summary>What if I was born on February 29?</summary><p>The age calculation still follows calendar years. In 2030, which is not a leap year, the calculator compares your full birth date with the selected date and shows the elapsed years, months and days.</p></details>
+<details><summary>What if I was born on February 29?</summary><p>The age calculation still follows calendar years. In 2030, which is not a leap year, February 29 birthdays may be observed on February 28 or March 1 depending on local convention. The calculator shows the elapsed calendar time to the date you select.</p></details>
 <details><summary>Can I calculate my age on a different future date?</summary><p>Yes. Use the <a href="/age-in-any-year/">Age in Any Year Calculator</a> for any past or future date through 2100.</p></details>
 </section>
 
@@ -152,12 +152,12 @@ function calculate2030Age(){
   if(birth>target){error.textContent='The birth date must be on or before the selected date in 2030.';error.style.display='block';return}
   var after=2030-birth.getFullYear();
   var before=after-1;
-  var birthday2030=new Date(2030,birth.getMonth(),birth.getDate());
-  if(birth.getMonth()===1&&birth.getDate()===29){birthday2030=new Date(2030,1,28)}
+  var isLeapDay=birth.getMonth()===1&&birth.getDate()===29;
+  var birthday2030=isLeapDay?null:new Date(2030,birth.getMonth(),birth.getDate());
   var exact=exactAge(birth,target);
   var dateLabel=target.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  var birthdayLabel=birthday2030.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  var sentence='On '+dateLabel+', you will be '+exact.years+' year'+(exact.years===1?'':'s')+', '+exact.months+' month'+(exact.months===1?'':'s')+' and '+exact.days+' day'+(exact.days===1?'':'s')+' old. You turn '+after+' on '+birthdayLabel+'.';
+  var birthdayText=isLeapDay?'In 2030, a February 29 birthday may be observed on February 28 or March 1 depending on local convention.':'You turn '+after+' on '+birthday2030.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})+'.';
+  var sentence='On '+dateLabel+', you will be '+exact.years+' year'+(exact.years===1?'':'s')+', '+exact.months+' month'+(exact.months===1?'':'s')+' and '+exact.days+' day'+(exact.days===1?'':'s')+' old. '+birthdayText;
   document.getElementById('answerLabel').textContent='Your age on '+dateLabel;
   document.getElementById('ageOnDate').textContent=exact.years;
   document.getElementById('answerSentence').textContent=sentence;
