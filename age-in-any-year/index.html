@@ -3,44 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Age in Any Year Calculator – Past or Future Age</title>
-<meta name="description" content="Calculate exactly how old you were or will be on any date. Enter your birth date and a past or future date for age in years, months and days.">
+<title>How Old Was I in a Specific Year? Age in Any Year Calculator</title>
+<meta name="description" content="Find how old you were in any past year or will be in a future year. Compare before and after your birthday, or enter exact dates for years, months and days.">
 <link rel="canonical" href="https://quickagecalc.com/age-in-any-year/">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Age in Any Year Calculator","url":"https://quickagecalc.com/age-in-any-year/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://quickagecalc.com/age-in-any-year/#webpage",
+      "url": "https://quickagecalc.com/age-in-any-year/",
+      "name": "How Old Was I in a Specific Year? Age in Any Year Calculator",
+      "description": "Calculate age in a past or future year, compare the result before and after a birthday, or use exact dates for a calendar age.",
+      "dateModified": "2026-07-28",
+      "inLanguage": "en",
+      "isPartOf": {"@id": "https://quickagecalc.com/#website"},
+      "mainEntity": {"@id": "https://quickagecalc.com/age-in-any-year/#calculator"}
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://quickagecalc.com/age-in-any-year/#calculator",
+      "name": "Age in Any Year Calculator",
+      "url": "https://quickagecalc.com/age-in-any-year/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://quickagecalc.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Age Questions", "item": "https://quickagecalc.com/age-questions/"},
+        {"@type": "ListItem", "position": 3, "name": "Age in Any Year", "item": "https://quickagecalc.com/age-in-any-year/"}
+      ]
+    }
+  ]
+}
+</script>
 <style>
-:root{--bg:#f7f8fa;--white:#fff;--border:#e2e6ea;--accent:#2563eb;--accent-light:#eff6ff;--text:#1a202c;--muted:#6b7280;--green:#15803d;--shadow:0 2px 12px rgba(0,0,0,.07);--radius:14px}*{box-sizing:border-box;margin:0;padding:0}body{font-family:Lato,sans-serif;background:var(--bg);color:var(--text)}.wrap{max-width:760px;margin:0 auto;padding:0 20px 60px}.hero{text-align:center;margin-bottom:28px}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.7rem);line-height:1.2;margin-bottom:10px}.hero h1 span{color:var(--accent)}.hero p{color:var(--muted);font-size:16px;line-height:1.65}.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);margin-bottom:20px}.section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:9px;font:inherit;background:#fff}.field input:focus{outline:none;border-color:var(--accent)}.calc-btn{width:100%;padding:15px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:700 16px Lato,sans-serif;cursor:pointer}.calc-btn:hover{background:#1d4ed8}.examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.example{border:1px solid var(--border);background:var(--bg);border-radius:999px;padding:7px 10px;font-size:12px;color:var(--accent);cursor:pointer}.result{display:none}.answer{text-align:center;background:var(--accent-light);border:1px solid #bfdbfe;border-radius:var(--radius);padding:25px;margin-bottom:18px}.answer .lead{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700}.answer .big{display:block;font-family:'Playfair Display',serif;font-size:clamp(2.3rem,8vw,4.3rem);color:var(--accent);margin:8px 0}.answer .sentence{font-size:16px;line-height:1.6}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:15px;text-align:center}.stat strong{font-family:'Playfair Display',serif;font-size:1.35rem;display:block}.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700}.content h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:10px}.content p,.content li{font-size:15px;color:#374151;line-height:1.8}.content ul{padding-left:20px;margin:8px 0 14px}.related{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.related a{display:block;text-decoration:none;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:15px;background:var(--bg);font-weight:700;font-size:14px}.related a:hover{border-color:var(--accent);color:var(--accent)}@media(max-width:560px){.fields{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.card{padding:21px 16px}}
+:root{--bg:#f7f8fa;--white:#fff;--border:#e2e6ea;--accent:#2563eb;--accent-dark:#1d4ed8;--accent-light:#eff6ff;--text:#1a202c;--muted:#6b7280;--green:#15803d;--green-light:#ecfdf5;--red:#991b1b;--shadow:0 2px 12px rgba(0,0,0,.07);--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Lato,sans-serif;background:var(--bg);color:var(--text)}.wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}.hero{text-align:center;margin-bottom:28px}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.18;margin-bottom:10px}.hero h1 span{color:var(--accent)}.hero>p{max-width:720px;margin:0 auto;color:var(--muted);font-size:16px;line-height:1.7}.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);margin-bottom:20px}.direct-answer{border-left:5px solid var(--accent);background:var(--accent-light)}.direct-answer strong{color:var(--accent-dark)}.card h2{font-family:'Playfair Display',serif;font-size:1.45rem;margin-bottom:10px}.card h3{font-size:16px;margin:18px 0 7px}.card p,.card li{font-size:15px;color:#374151;line-height:1.8}.card ul{padding-left:20px;margin:8px 0 14px}.section-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.field input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:9px;font:inherit;background:#fff}.field input:focus{outline:3px solid #dbeafe;border-color:var(--accent)}.calc-btn,.copy-btn{padding:14px 18px;border-radius:10px;font:700 15px Lato,sans-serif;cursor:pointer}.calc-btn{width:100%;border:0;background:var(--accent);color:#fff}.calc-btn:hover{background:var(--accent-dark)}.copy-btn{display:none;margin:14px auto 0;border:1px solid var(--accent);background:#fff;color:var(--accent-dark)}.examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.example{border:1px solid var(--border);background:var(--bg);border-radius:999px;padding:8px 11px;font-size:12px;color:var(--accent);cursor:pointer}.error{display:none;margin-top:12px;padding:11px;border:1px solid #fecaca;border-radius:9px;background:#fef2f2;color:var(--red);font-size:14px}.result{display:none}.answer{text-align:center;background:var(--accent-light);border:1px solid #bfdbfe;border-radius:var(--radius);padding:25px;margin-bottom:18px}.answer .lead{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700}.answer .big{display:block;font-family:'Playfair Display',serif;font-size:clamp(2.1rem,8vw,4rem);color:var(--accent);margin:8px 0}.answer .sentence{font-size:16px;line-height:1.7}.answer .detail{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.6}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:15px;text-align:center}.stat strong{font-family:'Playfair Display',serif;font-size:1.35rem;display:block}.stat span{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700}.formula{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.formula-step{border:1px solid var(--border);border-radius:10px;padding:15px;background:var(--bg)}.formula-step strong{display:block;color:var(--accent-dark);margin-bottom:5px}.examples-table{width:100%;border-collapse:collapse;margin-top:14px}.examples-table th,.examples-table td{border:1px solid var(--border);padding:12px;text-align:left;font-size:14px;line-height:1.55}.examples-table th{background:var(--accent-light);color:#1e3a8a}.related{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.related a{display:block;text-decoration:none;color:var(--text);border:1px solid var(--border);border-radius:10px;padding:15px;background:var(--bg);font-weight:700;font-size:14px}.related a:hover{border-color:var(--accent);color:var(--accent)}.faq details{border-top:1px solid var(--border);padding:14px 0}.faq details:first-of-type{border-top:0}.faq summary{cursor:pointer;font-weight:700}.faq details p{margin-top:8px}.notice{margin-top:14px;padding:14px;border-left:4px solid var(--green);background:var(--green-light);color:#166534;font-size:14px;line-height:1.7}@media(max-width:650px){.fields,.formula,.related{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.card{padding:22px 16px}.examples-table th,.examples-table td{padding:9px;font-size:12px}}@media(max-width:430px){.stats{grid-template-columns:1fr}}
 </style>
 <script src="/nav.js"></script>
 </head>
 <body>
-<div class="wrap">
-<section class="hero"><h1>Age in Any Year <span>Calculator</span></h1><p>Find exactly how old you were—or will be—on any date in the past or future.</p></section>
-<div class="card">
-<div class="section-label">Enter two dates</div>
-<div class="fields">
+<main class="wrap">
+<section class="hero">
+<h1>How Old Was I in a <span>Specific Year?</span></h1>
+<p>Use a birth year for a quick before-and-after birthday answer, or enter two complete dates for an exact calendar age.</p>
+</section>
+<section class="card direct-answer">
+<h2>Quick answer</h2>
+<p><strong>Subtract your birth year from the target year.</strong> That is the age you turned during the target year. Before your birthday, you were one year younger. For example, 2001 − 1986 = 15, so someone born in 1986 was 14 before their birthday in 2001 and 15 on or after it.</p>
+</section>
+<section class="card" aria-labelledby="year-checker-title">
+<h2 id="year-checker-title">Age in a Specific Year Checker</h2>
+<p>Use this when you know only the birth year and target year.</p>
+<div class="fields" style="margin-top:16px">
+<div class="field"><label for="birthYear">Birth year</label><input id="birthYear" type="number" min="1900" max="2100" value="1986" inputmode="numeric"></div>
+<div class="field"><label for="targetYear">Target year</label><input id="targetYear" type="number" min="1900" max="2100" value="2001" inputmode="numeric"></div>
+</div>
+<button class="calc-btn" type="button" onclick="calculateYearAge()">Calculate Age in That Year →</button>
+<div class="examples"><button class="example" type="button" onclick="setYearExample(1986,2001)">Born 1986 → 2001</button><button class="example" type="button" onclick="setYearExample(1990,2030)">Born 1990 → 2030</button><button class="example" type="button" onclick="setYearExample(1975,2026)">Born 1975 → 2026</button></div>
+<div id="yearError" class="error" role="alert"></div>
+</section>
+<section id="yearResult" class="card result" aria-live="polite">
+<div class="answer"><div class="lead" id="yearLabel">Age in target year</div><span class="big" id="yearAge">—</span><div class="sentence" id="yearSentence"></div><div class="detail" id="yearDetail"></div></div>
+<button id="copyYearButton" class="copy-btn" type="button" onclick="copyYearResult()">Copy year result</button>
+</section>
+<section class="card" aria-labelledby="exact-calculator-title">
+<h2 id="exact-calculator-title">Exact Age on a Past or Future Date</h2>
+<p>Enter complete dates to calculate calendar years, months and days, plus total elapsed days and weeks.</p>
+<div class="fields" style="margin-top:16px">
 <div class="field"><label for="birthDate">Date of birth</label><input id="birthDate" type="date" min="1900-01-01"></div>
 <div class="field"><label for="targetDate">Date to calculate age on</label><input id="targetDate" type="date" min="1900-01-01" max="2100-12-31"></div>
 </div>
-<button class="calc-btn" onclick="calculateAge()">Calculate Age on This Date →</button>
-<div class="examples"><button class="example" onclick="setExample(1986,2001)">Born 1986 → age in 2001</button><button class="example" onclick="setExample(1990,2030)">Born 1990 → age in 2030</button><button class="example" onclick="setToday()">Age today</button></div>
-</div>
-<div id="result" class="card result">
-<div class="answer"><div class="lead" id="answerLabel">Your age</div><span class="big" id="exactAge">—</span><div class="sentence" id="answerSentence"></div></div>
-<div class="stats"><div class="stat"><strong id="totalMonths">—</strong><span>Total months</span></div><div class="stat"><strong id="totalWeeks">—</strong><span>Total weeks</span></div><div class="stat"><strong id="totalDays">—</strong><span>Total days</span></div></div>
-</div>
-<div class="card content"><h2>How to calculate your age in another year</h2><p>A quick estimate is the target year minus your birth year. The exact result can be one year lower when the target date falls before your birthday. This calculator compares the full dates, including leap years and the different number of days in each month.</p><ul><li>Use a past date to answer “How old was I in 2001?”</li><li>Use a future date to answer “How old will I be in 2030?”</li><li>Use today’s date to confirm your exact current age.</li></ul></div>
-<div class="card"><div class="section-label">Related age tools</div><div class="related"><a href="/what-year-was-i-born/">What year was I born?</a><a href="/what-generation-am-i/">What generation am I?</a><a href="/age-questions/">Age questions hub</a><a href="/">Exact age calculator</a></div></div>
-</div>
+<button class="calc-btn" type="button" onclick="calculateExactAge()">Calculate Exact Age →</button>
+<div class="examples"><button class="example" type="button" onclick="setDateExample('1986-06-15','2001-06-14')">Day before 15th birthday</button><button class="example" type="button" onclick="setDateExample('1986-06-15','2001-06-15')">On 15th birthday</button><button class="example" type="button" onclick="setToday()">Age today</button></div>
+<div id="dateError" class="error" role="alert"></div>
+</section>
+<section id="exactResult" class="card result" aria-live="polite">
+<div class="answer"><div class="lead" id="answerLabel">Your age</div><span class="big" id="exactAge">—</span><div class="sentence" id="answerSentence"></div><div class="detail" id="leapNote"></div></div>
+<div class="stats"><div class="stat"><strong id="totalMonths">—</strong><span>Complete months</span></div><div class="stat"><strong id="totalWeeks">—</strong><span>Complete weeks</span></div><div class="stat"><strong id="totalDays">—</strong><span>Total days</span></div></div>
+<button id="copyExactButton" class="copy-btn" type="button" onclick="copyExactResult()">Copy exact result</button>
+</section>
+<section class="card">
+<h2>How the calculation works</h2>
+<div class="formula"><div class="formula-step"><strong>1. Subtract the years</strong><span>Target year − birth year gives the age reached during that year.</span></div><div class="formula-step"><strong>2. Check the birthday</strong><span>Before the birthday, subtract one from that result.</span></div><div class="formula-step"><strong>3. Use full dates</strong><span>For an exact result, compare calendar years, months and days.</span></div></div>
+<div class="notice">The exact-date calculator uses local calendar dates and UTC day differences to avoid timezone changes around midnight. A February 29 birthday is treated as February 28 in a non-leap anniversary year for the calendar interval shown.</div>
+</section>
+<section class="card">
+<h2>Examples: age in a specific year</h2>
+<div style="overflow-x:auto"><table class="examples-table"><thead><tr><th>Born</th><th>Target year</th><th>Before birthday</th><th>On or after birthday</th></tr></thead><tbody><tr><td>1986</td><td>2001</td><td>14</td><td>15</td></tr><tr><td>1990</td><td>2030</td><td>39</td><td>40</td></tr><tr><td>1975</td><td>2026</td><td>50</td><td>51</td></tr><tr><td>2005</td><td>2024</td><td>18</td><td>19</td></tr></tbody></table></div>
+</section>
+<section class="card faq">
+<h2>Frequently asked questions</h2>
+<details><summary>How old was I in 2001 if I was born in 1986?</summary><p>You were 14 before your birthday in 2001 and 15 on or after your birthday.</p></details>
+<details><summary>How old will I be in 2030 if I was born in 1990?</summary><p>You will be 39 before your birthday in 2030 and 40 on or after your birthday.</p></details>
+<details><summary>Why can the answer be two different ages?</summary><p>A year-only calculation does not include your birthday. The older age is the age you turn during the year; the younger age applies before that birthday.</p></details>
+<details><summary>Can I calculate age on an exact historical date?</summary><p>Yes. Use the complete date-of-birth and target-date fields to calculate calendar years, months and days.</p></details>
+<details><summary>Does the calculator handle leap years?</summary><p>Yes. Total elapsed days use UTC calendar dates. For the years-months-days interval, a February 29 anniversary is treated as February 28 in a non-leap year.</p></details>
+<details><summary>Can the target date be in the future?</summary><p>Yes, up to December 31, 2100. The same calculation works for past and future dates.</p></details>
+</section>
+<section class="card"><h2>Related age calculators</h2><div class="related"><a href="/how-old-will-i-be-in-2030/">How Old Will I Be in 2030?</a><a href="/when-will-i-turn-40-50-or-65/">Milestone Age Calculator</a><a href="/what-year-was-i-born/">Birth Year Calculator</a><a href="/birthday-countdown/">Birthday Countdown</a><a href="/age-questions/">Age Questions & Answers</a><a href="/">Exact Age Today</a></div></section>
+</main>
 <script>
-(function(){const today=new Date();document.getElementById('targetDate').value=toISO(today);document.getElementById('birthDate').max=toISO(today)})();
-function toISO(d){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return `${y}-${m}-${day}`}
-function parseLocal(value){if(!value)return null;const [y,m,d]=value.split('-').map(Number);const date=new Date(y,m-1,d);return date.getFullYear()===y&&date.getMonth()===m-1&&date.getDate()===d?date:null}
-function calculateAge(){const birth=parseLocal(document.getElementById('birthDate').value);const target=parseLocal(document.getElementById('targetDate').value);if(!birth||!target){alert('Please enter both complete dates.');return}if(target<birth){alert('The target date must be after the birth date.');return}let years=target.getFullYear()-birth.getFullYear();let months=target.getMonth()-birth.getMonth();let days=target.getDate()-birth.getDate();if(days<0){months--;days+=new Date(target.getFullYear(),target.getMonth(),0).getDate()}if(months<0){years--;months+=12}const diffDays=Math.floor((Date.UTC(target.getFullYear(),target.getMonth(),target.getDate())-Date.UTC(birth.getFullYear(),birth.getMonth(),birth.getDate()))/86400000);const full=`${years} year${years===1?'':'s'}, ${months} month${months===1?'':'s'} and ${days} day${days===1?'':'s'}`;document.getElementById('exactAge').textContent=years;document.getElementById('answerLabel').textContent=`Age on ${target.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}`;document.getElementById('answerSentence').textContent=`You were ${full} old on that date.`;document.getElementById('totalMonths').textContent=(years*12+months).toLocaleString();document.getElementById('totalWeeks').textContent=Math.floor(diffDays/7).toLocaleString();document.getElementById('totalDays').textContent=diffDays.toLocaleString();const result=document.getElementById('result');result.style.display='block';result.scrollIntoView({behavior:'smooth',block:'nearest'})}
-function setExample(birthYear,targetYear){document.getElementById('birthDate').value=`${birthYear}-01-01`;document.getElementById('targetDate').value=`${targetYear}-12-31`;calculateAge()}
-function setToday(){document.getElementById('targetDate').value=toISO(new Date());if(document.getElementById('birthDate').value)calculateAge()}
+(function(){var today=new Date();document.getElementById('targetDate').value=toISO(today);document.getElementById('birthDate').max=toISO(today)})();
+function toISO(date){var y=date.getFullYear();var m=String(date.getMonth()+1).padStart(2,'0');var d=String(date.getDate()).padStart(2,'0');return y+'-'+m+'-'+d}
+function parseLocal(value){if(!value)return null;var parts=value.split('-').map(Number);var date=new Date(parts[0],parts[1]-1,parts[2]);return date.getFullYear()===parts[0]&&date.getMonth()===parts[1]-1&&date.getDate()===parts[2]?date:null}
+function daysInMonth(year,monthIndex){return new Date(year,monthIndex+1,0).getDate()}
+function addYearsClamped(date,years){var year=date.getFullYear()+years;var month=date.getMonth();var day=Math.min(date.getDate(),daysInMonth(year,month));return new Date(year,month,day)}
+function addMonthsClamped(date,months){var total=date.getFullYear()*12+date.getMonth()+months;var year=Math.floor(total/12);var month=total%12;var day=Math.min(date.getDate(),daysInMonth(year,month));return new Date(year,month,day)}
+function utcDaysBetween(start,end){return Math.round((Date.UTC(end.getFullYear(),end.getMonth(),end.getDate())-Date.UTC(start.getFullYear(),start.getMonth(),start.getDate()))/86400000)}
+function calendarDifference(birth,target){var years=target.getFullYear()-birth.getFullYear();var anchor=addYearsClamped(birth,years);if(anchor>target){years--;anchor=addYearsClamped(birth,years)}var months=0;var next=addMonthsClamped(anchor,1);while(next<=target&&months<11){months++;anchor=next;next=addMonthsClamped(anchor,1)}var days=utcDaysBetween(anchor,target);return {years:years,months:months,days:days}}
+function showError(id,message){var box=document.getElementById(id);box.textContent=message;box.style.display='block'}
+function clearError(id){var box=document.getElementById(id);box.textContent='';box.style.display='none'}
+function calculateYearAge(){clearError('yearError');var birthYear=parseInt(document.getElementById('birthYear').value,10);var targetYear=parseInt(document.getElementById('targetYear').value,10);if(!Number.isInteger(birthYear)||!Number.isInteger(targetYear)||birthYear<1900||targetYear>2100){showError('yearError','Enter complete years from 1900 through 2100.');return}if(targetYear<birthYear){showError('yearError','The target year must be the birth year or later.');return}var turned=targetYear-birthYear;var before=Math.max(0,turned-1);var label='Born in '+birthYear+' · Target year '+targetYear;var sentence;var detail;if(turned===0){sentence='Someone born in '+birthYear+' was age 0 during their birth year.';detail='The exact number of months and days depends on the birth date and target date.'}else{sentence='You were '+before+' before your birthday and '+turned+' on or after your birthday in '+targetYear+'.';detail='You turned '+turned+' during '+targetYear+'. Enter complete dates below for one exact answer.'}document.getElementById('yearLabel').textContent=label;document.getElementById('yearAge').textContent=turned===0?'Age 0':before+' or '+turned;document.getElementById('yearSentence').textContent=sentence;document.getElementById('yearDetail').textContent=detail;document.getElementById('copyYearButton').style.display='block';var result=document.getElementById('yearResult');result.style.display='block';result.scrollIntoView({behavior:'smooth',block:'nearest'})}
+function calculateExactAge(){clearError('dateError');var birth=parseLocal(document.getElementById('birthDate').value);var target=parseLocal(document.getElementById('targetDate').value);if(!birth||!target){showError('dateError','Please enter both complete, valid dates.');return}if(target<birth){showError('dateError','The target date must be on or after the birth date.');return}var diff=calendarDifference(birth,target);var totalDays=utcDaysBetween(birth,target);var full=diff.years+' year'+(diff.years===1?'':'s')+', '+diff.months+' month'+(diff.months===1?'':'s')+' and '+diff.days+' day'+(diff.days===1?'':'s');var targetLabel=target.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});document.getElementById('exactAge').textContent=diff.years+' year'+(diff.years===1?'':'s');document.getElementById('answerLabel').textContent='Age on '+targetLabel;document.getElementById('answerSentence').textContent='You were '+full+' old on that date.';document.getElementById('totalMonths').textContent=(diff.years*12+diff.months).toLocaleString();document.getElementById('totalWeeks').textContent=Math.floor(totalDays/7).toLocaleString();document.getElementById('totalDays').textContent=totalDays.toLocaleString();document.getElementById('leapNote').textContent=(birth.getMonth()===1&&birth.getDate()===29)?'Leap-day note: non-leap anniversary years use February 28 for the calendar interval.':'Calendar dates are compared locally; total days are calculated in UTC.';document.getElementById('copyExactButton').style.display='block';var result=document.getElementById('exactResult');result.style.display='block';result.scrollIntoView({behavior:'smooth',block:'nearest'})}
+function setYearExample(birthYear,targetYear){document.getElementById('birthYear').value=birthYear;document.getElementById('targetYear').value=targetYear;calculateYearAge()}
+function setDateExample(birth,target){document.getElementById('birthDate').value=birth;document.getElementById('targetDate').value=target;calculateExactAge()}
+function setToday(){document.getElementById('targetDate').value=toISO(new Date());if(document.getElementById('birthDate').value)calculateExactAge()}
+function copyText(text,buttonId,defaultLabel){if(!text.trim())return;navigator.clipboard.writeText(text).then(function(){var button=document.getElementById(buttonId);button.textContent='Copied';setTimeout(function(){button.textContent=defaultLabel},1500)}).catch(function(){})}
+function copyYearResult(){copyText(document.getElementById('yearSentence').textContent+' '+document.getElementById('yearDetail').textContent,'copyYearButton','Copy year result')}
+function copyExactResult(){copyText(document.getElementById('answerSentence').textContent+' Total days: '+document.getElementById('totalDays').textContent+'.','copyExactButton','Copy exact result')}
+calculateYearAge();
 </script>
 </body>
 </html>
