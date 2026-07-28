@@ -40,7 +40,7 @@
       '/': { iso: '2026-07-25', label: 'July 25, 2026' },
       '/age-in-any-year/': { iso: '2026-07-18', label: 'July 18, 2026' },
       '/what-year-was-i-born/': { iso: '2026-07-18', label: 'July 18, 2026' },
-      '/what-generation-am-i/': { iso: '2026-07-18', label: 'July 18, 2026' },
+      '/what-generation-am-i/': { iso: '2026-07-28', label: 'July 28, 2026' },
       '/age-questions/': { iso: '2026-07-28', label: 'July 28, 2026' }
     };
     var review = reviewedPages[current];
