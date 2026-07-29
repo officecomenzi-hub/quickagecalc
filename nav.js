@@ -35,13 +35,62 @@
     }
   }
 
+  function addDecadeNavigation(current) {
+    var yearMatch = current.match(/^\/born-in(?:\/|-)(19[6-9]\d|200\d)\/$/);
+    var hubMatch = current.match(/^\/born-in-the-(1960s|1970s|1980s|1990s|2000s)\/$/);
+    var isBirthYearIndex = current === '/born-in-year/';
+
+    if (!yearMatch && !hubMatch && !isBirthYearIndex) {
+      return;
+    }
+    if (document.getElementById('qac-decade-navigation')) {
+      return;
+    }
+
+    var activeDecade = '';
+    var intro = 'Open a decade guide to compare ages in 2026 and reach every individual birth-year calculator.';
+    if (yearMatch) {
+      var birthYear = parseInt(yearMatch[1], 10);
+      activeDecade = String(Math.floor(birthYear / 10) * 10) + 's';
+      intro = 'Born in ' + birthYear + '? Open the ' + activeDecade + ' guide or compare nearby birth-year decades.';
+    } else if (hubMatch) {
+      activeDecade = hubMatch[1];
+      intro = 'Compare this decade with nearby birth-year guides and open the central age-by-year index.';
+    }
+
+    var decades = ['1960s', '1970s', '1980s', '1990s', '2000s'];
+    var links = decades.map(function (decade) {
+      var activeClass = decade === activeDecade ? ' class="active"' : '';
+      return '<a href="/born-in-the-' + decade + '/"' + activeClass + '><strong>' + decade + '</strong><span>Age by year and generation</span></a>';
+    }).join('');
+
+    var section = document.createElement('section');
+    section.id = 'qac-decade-navigation';
+    section.className = 'card qac-decade-navigation';
+    section.setAttribute('aria-labelledby', 'qac-decade-navigation-title');
+    section.innerHTML = '<h2 id="qac-decade-navigation-title">Browse Birth-Year Decades</h2>' +
+      '<p>' + intro + '</p>' +
+      '<div class="qac-decade-grid">' + links +
+        '<a href="/born-in-year/"><strong>All years</strong><span>1960 through 2026</span></a>' +
+      '</div>';
+
+    var hero = document.querySelector('.hero');
+    var firstCard = document.querySelector('.card');
+    if (hero && hero.parentNode) {
+      hero.insertAdjacentElement('afterend', section);
+    } else if (firstCard && firstCard.parentNode) {
+      firstCard.parentNode.insertBefore(section, firstCard);
+    }
+  }
+
   function addLastReviewedNote(current) {
     var reviewedPages = {
       '/': { iso: '2026-07-25', label: 'July 25, 2026' },
       '/age-in-any-year/': { iso: '2026-07-28', label: 'July 28, 2026' },
       '/what-year-was-i-born/': { iso: '2026-07-18', label: 'July 18, 2026' },
       '/what-generation-am-i/': { iso: '2026-07-28', label: 'July 28, 2026' },
-      '/age-questions/': { iso: '2026-07-28', label: 'July 28, 2026' }
+      '/age-questions/': { iso: '2026-07-28', label: 'July 28, 2026' },
+      '/born-in-year/': { iso: '2026-07-29', label: 'July 29, 2026' }
     };
     var review = reviewedPages[current];
     if (!review || document.getElementById('qac-last-reviewed')) {
@@ -84,7 +133,7 @@
     var footerHTML = '<footer class="qac-global-footer"><p>© ' + year + ' QuickAgeCalc · <a href="/privacy/">Privacy Policy</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a></p><p class="qac-footer-note">Free online age and date tools. Your entries stay in your browser.</p></footer>';
 
     var style = document.createElement('style');
-    style.textContent = '.qac-global-header{background:#fff;border-bottom:1px solid #e2e6ea;padding:14px 0;margin-bottom:32px}.qac-header-inner{max-width:980px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}.qac-global-header .logo{font-family:"Playfair Display",serif;font-size:1.3rem;color:#2563eb;text-decoration:none}.qac-global-header .logo span{color:#1a202c}.qac-global-header nav{display:flex;gap:4px;flex-wrap:wrap}.qac-global-header nav a{font-size:12px;color:#6b7280;text-decoration:none;padding:6px 8px;border-radius:6px;transition:background .2s,color .2s;white-space:nowrap}.qac-global-header nav a:hover,.qac-global-header nav a.active{background:#eff6ff;color:#2563eb}.qac-global-header nav a.active{font-weight:700}.qac-global-footer{text-align:center;padding:28px 20px;font-size:13px;color:#6b7280;border-top:1px solid #e2e6ea;margin-top:32px}.qac-global-footer a{color:#6b7280;text-decoration:none}.qac-global-footer a:hover{color:#2563eb}.qac-footer-note{margin-top:8px}.qac-last-reviewed{display:inline-block;margin:8px 0 0;padding:6px 10px;border:1px solid #bfdbfe;border-radius:999px;background:#eff6ff;color:#1e40af;font-size:12px;font-weight:700;line-height:1.3}.ad-slot{display:none!important;height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}.qac-contextual-tools h2{font-family:"Playfair Display",serif;font-size:1.35rem;margin-bottom:8px}.qac-contextual-tools>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}.qac-contextual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.qac-contextual-grid a{display:block;border:1px solid #e2e6ea;border-radius:10px;padding:14px;text-decoration:none;color:#1a202c;background:#f7f8fa}.qac-contextual-grid a:hover{border-color:#2563eb;background:#eff6ff}.qac-contextual-grid strong{display:block;font-size:14px;margin-bottom:4px}.qac-contextual-grid span{display:block;font-size:12px;line-height:1.5;color:#6b7280}@media(max-width:760px){.qac-header-inner{justify-content:center}.qac-global-header .logo{width:100%;text-align:center}.qac-global-header nav{justify-content:center}}@media(max-width:540px){.qac-contextual-grid{grid-template-columns:1fr}}';
+    style.textContent = '.qac-global-header{background:#fff;border-bottom:1px solid #e2e6ea;padding:14px 0;margin-bottom:32px}.qac-header-inner{max-width:980px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}.qac-global-header .logo{font-family:"Playfair Display",serif;font-size:1.3rem;color:#2563eb;text-decoration:none}.qac-global-header .logo span{color:#1a202c}.qac-global-header nav{display:flex;gap:4px;flex-wrap:wrap}.qac-global-header nav a{font-size:12px;color:#6b7280;text-decoration:none;padding:6px 8px;border-radius:6px;transition:background .2s,color .2s;white-space:nowrap}.qac-global-header nav a:hover,.qac-global-header nav a.active{background:#eff6ff;color:#2563eb}.qac-global-header nav a.active{font-weight:700}.qac-global-footer{text-align:center;padding:28px 20px;font-size:13px;color:#6b7280;border-top:1px solid #e2e6ea;margin-top:32px}.qac-global-footer a{color:#6b7280;text-decoration:none}.qac-global-footer a:hover{color:#2563eb}.qac-footer-note{margin-top:8px}.qac-last-reviewed{display:inline-block;margin:8px 0 0;padding:6px 10px;border:1px solid #bfdbfe;border-radius:999px;background:#eff6ff;color:#1e40af;font-size:12px;font-weight:700;line-height:1.3}.ad-slot{display:none!important;height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}.qac-contextual-tools h2,.qac-decade-navigation h2{font-family:"Playfair Display",serif;font-size:1.35rem;margin-bottom:8px}.qac-contextual-tools>p,.qac-decade-navigation>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}.qac-contextual-grid,.qac-decade-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.qac-contextual-grid a,.qac-decade-grid a{display:block;border:1px solid #e2e6ea;border-radius:10px;padding:14px;text-decoration:none;color:#1a202c;background:#f7f8fa}.qac-contextual-grid a:hover,.qac-decade-grid a:hover,.qac-decade-grid a.active{border-color:#2563eb;background:#eff6ff}.qac-contextual-grid strong,.qac-decade-grid strong{display:block;font-size:14px;margin-bottom:4px}.qac-contextual-grid span,.qac-decade-grid span{display:block;font-size:12px;line-height:1.5;color:#6b7280}@media(max-width:760px){.qac-header-inner{justify-content:center}.qac-global-header .logo{width:100%;text-align:center}.qac-global-header nav{justify-content:center}}@media(max-width:540px){.qac-contextual-grid,.qac-decade-grid{grid-template-columns:1fr}}';
     document.head.appendChild(style);
 
     if (!document.querySelector('header')) {
@@ -95,6 +144,7 @@
     }
 
     addLastReviewedNote(current);
+    addDecadeNavigation(current);
     addContextualBirthYearLinks(current);
   }
 
