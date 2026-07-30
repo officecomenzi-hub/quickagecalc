@@ -122,6 +122,19 @@ jobs:
                   text = text.replace('<p>Exact age calculation for anyone born in 1965 — years, months, days, and hours.</p>', '<p>See the direct 1965-to-2026 answer first, then calculate your exact age from your complete birth date.</p>', 1)
                   text = text.replace('<div class="updated">Updated for 2026</div>', '<div class="updated">Last reviewed July 30, 2026</div>', 1)
 
+              if path.as_posix().endswith('born-in-1961/index.html'):
+                  snippet_title = '1961 to 2026 Age: 64 or 65 + Exact Calculator'
+                  snippet_description = 'From 1961 to 2026 is 65 years. If you were born in 1961, you are 64 before your birthday and 65 after it. Calculate your exact age.'
+                  text = re.sub(r'<title>.*?</title>', f'<title>{snippet_title}</title>', text, count=1, flags=re.IGNORECASE | re.DOTALL)
+                  text = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{snippet_description}">', text, count=1, flags=re.IGNORECASE | re.DOTALL)
+                  text = re.sub(r'<meta property="og:title" content=".*?">', f'<meta property="og:title" content="{snippet_title}">', text, count=1, flags=re.IGNORECASE | re.DOTALL)
+                  text = re.sub(r'<meta property="og:description" content=".*?">', f'<meta property="og:description" content="{snippet_description}">', text, count=1, flags=re.IGNORECASE | re.DOTALL)
+                  text = re.sub(r'<meta name="twitter:title" content=".*?">', f'<meta name="twitter:title" content="{snippet_title}">', text, count=1, flags=re.IGNORECASE | re.DOTALL)
+                  text = re.sub(r'<meta name="twitter:description" content=".*?">', f'<meta name="twitter:description" content="{snippet_description}">', text, count=1, flags=re.IGNORECASE | re.DOTALL)
+                  text = text.replace('<h1>Born in 1961?<br><span>Age in 2026, Days Old &amp; Baby Boomer Facts</span></h1>', '<h1>1961 to 2026 Age:<br><span>64 or 65 Years Old</span></h1>', 1)
+                  text = text.replace('<p>Exact age calculation for anyone born in 1961 — years, months, days, and hours.</p>', '<p>See the direct 1961-to-2026 answer first, then calculate your exact age from your complete birth date.</p>', 1)
+                  text = text.replace('<div class="updated">Updated for 2026</div>', '<div class="updated">Last reviewed July 30, 2026</div>', 1)
+
               if 'id="qac-hide-ad-placeholders"' not in text and "</head>" in text:
                   text = text.replace("</head>", ad_placeholder_style + "\n</head>", 1)
 
