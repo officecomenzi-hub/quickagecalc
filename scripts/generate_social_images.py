@@ -88,6 +88,77 @@ def shorten_title(title: str) -> str:
     return title.strip() or "QuickAgeCalc"
 
 
+def apply_targeted_page_updates(html_path: Path, text: str) -> str:
+    """Apply reviewed, page-specific search snippet improvements during build."""
+    if not html_path.as_posix().endswith("born-in-1964/index.html"):
+        return text
+
+    snippet_title = "1964 to 2026 Age: 61 or 62 + Exact Calculator"
+    snippet_description = (
+        "From 1964 to 2026 is 62 years. If you were born in 1964, you are 61 "
+        "before your birthday and 62 after it. Calculate your exact age."
+    )
+
+    text = re.sub(
+        r"<title>.*?</title>",
+        f"<title>{snippet_title}</title>",
+        text,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    text = re.sub(
+        r'<meta name="description" content=".*?">',
+        f'<meta name="description" content="{snippet_description}">',
+        text,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    text = re.sub(
+        r'<meta property="og:title" content=".*?">',
+        f'<meta property="og:title" content="{snippet_title}">',
+        text,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    text = re.sub(
+        r'<meta property="og:description" content=".*?">',
+        f'<meta property="og:description" content="{snippet_description}">',
+        text,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    text = re.sub(
+        r'<meta name="twitter:title" content=".*?">',
+        f'<meta name="twitter:title" content="{snippet_title}">',
+        text,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    text = re.sub(
+        r'<meta name="twitter:description" content=".*?">',
+        f'<meta name="twitter:description" content="{snippet_description}">',
+        text,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    text = text.replace(
+        "<h1>Born in 1964?<br><span>Age in 2026, Days Old &amp; Baby Boomer Facts</span></h1>",
+        "<h1>1964 to 2026 Age:<br><span>61 or 62 Years Old</span></h1>",
+        1,
+    )
+    text = text.replace(
+        "<p>Exact age calculation for anyone born in 1964 — years, months, days, and hours.</p>",
+        "<p>See the direct 1964-to-2026 answer first, then calculate your exact age from your complete birth date.</p>",
+        1,
+    )
+    text = text.replace(
+        '<div class="updated">Updated for 2026</div>',
+        '<div class="updated">Last reviewed July 31, 2026</div>',
+        1,
+    )
+    return text
+
+
 def generate_card(image_path: Path, slug: str, title: str, description: str) -> None:
     palette_index = int(hashlib.sha256(slug.encode("utf-8")).hexdigest()[:2], 16) % len(PALETTES)
     background, accent, dark = PALETTES[palette_index]
@@ -159,6 +230,7 @@ def main() -> None:
     generated = 0
     for html_path in html_files:
         text = html_path.read_text(encoding="utf-8")
+        text = apply_targeted_page_updates(html_path, text)
         title = find_meta(text, r"<title>(.*?)</title>", "QuickAgeCalc")
         description = find_meta(
             text,
