@@ -90,14 +90,43 @@ def shorten_title(title: str) -> str:
 
 def apply_targeted_page_updates(html_path: Path, text: str) -> str:
     """Apply reviewed, page-specific search snippet improvements during build."""
-    if not html_path.as_posix().endswith("born-in-1964/index.html"):
+    page_updates = {
+        "born-in-1964/index.html": {
+            "title": "1964 to 2026 Age: 61 or 62 + Exact Calculator",
+            "description": (
+                "From 1964 to 2026 is 62 years. If you were born in 1964, you are 61 "
+                "before your birthday and 62 after it. Calculate your exact age."
+            ),
+            "old_h1": "<h1>Born in 1964?<br><span>Age in 2026, Days Old &amp; Baby Boomer Facts</span></h1>",
+            "new_h1": "<h1>1964 to 2026 Age:<br><span>61 or 62 Years Old</span></h1>",
+            "old_intro": "<p>Exact age calculation for anyone born in 1964 — years, months, days, and hours.</p>",
+            "new_intro": "<p>See the direct 1964-to-2026 answer first, then calculate your exact age from your complete birth date.</p>",
+            "reviewed": "Last reviewed July 31, 2026",
+        },
+        "born-in-1963/index.html": {
+            "title": "1963 to 2026 Age: 62 or 63 + Exact Calculator",
+            "description": (
+                "From 1963 to 2026 is 63 years. If you were born in 1963, you are 62 "
+                "before your birthday and 63 after it. Calculate your exact age."
+            ),
+            "old_h1": "<h1>Born in 1963?<br><span>Age in 2026, Days Old &amp; Baby Boomer Facts</span></h1>",
+            "new_h1": "<h1>1963 to 2026 Age:<br><span>62 or 63 Years Old</span></h1>",
+            "old_intro": "<p>Exact age calculation for anyone born in 1963 — years, months, days, and hours.</p>",
+            "new_intro": "<p>See the direct 1963-to-2026 answer first, then calculate your exact age from your complete birth date.</p>",
+            "reviewed": "Last reviewed August 1, 2026",
+        },
+    }
+
+    matched_path = next(
+        (suffix for suffix in page_updates if html_path.as_posix().endswith(suffix)),
+        None,
+    )
+    if matched_path is None:
         return text
 
-    snippet_title = "1964 to 2026 Age: 61 or 62 + Exact Calculator"
-    snippet_description = (
-        "From 1964 to 2026 is 62 years. If you were born in 1964, you are 61 "
-        "before your birthday and 62 after it. Calculate your exact age."
-    )
+    update = page_updates[matched_path]
+    snippet_title = update["title"]
+    snippet_description = update["description"]
 
     text = re.sub(
         r"<title>.*?</title>",
@@ -141,19 +170,11 @@ def apply_targeted_page_updates(html_path: Path, text: str) -> str:
         count=1,
         flags=re.IGNORECASE | re.DOTALL,
     )
-    text = text.replace(
-        "<h1>Born in 1964?<br><span>Age in 2026, Days Old &amp; Baby Boomer Facts</span></h1>",
-        "<h1>1964 to 2026 Age:<br><span>61 or 62 Years Old</span></h1>",
-        1,
-    )
-    text = text.replace(
-        "<p>Exact age calculation for anyone born in 1964 — years, months, days, and hours.</p>",
-        "<p>See the direct 1964-to-2026 answer first, then calculate your exact age from your complete birth date.</p>",
-        1,
-    )
+    text = text.replace(update["old_h1"], update["new_h1"], 1)
+    text = text.replace(update["old_intro"], update["new_intro"], 1)
     text = text.replace(
         '<div class="updated">Updated for 2026</div>',
-        '<div class="updated">Last reviewed July 31, 2026</div>',
+        f'<div class="updated">{update["reviewed"]}</div>',
         1,
     )
     return text
