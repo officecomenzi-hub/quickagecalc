@@ -115,6 +115,18 @@ def apply_targeted_page_updates(html_path: Path, text: str) -> str:
             "new_intro": "<p>See the direct 1963-to-2026 answer first, then calculate your exact age from your complete birth date.</p>",
             "reviewed": "Last reviewed August 1, 2026",
         },
+        "born-in-1960/index.html": {
+            "title": "1960 to 2026 Age: 65 or 66 + Exact Calculator",
+            "description": (
+                "From 1960 to 2026 is 66 years. If you were born in 1960, you are 65 "
+                "before your birthday and 66 after it. Calculate your exact age."
+            ),
+            "old_h1": "<h1>Born in 1960?<br><span>Age in 2026, Days Old &amp; Baby Boomer Facts</span></h1>",
+            "new_h1": "<h1>1960 to 2026 Age:<br><span>65 or 66 Years Old</span></h1>",
+            "old_intro": "<p>Exact age calculation for anyone born in 1960 — years, months, days, and hours.</p>",
+            "new_intro": "<p>See the direct 1960-to-2026 answer first, then calculate your exact age from your complete birth date.</p>",
+            "reviewed": "Last reviewed August 1, 2026",
+        },
     }
 
     matched_path = next(
