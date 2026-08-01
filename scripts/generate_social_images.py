@@ -32,6 +32,13 @@ IMAGE_META_PATTERNS = [
     r'\s*<link\s+rel=["\']image_src["\'][^>]*>\s*',
 ]
 
+NAV_RESERVATION_STYLE = '''<style id="qac-nav-layout-reservation">
+#qac-global-header-reservation{height:86px}
+.qac-global-header+#qac-global-header-reservation{display:none}
+@media(max-width:760px){#qac-global-header-reservation{height:180px}}
+</style>'''
+NAV_RESERVATION_HTML = '<div id="qac-global-header-reservation" aria-hidden="true"></div>'
+
 
 def find_meta(text: str, pattern: str, default: str) -> str:
     match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
@@ -192,6 +199,26 @@ def apply_targeted_page_updates(html_path: Path, text: str) -> str:
     return text
 
 
+def add_nav_layout_reservation(text: str) -> str:
+    """Reserve header space before nav.js inserts the global header."""
+    if 'id="qac-nav-layout-reservation"' not in text:
+        if "</head>" not in text:
+            raise ValueError("HTML document does not contain </head>")
+        text = text.replace("</head>", NAV_RESERVATION_STYLE + "\n</head>", 1)
+
+    if 'id="qac-global-header-reservation"' not in text:
+        text, count = re.subn(
+            r"(<body(?:\s[^>]*)?>)",
+            r"\1\n" + NAV_RESERVATION_HTML,
+            text,
+            count=1,
+            flags=re.IGNORECASE,
+        )
+        if count != 1:
+            raise ValueError("HTML document does not contain a body tag")
+    return text
+
+
 def generate_card(image_path: Path, slug: str, title: str, description: str) -> None:
     palette_index = int(hashlib.sha256(slug.encode("utf-8")).hexdigest()[:2], 16) % len(PALETTES)
     background, accent, dark = PALETTES[palette_index]
@@ -264,6 +291,7 @@ def main() -> None:
     for html_path in html_files:
         text = html_path.read_text(encoding="utf-8")
         text = apply_targeted_page_updates(html_path, text)
+        text = add_nav_layout_reservation(text)
         title = find_meta(text, r"<title>(.*?)</title>", "QuickAgeCalc")
         description = find_meta(
             text,
