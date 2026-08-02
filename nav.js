@@ -3,35 +3,35 @@
 
 (function () {
   function addContextualBirthYearLinks(current) {
-    if (!/^\/born-in\/(1961|1965)\/$/.test(current) && !/^\/born-in-(1961|1965)\/$/.test(current)) {
+    var yearMatch = current.match(/^\/born-in(?:\/|-)(196\d)\/$/);
+    if (!yearMatch) {
       return;
     }
     if (document.getElementById('qac-contextual-tools')) {
       return;
     }
 
-    var yearMatch = current.match(/(1961|1965)/);
-    var birthYear = yearMatch ? yearMatch[1] : '';
-    var generationLabel = birthYear === '1961' ? 'Baby Boomer' : 'Generation X';
+    var birthYear = yearMatch[1];
+    var generationLabel = parseInt(birthYear, 10) <= 1964 ? 'Baby Boomer' : 'Generation X';
     var section = document.createElement('section');
     section.id = 'qac-contextual-tools';
     section.className = 'card qac-contextual-tools';
     section.setAttribute('aria-labelledby', 'qac-contextual-tools-title');
     section.innerHTML = '<h2 id="qac-contextual-tools-title">Explore More About Your Age</h2>' +
-      '<p>Use these related tools to check your age in another year, confirm your generation, or explore common age questions.</p>' +
+      '<p>Use these related pages to compare nearby birth years, check another year, and confirm your generation.</p>' +
       '<div class="qac-contextual-grid">' +
+        '<a href="/born-in-the-1960s/"><strong>1960s Age Guide</strong><span>Compare ages in 2026 for every birth year from 1960 to 1969.</span></a>' +
         '<a href="/age-in-any-year/"><strong>Age in Any Year</strong><span>See how old someone born in ' + birthYear + ' was or will be in any year.</span></a>' +
         '<a href="/what-generation-am-i/"><strong>What Generation Am I?</strong><span>Confirm the ' + generationLabel + ' range and nearby cutoff years.</span></a>' +
-        '<a href="/what-year-was-i-born/"><strong>Birth Year Calculator</strong><span>Calculate a birth year from a current or future age.</span></a>' +
         '<a href="/age-questions/"><strong>Age Questions & Answers</strong><span>Find quick answers and the best calculator for common age questions.</span></a>' +
       '</div>';
 
-    var yearNav = document.querySelector('.year-nav');
     var firstContentCard = document.querySelector('.card.content');
-    if (yearNav && yearNav.parentNode) {
+    var yearNav = document.querySelector('.year-nav');
+    if (firstContentCard && firstContentCard.parentNode) {
+      firstContentCard.insertAdjacentElement('afterend', section);
+    } else if (yearNav && yearNav.parentNode) {
       yearNav.insertAdjacentElement('afterend', section);
-    } else if (firstContentCard && firstContentCard.parentNode) {
-      firstContentCard.parentNode.insertBefore(section, firstContentCard);
     }
   }
 
@@ -74,9 +74,12 @@
         '<a href="/born-in-year/"><strong>All years</strong><span>1960 through 2026</span></a>' +
       '</div>';
 
+    var firstContentCard = document.querySelector('.card.content');
     var hero = document.querySelector('.hero');
     var firstCard = document.querySelector('.card');
-    if (hero && hero.parentNode) {
+    if (yearMatch && firstContentCard && firstContentCard.parentNode) {
+      firstContentCard.insertAdjacentElement('afterend', section);
+    } else if (hero && hero.parentNode) {
       hero.insertAdjacentElement('afterend', section);
     } else if (firstCard && firstCard.parentNode) {
       firstCard.parentNode.insertBefore(section, firstCard);
