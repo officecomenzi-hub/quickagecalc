@@ -39,6 +39,17 @@ NAV_RESERVATION_STYLE = '''<style id="qac-nav-layout-reservation">
 </style>'''
 NAV_RESERVATION_HTML = '<div id="qac-global-header-reservation" aria-hidden="true"></div>'
 
+STATIC_1960S_CONTEXT_STYLE = '''<style id="qac-static-1960s-context-style">
+.qac-static-context h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:8px}
+.qac-static-context>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}
+.qac-static-context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.qac-static-context-grid a{display:block;border:1px solid #e2e6ea;border-radius:10px;padding:14px;text-decoration:none;color:#1a202c;background:#f7f8fa}
+.qac-static-context-grid a:hover{border-color:#2563eb;background:#eff6ff}
+.qac-static-context-grid strong{display:block;font-size:14px;margin-bottom:4px}
+.qac-static-context-grid span{display:block;font-size:12px;line-height:1.5;color:#6b7280}
+@media(max-width:540px){.qac-static-context-grid{grid-template-columns:1fr}}
+</style>'''
+
 
 def find_meta(text: str, pattern: str, default: str) -> str:
     match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
@@ -199,6 +210,36 @@ def apply_targeted_page_updates(html_path: Path, text: str) -> str:
     return text
 
 
+def add_static_1960s_contextual_links(html_path: Path, text: str) -> str:
+    """Add crawlable contextual links directly to 1960-1969 pages during build."""
+    match = re.search(r"born-in-(196\d)/index\.html$", html_path.as_posix())
+    if not match or 'id="qac-contextual-tools"' in text:
+        return text
+
+    birth_year = match.group(1)
+    generation_label = "Baby Boomer" if int(birth_year) <= 1964 else "Generation X"
+    section = f'''<section id="qac-contextual-tools" class="card qac-static-context" aria-labelledby="qac-contextual-tools-title">
+    <h2 id="qac-contextual-tools-title">Explore More About Your Age</h2>
+    <p>Use these related pages to compare nearby birth years, check another year, and confirm your generation.</p>
+    <div class="qac-static-context-grid">
+      <a href="/born-in-the-1960s/"><strong>1960s Age Guide</strong><span>Compare ages in 2026 for every birth year from 1960 to 1969.</span></a>
+      <a href="/age-in-any-year/"><strong>Age in Any Year</strong><span>See how old someone born in {birth_year} was or will be in any year.</span></a>
+      <a href="/what-generation-am-i/"><strong>What Generation Am I?</strong><span>Confirm the {generation_label} range and nearby cutoff years.</span></a>
+      <a href="/age-questions/"><strong>Age Questions &amp; Answers</strong><span>Find quick answers and the best calculator for common age questions.</span></a>
+    </div>
+  </section>'''
+
+    if 'id="qac-static-1960s-context-style"' not in text:
+        if "</head>" not in text:
+            raise ValueError("HTML document does not contain </head>")
+        text = text.replace("</head>", STATIC_1960S_CONTEXT_STYLE + "\n</head>", 1)
+
+    marker = '<div class="card content">'
+    if marker not in text:
+        raise ValueError(f"{html_path} does not contain the expected content card")
+    return text.replace(marker, section + "\n\n  " + marker, 1)
+
+
 def add_nav_layout_reservation(text: str) -> str:
     """Reserve header space before nav.js inserts the global header."""
     if 'id="qac-nav-layout-reservation"' not in text:
@@ -291,6 +332,7 @@ def main() -> None:
     for html_path in html_files:
         text = html_path.read_text(encoding="utf-8")
         text = apply_targeted_page_updates(html_path, text)
+        text = add_static_1960s_contextual_links(html_path, text)
         text = add_nav_layout_reservation(text)
         title = find_meta(text, r"<title>(.*?)</title>", "QuickAgeCalc")
         description = find_meta(
