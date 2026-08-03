@@ -36,8 +36,8 @@
   }
 
   function addDecadeNavigation(current) {
-    var yearMatch = current.match(/^\/born-in(?:\/|-)(196\d)\/$/);
-    var hubMatch = current === '/born-in-the-1960s/';
+    var yearMatch = current.match(/^\/born-in(?:\/|-)(19[6-9]\d|200\d)\/$/);
+    var hubMatch = current.match(/^\/born-in-the-(1960s|1970s|1980s|1990s|2000s)\/$/);
     var isBirthYearIndex = current === '/born-in-year/';
 
     if (!yearMatch && !hubMatch && !isBirthYearIndex) {
@@ -47,21 +47,28 @@
       return;
     }
 
-    var activeClass = yearMatch || hubMatch ? ' class="active"' : '';
-    var intro = 'Open the 1960s guide or the complete birth-year index.';
+    var activeDecade = '';
+    var intro = 'Open a decade guide to compare ages in 2026 and reach every individual birth-year calculator.';
     if (yearMatch) {
-      intro = 'Born in ' + yearMatch[1] + '? Compare every 1960s birth year or open the complete age-by-year index.';
+      var birthYear = parseInt(yearMatch[1], 10);
+      activeDecade = String(Math.floor(birthYear / 10) * 10) + 's';
+      intro = 'Born in ' + birthYear + '? Open the ' + activeDecade + ' guide or compare nearby birth-year decades.';
     } else if (hubMatch) {
-      intro = 'Compare every 1960s birth year or open the complete age-by-year index.';
+      activeDecade = hubMatch[1];
+      intro = 'Compare this decade with nearby birth-year guides and open the central age-by-year index.';
     }
 
-    var links = '<a href="/born-in-the-1960s/"' + activeClass + '><strong>1960s</strong><span>Age by year and generation</span></a>';
+    var decades = ['1960s', '1970s', '1980s', '1990s', '2000s'];
+    var links = decades.map(function (decade) {
+      var activeClass = decade === activeDecade ? ' class="active"' : '';
+      return '<a href="/born-in-the-' + decade + '/"' + activeClass + '><strong>' + decade + '</strong><span>Age by year and generation</span></a>';
+    }).join('');
 
     var section = document.createElement('section');
     section.id = 'qac-decade-navigation';
     section.className = 'card qac-decade-navigation';
     section.setAttribute('aria-labelledby', 'qac-decade-navigation-title');
-    section.innerHTML = '<h2 id="qac-decade-navigation-title">Browse Birth-Year Guides</h2>' +
+    section.innerHTML = '<h2 id="qac-decade-navigation-title">Browse Birth-Year Decades</h2>' +
       '<p>' + intro + '</p>' +
       '<div class="qac-decade-grid">' + links +
         '<a href="/born-in-year/"><strong>All years</strong><span>1960 through 2026</span></a>' +
