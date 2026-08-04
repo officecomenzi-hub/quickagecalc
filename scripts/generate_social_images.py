@@ -50,6 +50,19 @@ STATIC_1960S_CONTEXT_STYLE = '''<style id="qac-static-1960s-context-style">
 @media(max-width:540px){.qac-static-context-grid{grid-template-columns:1fr}}
 </style>'''
 
+STATIC_DECADE_NAV_STYLE = '''<style id="qac-static-decade-navigation-style">
+.qac-decade-navigation h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:8px}
+.qac-decade-navigation>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}
+.qac-decade-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.qac-decade-grid a{display:block;border:1px solid #e2e6ea;border-radius:10px;padding:14px;text-decoration:none;color:#1a202c;background:#f7f8fa}
+.qac-decade-grid a:hover,.qac-decade-grid a.active{border-color:#2563eb;background:#eff6ff}
+.qac-decade-grid strong{display:block;font-size:14px;margin-bottom:4px}
+.qac-decade-grid span{display:block;font-size:12px;line-height:1.5;color:#6b7280}
+@media(max-width:540px){.qac-decade-grid{grid-template-columns:1fr}}
+</style>'''
+
+DECADE_LABELS = ("1960s", "1970s", "1980s", "1990s", "2000s")
+
 
 def find_meta(text: str, pattern: str, default: str) -> str:
     match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
@@ -240,6 +253,64 @@ def add_static_1960s_contextual_links(html_path: Path, text: str) -> str:
     return text.replace(marker, section + "\n\n  " + marker, 1)
 
 
+def add_static_decade_navigation(html_path: Path, text: str) -> str:
+    """Add crawlable decade navigation directly to birth-year pages during build."""
+    path = html_path.as_posix()
+    year_match = re.search(r"born-in-(19[6-9]\d|200\d)/index\.html$", path)
+    hub_match = re.search(r"born-in-the-(1960s|1970s|1980s|1990s|2000s)/index\.html$", path)
+    is_birth_year_index = path.endswith("born-in-year/index.html")
+
+    if not year_match and not hub_match and not is_birth_year_index:
+        return text
+    if 'id="qac-decade-navigation"' in text:
+        return text
+
+    active_decade = ""
+    intro = "Open a decade guide to compare ages in 2026 and reach every individual birth-year calculator."
+    if year_match:
+        birth_year = int(year_match.group(1))
+        active_decade = f"{birth_year // 10 * 10}s"
+        intro = f"Born in {birth_year}? Open the {active_decade} guide or compare nearby birth-year decades."
+    elif hub_match:
+        active_decade = hub_match.group(1)
+        intro = "Compare this decade with nearby birth-year guides and open the central age-by-year index."
+
+    links = []
+    for decade in DECADE_LABELS:
+        active_attributes = ' class="active" aria-current="page"' if decade == active_decade else ""
+        links.append(
+            f'<a href="/born-in-the-{decade}/"{active_attributes}>'
+            f'<strong>{decade}</strong><span>Age by year and generation</span></a>'
+        )
+    links.append('<a href="/born-in-year/"><strong>All years</strong><span>1960 through 2026</span></a>')
+
+    section = f'''<section id="qac-decade-navigation" class="card qac-decade-navigation" aria-labelledby="qac-decade-navigation-title">
+    <h2 id="qac-decade-navigation-title">Browse Birth-Year Decades</h2>
+    <p>{intro}</p>
+    <div class="qac-decade-grid">{''.join(links)}</div>
+  </section>'''
+
+    if 'id="qac-static-decade-navigation-style"' not in text:
+        if "</head>" not in text:
+            raise ValueError("HTML document does not contain </head>")
+        text = text.replace("</head>", STATIC_DECADE_NAV_STYLE + "\n</head>", 1)
+
+    if year_match:
+        marker = '<div class="card content">'
+        if marker not in text:
+            raise ValueError(f"{html_path} does not contain the expected content card")
+        return text.replace(marker, section + "\n\n  " + marker, 1)
+
+    hero_pattern = re.compile(
+        r'(<section class="hero">.*?</section>|<div class="hero">.*?</div>)',
+        re.IGNORECASE | re.DOTALL,
+    )
+    text, count = hero_pattern.subn(r"\1\n\n  " + section, text, count=1)
+    if count != 1:
+        raise ValueError(f"{html_path} does not contain the expected hero block")
+    return text
+
+
 def add_nav_layout_reservation(text: str) -> str:
     """Reserve header space before nav.js inserts the global header."""
     if 'id="qac-nav-layout-reservation"' not in text:
@@ -333,6 +404,7 @@ def main() -> None:
         text = html_path.read_text(encoding="utf-8")
         text = apply_targeted_page_updates(html_path, text)
         text = add_static_1960s_contextual_links(html_path, text)
+        text = add_static_decade_navigation(html_path, text)
         text = add_nav_layout_reservation(text)
         title = find_meta(text, r"<title>(.*?)</title>", "QuickAgeCalc")
         description = find_meta(
