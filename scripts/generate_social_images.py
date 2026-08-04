@@ -224,18 +224,20 @@ def apply_targeted_page_updates(html_path: Path, text: str) -> str:
 
 
 def add_static_1960s_contextual_links(html_path: Path, text: str) -> str:
-    """Add crawlable contextual links directly to 1960-1969 pages during build."""
-    match = re.search(r"born-in-(196\d)/index\.html$", html_path.as_posix())
+    """Add crawlable contextual links directly to 1960-1979 pages during build."""
+    match = re.search(r"born-in-(19[67]\d)/index\.html$", html_path.as_posix())
     if not match or 'id="qac-contextual-tools"' in text:
         return text
 
-    birth_year = match.group(1)
-    generation_label = "Baby Boomer" if int(birth_year) <= 1964 else "Generation X"
+    birth_year = int(match.group(1))
+    decade_start = birth_year // 10 * 10
+    decade_label = f"{decade_start}s"
+    generation_label = "Baby Boomer" if birth_year <= 1964 else "Generation X"
     section = f'''<section id="qac-contextual-tools" class="card qac-static-context" aria-labelledby="qac-contextual-tools-title">
     <h2 id="qac-contextual-tools-title">Explore More About Your Age</h2>
-    <p>Use these related pages to compare nearby birth years, check another year, and confirm your generation.</p>
+    <p>Use these related pages to compare {decade_label} birth years, check another year, and confirm your generation.</p>
     <div class="qac-static-context-grid">
-      <a href="/born-in-the-1960s/"><strong>1960s Age Guide</strong><span>Compare ages in 2026 for every birth year from 1960 to 1969.</span></a>
+      <a href="/born-in-the-{decade_label}/"><strong>{decade_label} Age Guide</strong><span>Compare ages in 2026 for every birth year from {decade_start} to {decade_start + 9}.</span></a>
       <a href="/age-in-any-year/"><strong>Age in Any Year</strong><span>See how old someone born in {birth_year} was or will be in any year.</span></a>
       <a href="/what-generation-am-i/"><strong>What Generation Am I?</strong><span>Confirm the {generation_label} range and nearby cutoff years.</span></a>
       <a href="/age-questions/"><strong>Age Questions &amp; Answers</strong><span>Find quick answers and the best calculator for common age questions.</span></a>
