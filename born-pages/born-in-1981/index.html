@@ -64,6 +64,13 @@
   .year-nav a{color:var(--accent);text-decoration:none;font-size:14px;font-weight:700;}
   .year-nav a:hover{text-decoration:underline;}
   .year-nav span{font-size:14px;color:var(--muted);}
+  .qac-static-context h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:8px;}
+  .qac-static-context>p{font-size:14px;line-height:1.65;color:var(--muted);margin-bottom:14px;}
+  .qac-static-context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .qac-static-context-grid a{display:block;border:1px solid var(--border);border-radius:10px;padding:14px;text-decoration:none;color:var(--text);background:var(--bg);}
+  .qac-static-context-grid a:hover{border-color:var(--accent);background:var(--accent-light);}
+  .qac-static-context-grid strong{display:block;font-size:14px;margin-bottom:4px;}
+  .qac-static-context-grid span{display:block;font-size:12px;line-height:1.5;color:var(--muted);}
   .faq-item{border-bottom:1px solid var(--border);}
   .faq-q{font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:15px;}
   .faq-q::after{content:'+';color:var(--accent);font-size:22px;}
@@ -79,7 +86,7 @@
   footer{text-align:center;padding:28px 0;font-size:13px;color:var(--muted);border-top:1px solid var(--border);margin-top:32px;}
   footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
   footer a:hover{color:var(--accent);}
-  @media(max-width:540px){.input-row{grid-template-columns:1fr 1fr;}.stats-grid{grid-template-columns:1fr 1fr;}.card{padding:20px 16px;}}
+  @media(max-width:540px){.input-row{grid-template-columns:1fr 1fr;}.stats-grid{grid-template-columns:1fr 1fr;}.card{padding:20px 16px;}.qac-static-context-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -169,6 +176,17 @@
     <span>Born in 1981</span>
     <a href="/born-in-1982/">Born in 1982 →</a>
   </div>
+
+  <section id="qac-contextual-tools" class="card qac-static-context" aria-labelledby="qac-contextual-tools-title">
+    <h2 id="qac-contextual-tools-title">Explore More About Your Age</h2>
+    <p>Use these related pages to compare 1980s birth years, check another year, and confirm your generation.</p>
+    <div class="qac-static-context-grid">
+      <a href="/born-in-the-1980s/"><strong>1980s Age Guide</strong><span>Compare ages in 2026 for every birth year from 1980 to 1989.</span></a>
+      <a href="/age-in-any-year/"><strong>Age in Any Year</strong><span>See how old someone born in 1981 was or will be in any year.</span></a>
+      <a href="/what-generation-am-i/"><strong>What Generation Am I?</strong><span>Confirm the Millennial range and nearby cutoff years.</span></a>
+      <a href="/age-questions/"><strong>Age Questions &amp; Answers</strong><span>Find quick answers and the best calculator for common age questions.</span></a>
+    </div>
+  </section>
 
   <!-- CONTENT -->
   <div class="card content">
