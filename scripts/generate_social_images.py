@@ -31,10 +31,10 @@ def generation_for_year(birth_year: int) -> str:
 
 
 def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
-    """Add crawlable contextual links to 1980-1999 pages after the main build."""
+    """Add crawlable contextual links to 1980-2009 pages after the main build."""
     updated_by_decade: dict[str, int] = {}
 
-    for decade_start in (1980, 1990):
+    for decade_start in (1980, 1990, 2000):
         decade_label = f"{decade_start}s"
         updated = 0
 
