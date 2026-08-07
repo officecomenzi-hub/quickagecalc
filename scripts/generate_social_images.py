@@ -50,15 +50,16 @@ def primary_context_link(decade_start: int) -> tuple[str, str, str]:
 
 
 def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
-    """Add crawlable contextual links to 1980-2019 pages after the main build."""
+    """Add crawlable contextual links to 1980-2026 pages after the main build."""
     updated_by_decade: dict[str, int] = {}
 
-    for decade_start in (1980, 1990, 2000, 2010):
+    for decade_start in (1980, 1990, 2000, 2010, 2020):
         decade_label = f"{decade_start}s"
+        decade_end = min(decade_start + 9, 2026)
         updated = 0
         primary_href, primary_label, primary_description = primary_context_link(decade_start)
 
-        for birth_year in range(decade_start, decade_start + 10):
+        for birth_year in range(decade_start, decade_end + 1):
             html_path = public_dir / f"born-in-{birth_year}" / "index.html"
             if not html_path.exists():
                 raise FileNotFoundError(f"Expected birth-year page is missing: {html_path}")
