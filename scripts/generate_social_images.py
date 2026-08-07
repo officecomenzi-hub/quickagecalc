@@ -27,16 +27,36 @@ def generation_for_year(birth_year: int) -> str:
         return "Generation X"
     if birth_year <= 1996:
         return "Millennial"
-    return "Generation Z"
+    if birth_year <= 2012:
+        return "Generation Z"
+    return "Generation Alpha"
+
+
+def primary_context_link(decade_start: int) -> tuple[str, str, str]:
+    """Return an existing crawlable hub link for the birth-year decade."""
+    if decade_start <= 2000:
+        decade_label = f"{decade_start}s"
+        return (
+            f"/born-in-the-{decade_label}/",
+            f"{decade_label} Age Guide",
+            f"Compare ages in 2026 for every birth year from {decade_start} to {decade_start + 9}.",
+        )
+
+    return (
+        "/born-in-year/",
+        "Age by Birth Year",
+        "Browse birth-year age pages and open another exact age calculator.",
+    )
 
 
 def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
-    """Add crawlable contextual links to 1980-2009 pages after the main build."""
+    """Add crawlable contextual links to 1980-2019 pages after the main build."""
     updated_by_decade: dict[str, int] = {}
 
-    for decade_start in (1980, 1990, 2000):
+    for decade_start in (1980, 1990, 2000, 2010):
         decade_label = f"{decade_start}s"
         updated = 0
+        primary_href, primary_label, primary_description = primary_context_link(decade_start)
 
         for birth_year in range(decade_start, decade_start + 10):
             html_path = public_dir / f"born-in-{birth_year}" / "index.html"
@@ -50,9 +70,9 @@ def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
             generation_label = generation_for_year(birth_year)
             section = f'''<section id="qac-contextual-tools" class="card qac-static-context" aria-labelledby="qac-contextual-tools-title">
     <h2 id="qac-contextual-tools-title">Explore More About Your Age</h2>
-    <p>Use these related pages to compare {decade_label} birth years, check another year, and confirm your generation.</p>
+    <p>Use these related pages to compare birth years, check another year, and confirm your generation.</p>
     <div class="qac-static-context-grid">
-      <a href="/born-in-the-{decade_label}/"><strong>{decade_label} Age Guide</strong><span>Compare ages in 2026 for every birth year from {decade_start} to {decade_start + 9}.</span></a>
+      <a href="{primary_href}"><strong>{primary_label}</strong><span>{primary_description}</span></a>
       <a href="/age-in-any-year/"><strong>Age in Any Year</strong><span>See how old someone born in {birth_year} was or will be in any year.</span></a>
       <a href="/what-generation-am-i/"><strong>What Generation Am I?</strong><span>Confirm the {generation_label} range and nearby cutoff years.</span></a>
       <a href="/age-questions/"><strong>Age Questions &amp; Answers</strong><span>Find quick answers and the best calculator for common age questions.</span></a>
