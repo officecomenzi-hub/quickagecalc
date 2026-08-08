@@ -55,7 +55,7 @@ def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
     """Add crawlable contextual links to supported 1960-2026 birth-year pages after the main build."""
     updated_by_decade: dict[str, int] = {}
 
-    for decade_start in (1960, 1980, 1990, 2000, 2010, 2020):
+    for decade_start in (1960, 1970, 1980, 1990, 2000, 2010, 2020):
         decade_label = f"{decade_start}s"
         decade_end = min(decade_start + 9, 2026)
         updated = 0
