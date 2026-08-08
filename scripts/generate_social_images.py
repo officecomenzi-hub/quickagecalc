@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the social-image build and add static internal links to age and birth-year pages."""
+"""Run the social-image build and add static contextual links to birth-year pages."""
 
 from __future__ import annotations
 
@@ -9,17 +9,15 @@ from pathlib import Path
 import generate_social_images_core as core
 
 
-DECADE_HUBS = ("1960s", "1970s", "1980s", "1990s", "2000s")
-
 STATIC_CONTEXT_STYLE = '''<style id="qac-static-context-style">
-.qac-static-context h2,.qac-decade-navigation h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:8px}
-.qac-static-context>p,.qac-decade-navigation>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}
-.qac-static-context-grid,.qac-decade-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.qac-static-context-grid a,.qac-decade-grid a{display:block;border:1px solid #e2e6ea;border-radius:10px;padding:14px;text-decoration:none;color:#1a202c;background:#f7f8fa}
-.qac-static-context-grid a:hover,.qac-decade-grid a:hover,.qac-decade-grid a.active{border-color:#2563eb;background:#eff6ff}
-.qac-static-context-grid strong,.qac-decade-grid strong{display:block;font-size:14px;margin-bottom:4px}
-.qac-static-context-grid span,.qac-decade-grid span{display:block;font-size:12px;line-height:1.5;color:#6b7280}
-@media(max-width:540px){.qac-static-context-grid,.qac-decade-grid{grid-template-columns:1fr}}
+.qac-static-context h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:8px}
+.qac-static-context>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}
+.qac-static-context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.qac-static-context-grid a{display:block;border:1px solid #e2e6ea;border-radius:10px;padding:14px;text-decoration:none;color:#1a202c;background:#f7f8fa}
+.qac-static-context-grid a:hover{border-color:#2563eb;background:#eff6ff}
+.qac-static-context-grid strong{display:block;font-size:14px;margin-bottom:4px}
+.qac-static-context-grid span{display:block;font-size:12px;line-height:1.5;color:#6b7280}
+@media(max-width:540px){.qac-static-context-grid{grid-template-columns:1fr}}
 </style>'''
 
 
@@ -53,15 +51,6 @@ def primary_context_link(decade_start: int) -> tuple[str, str, str]:
     )
 
 
-def ensure_static_style(text: str, html_path: Path) -> str:
-    """Ensure build-added internal-link sections have crawl-independent styling."""
-    if 'id="qac-static-context-style"' in text:
-        return text
-    if "</head>" not in text:
-        raise ValueError(f"{html_path} does not contain </head>")
-    return text.replace("</head>", STATIC_CONTEXT_STYLE + "\n</head>", 1)
-
-
 def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
     """Add crawlable contextual links to supported 1960-2026 birth-year pages after the main build."""
     updated_by_decade: dict[str, int] = {}
@@ -93,7 +82,10 @@ def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
     </div>
   </section>'''
 
-            text = ensure_static_style(text, html_path)
+            if 'id="qac-static-context-style"' not in text:
+                if "</head>" not in text:
+                    raise ValueError(f"{html_path} does not contain </head>")
+                text = text.replace("</head>", STATIC_CONTEXT_STYLE + "\n</head>", 1)
 
             marker = '<div class="card content">'
             if marker not in text:
@@ -108,81 +100,14 @@ def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
     return updated_by_decade
 
 
-def decade_navigation_section(active_decade: str | None) -> str:
-    """Build static decade navigation matching the existing JavaScript fallback."""
-    if active_decade:
-        intro = "Compare this decade with nearby birth-year guides and open the central age-by-year index."
-    else:
-        intro = "Open a decade guide to compare ages in 2026 and reach every individual birth-year calculator."
-
-    links = []
-    for decade in DECADE_HUBS:
-        active_class = ' class="active"' if decade == active_decade else ""
-        links.append(
-            f'<a href="/born-in-the-{decade}/"{active_class}><strong>{decade}</strong>'
-            '<span>Age by year and generation</span></a>'
-        )
-    links.append('<a href="/born-in-year/"><strong>All years</strong><span>1960 through 2026</span></a>')
-
-    return f'''<section id="qac-decade-navigation" class="card qac-decade-navigation" aria-labelledby="qac-decade-navigation-title">
-    <h2 id="qac-decade-navigation-title">Browse Birth-Year Decades</h2>
-    <p>{intro}</p>
-    <div class="qac-decade-grid">{''.join(links)}</div>
-  </section>'''
-
-
-def add_static_decade_navigation(public_dir: Path) -> dict[str, int]:
-    """Make decade-hub navigation crawlable without depending on JavaScript rendering."""
-    targets: list[tuple[Path, str | None]] = [
-        (public_dir / "born-in-year" / "index.html", None),
-        *[
-            (public_dir / f"born-in-the-{decade}" / "index.html", decade)
-            for decade in DECADE_HUBS
-        ],
-    ]
-    updated: dict[str, int] = {}
-
-    for html_path, active_decade in targets:
-        label = active_decade or "born-in-year"
-        if not html_path.exists():
-            raise FileNotFoundError(f"Expected decade navigation target is missing: {html_path}")
-
-        text = html_path.read_text(encoding="utf-8")
-        if 'id="qac-decade-navigation"' in text:
-            updated[label] = 0
-            continue
-
-        section = decade_navigation_section(active_decade)
-        text = ensure_static_style(text, html_path)
-
-        insertion_markers = (
-            '<section class="card quick">',
-            '<div class="quick-answer">',
-            '<div class="ad-slot">',
-            '<div class="card">',
-        )
-        marker = next((candidate for candidate in insertion_markers if candidate in text), None)
-        if marker is None:
-            raise ValueError(f"{html_path} does not contain a safe decade-navigation insertion marker")
-
-        text = text.replace(marker, section + "\n\n  " + marker, 1)
-        html_path.write_text(text, encoding="utf-8")
-        updated[label] = 1
-
-    return updated
-
-
 def main() -> None:
     core.main()
     public_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "public")
     updated_by_decade = add_static_contextual_links(public_dir)
-    decade_navigation_updates = add_static_decade_navigation(public_dir)
     summary = ", ".join(
         f"{count} {decade} pages" for decade, count in updated_by_decade.items()
     )
-    nav_count = sum(decade_navigation_updates.values())
     print(f"Added static contextual links to {summary}.")
-    print(f"Added static decade navigation to {nav_count} hub/index pages.")
 
 
 if __name__ == "__main__":
