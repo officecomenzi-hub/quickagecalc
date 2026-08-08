@@ -112,6 +112,30 @@
     heading.insertAdjacentElement('afterend', note);
   }
 
+  function addDogAgeMethodologyNote(current) {
+    if (current !== '/dog-age/' || document.getElementById('qac-dog-age-methodology')) {
+      return;
+    }
+
+    var contentCard = document.querySelector('.card.content');
+    if (!contentCard || !contentCard.parentNode) {
+      return;
+    }
+
+    var note = document.createElement('section');
+    note.id = 'qac-dog-age-methodology';
+    note.className = 'card qac-source-note';
+    note.setAttribute('aria-labelledby', 'qac-dog-age-methodology-title');
+    note.innerHTML = '<h2 id="qac-dog-age-methodology-title">Sources & Methodology</h2>' +
+      '<p>Dog-to-human age conversions are approximate comparisons, not medical equivalents. Dogs mature quickly early in life, and aging varies with body size, breed, health and individual lifespan.</p>' +
+      '<ul>' +
+        '<li><a href="https://www.aaha.org/resources/life-stage-canine-2019/" target="_blank" rel="noopener noreferrer">AAHA Canine Life Stage Guidelines</a> — veterinary guidance emphasizes individualized life stages and considers age, size, breed and lifestyle.</li>' +
+        '<li><a href="https://pubmed.ncbi.nlm.nih.gov/23535614/" target="_blank" rel="noopener noreferrer">Kraus et al., The American Naturalist</a> — research across dog breeds found a strong relationship between larger body size, faster aging and shorter lifespan.</li>' +
+      '</ul>' +
+      '<p class="qac-source-note-small">QuickAgeCalc uses a practical size-adjusted comparison table for general context. For an individual dog’s health, life stage or senior-care decisions, ask a veterinarian.</p>';
+    contentCard.insertAdjacentElement('afterend', note);
+  }
+
   function initQuickAgeCalcNavigation() {
     var tools = [
       { href: '/',                         icon: '\uD83C\uDF82', label: 'Age Calc' },
@@ -136,7 +160,7 @@
     var footerHTML = '<footer class="qac-global-footer"><p>© ' + year + ' QuickAgeCalc · <a href="/privacy/">Privacy Policy</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a></p><p class="qac-footer-note">Free online age and date tools. Your entries stay in your browser.</p></footer>';
 
     var style = document.createElement('style');
-    style.textContent = '.qac-global-header{background:#fff;border-bottom:1px solid #e2e6ea;padding:14px 0;margin-bottom:32px}.qac-header-inner{max-width:980px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}.qac-global-header .logo{font-family:"Playfair Display",serif;font-size:1.3rem;color:#2563eb;text-decoration:none}.qac-global-header .logo span{color:#1a202c}.qac-global-header nav{display:flex;gap:4px;flex-wrap:wrap}.qac-global-header nav a{font-size:12px;color:#6b7280;text-decoration:none;padding:6px 8px;border-radius:6px;transition:background .2s,color .2s;white-space:nowrap}.qac-global-header nav a:hover,.qac-global-header nav a.active{background:#eff6ff;color:#2563eb}.qac-global-header nav a.active{font-weight:700}.qac-global-footer{text-align:center;padding:28px 20px;font-size:13px;color:#6b7280;border-top:1px solid #e2e6ea;margin-top:32px}.qac-global-footer a{color:#6b7280;text-decoration:none}.qac-global-footer a:hover{color:#2563eb}.qac-footer-note{margin-top:8px}.qac-last-reviewed{display:inline-block;margin:8px 0 0;padding:6px 10px;border:1px solid #bfdbfe;border-radius:999px;background:#eff6ff;color:#1e40af;font-size:12px;font-weight:700;line-height:1.3}.ad-slot{display:none!important;height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}.qac-contextual-tools h2,.qac-decade-navigation h2{font-family:"Playfair Display",serif;font-size:1.35rem;margin-bottom:8px}.qac-contextual-tools>p,.qac-decade-navigation>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}.qac-contextual-grid,.qac-decade-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.qac-contextual-grid a,.qac-decade-grid a{display:block;border:1px solid #e2e6ea;border-radius:10px;padding:14px;text-decoration:none;color:#1a202c;background:#f7f8fa}.qac-contextual-grid a:hover,.qac-decade-grid a:hover,.qac-decade-grid a.active{border-color:#2563eb;background:#eff6ff}.qac-contextual-grid strong,.qac-decade-grid strong{display:block;font-size:14px;margin-bottom:4px}.qac-contextual-grid span,.qac-decade-grid span{display:block;font-size:12px;line-height:1.5;color:#6b7280}@media(max-width:760px){.qac-header-inner{justify-content:center}.qac-global-header .logo{width:100%;text-align:center}.qac-global-header nav{justify-content:center}}@media(max-width:540px){.qac-contextual-grid,.qac-decade-grid{grid-template-columns:1fr}}';
+    style.textContent = '.qac-global-header{background:#fff;border-bottom:1px solid #e2e6ea;padding:14px 0;margin-bottom:32px}.qac-header-inner{max-width:980px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}.qac-global-header .logo{font-family:"Playfair Display",serif;font-size:1.3rem;color:#2563eb;text-decoration:none}.qac-global-header .logo span{color:#1a202c}.qac-global-header nav{display:flex;gap:4px;flex-wrap:wrap}.qac-global-header nav a{font-size:12px;color:#6b7280;text-decoration:none;padding:6px 8px;border-radius:6px;transition:background .2s,color .2s;white-space:nowrap}.qac-global-header nav a:hover,.qac-global-header nav a.active{background:#eff6ff;color:#2563eb}.qac-global-header nav a.active{font-weight:700}.qac-global-footer{text-align:center;padding:28px 20px;font-size:13px;color:#6b7280;border-top:1px solid #e2e6ea;margin-top:32px}.qac-global-footer a{color:#6b7280;text-decoration:none}.qac-global-footer a:hover{color:#2563eb}.qac-footer-note{margin-top:8px}.qac-last-reviewed{display:inline-block;margin:8px 0 0;padding:6px 10px;border:1px solid #bfdbfe;border-radius:999px;background:#eff6ff;color:#1e40af;font-size:12px;font-weight:700;line-height:1.3}.qac-source-note h2{font-family:"Playfair Display",serif;font-size:1.35rem;margin-bottom:10px}.qac-source-note p,.qac-source-note li{font-size:14px;line-height:1.7;color:#374151}.qac-source-note ul{margin:12px 0 12px 20px}.qac-source-note li{margin-bottom:8px}.qac-source-note a{color:#2563eb}.qac-source-note-small{color:#6b7280!important;font-size:13px!important}.ad-slot{display:none!important;height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important}.qac-contextual-tools h2,.qac-decade-navigation h2{font-family:"Playfair Display",serif;font-size:1.35rem;margin-bottom:8px}.qac-contextual-tools>p,.qac-decade-navigation>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}.qac-contextual-grid,.qac-decade-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.qac-contextual-grid a,.qac-decade-grid a{display:block;border:1px solid #e2e6ea;border-radius:10px;padding:14px;text-decoration:none;color:#1a202c;background:#f7f8fa}.qac-contextual-grid a:hover,.qac-decade-grid a:hover,.qac-decade-grid a.active{border-color:#2563eb;background:#eff6ff}.qac-contextual-grid strong,.qac-decade-grid strong{display:block;font-size:14px;margin-bottom:4px}.qac-contextual-grid span,.qac-decade-grid span{display:block;font-size:12px;line-height:1.5;color:#6b7280}@media(max-width:760px){.qac-header-inner{justify-content:center}.qac-global-header .logo{width:100%;text-align:center}.qac-global-header nav{justify-content:center}}@media(max-width:540px){.qac-contextual-grid,.qac-decade-grid{grid-template-columns:1fr}}';
     document.head.appendChild(style);
 
     if (!document.querySelector('header')) {
@@ -147,6 +171,7 @@
     }
 
     addLastReviewedNote(current);
+    addDogAgeMethodologyNote(current);
     addDecadeNavigation(current);
     addContextualBirthYearLinks(current);
   }
