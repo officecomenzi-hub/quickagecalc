@@ -52,10 +52,11 @@ function copyAgeResult() {
   var month = monthSelect.options[monthSelect.selectedIndex].text;
   var day = document.getElementById('bDay').value;
   var year = document.getElementById('bYear').value;
+  var resultUrl = window.location.origin + window.location.pathname;
   var resultText = 'Born on ' + month + ' ' + day + ', ' + year + ': ' + years +
     ' years old today · ' + document.getElementById('rMonths').textContent + ' total months · ' +
     document.getElementById('rWeeks').textContent + ' total weeks · ' +
-    document.getElementById('rDays').textContent + ' total days. Calculated with QuickAgeCalc: https://quickagecalc.com/born-in-1965/';
+    document.getElementById('rDays').textContent + ' total days. Calculated with QuickAgeCalc: ' + resultUrl;
 
   function showCopied(ok) {
     status.textContent = ok ? 'Result copied to clipboard.' : 'Copy failed. Please select and copy the result manually.';
@@ -148,52 +149,61 @@ def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
     return updated_by_decade
 
 
-def add_copy_result_to_1965(public_dir: Path) -> bool:
-    """Add a shareable copy-result control to the high-value 1965 birth-year calculator."""
-    html_path = public_dir / "born-in-1965" / "index.html"
-    if not html_path.exists():
-        raise FileNotFoundError(f"Expected 1965 page is missing: {html_path}")
+def add_copy_result_to_birth_years(public_dir: Path, birth_years: tuple[int, ...]) -> dict[int, bool]:
+    """Add a shareable copy-result control to selected birth-year calculators."""
+    results: dict[int, bool] = {}
 
-    text = html_path.read_text(encoding="utf-8")
-    if 'id="qac-copy-result"' in text:
-        return False
+    for birth_year in birth_years:
+        html_path = public_dir / f"born-in-{birth_year}" / "index.html"
+        if not html_path.exists():
+            raise FileNotFoundError(f"Expected {birth_year} page is missing: {html_path}")
 
-    if 'id="qac-copy-result-style"' not in text:
-        if "</head>" not in text:
-            raise ValueError(f"{html_path} does not contain </head>")
-        text = text.replace("</head>", COPY_RESULT_STYLE + "\n</head>", 1)
+        text = html_path.read_text(encoding="utf-8")
+        if 'id="qac-copy-result"' in text:
+            results[birth_year] = False
+            continue
 
-    results_marker = '''      <div class="stat-box"><span class="stat-val" id="rSeconds">—</span><div class="stat-lbl">Seconds</div></div>
+        if 'id="qac-copy-result-style"' not in text:
+            if "</head>" not in text:
+                raise ValueError(f"{html_path} does not contain </head>")
+            text = text.replace("</head>", COPY_RESULT_STYLE + "\n</head>", 1)
+
+        results_marker = '''      <div class="stat-box"><span class="stat-val" id="rSeconds">—</span><div class="stat-lbl">Seconds</div></div>
     </div>
   </div>'''
-    results_replacement = '''      <div class="stat-box"><span class="stat-val" id="rSeconds">—</span><div class="stat-lbl">Seconds</div></div>
+        results_replacement = '''      <div class="stat-box"><span class="stat-val" id="rSeconds">—</span><div class="stat-lbl">Seconds</div></div>
     </div>
     <button type="button" id="qac-copy-result" class="qac-copy-result" onclick="copyAgeResult()">Copy Result</button>
     <div id="qac-copy-status" class="qac-copy-status" aria-live="polite"></div>
   </div>'''
-    if results_marker not in text:
-        raise ValueError(f"{html_path} does not contain the expected result grid")
-    text = text.replace(results_marker, results_replacement, 1)
+        if results_marker not in text:
+            raise ValueError(f"{html_path} does not contain the expected result grid")
+        text = text.replace(results_marker, results_replacement, 1)
 
-    script_marker = "function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}"
-    if script_marker not in text:
-        raise ValueError(f"{html_path} does not contain the expected FAQ script marker")
-    text = text.replace(script_marker, COPY_RESULT_SCRIPT + "\n\n" + script_marker, 1)
+        script_marker = "function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}"
+        if script_marker not in text:
+            raise ValueError(f"{html_path} does not contain the expected FAQ script marker")
+        text = text.replace(script_marker, COPY_RESULT_SCRIPT + "\n\n" + script_marker, 1)
 
-    html_path.write_text(text, encoding="utf-8")
-    return True
+        html_path.write_text(text, encoding="utf-8")
+        results[birth_year] = True
+
+    return results
 
 
 def main() -> None:
     core.main()
     public_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "public")
     updated_by_decade = add_static_contextual_links(public_dir)
-    copy_added = add_copy_result_to_1965(public_dir)
+    copy_results = add_copy_result_to_birth_years(public_dir, (1961, 1962, 1965))
     summary = ", ".join(
         f"{count} {decade} pages" for decade, count in updated_by_decade.items()
     )
     print(f"Added static contextual links to {summary}.")
-    print(f"1965 copy-result control: {'added' if copy_added else 'already present'}.")
+    copy_summary = ", ".join(
+        f"{year}: {'added' if added else 'already present'}" for year, added in copy_results.items()
+    )
+    print(f"Copy-result controls: {copy_summary}.")
 
 
 if __name__ == "__main__":
