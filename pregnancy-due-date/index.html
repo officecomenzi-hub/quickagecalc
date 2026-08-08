@@ -5,7 +5,7 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pregnancy Due Date Calculator – Find Your Baby's Due Date | QuickAgeCalc</title>
-<meta name="description" content="Calculate your pregnancy due date instantly. Enter your last period or conception date to find your due date, current week of pregnancy, and trimester. Free and accurate.">
+<meta name="description" content="Estimate your pregnancy due date from your last period or conception date, with cycle-length adjustment, current pregnancy week, trimester, and methodology notes.">
 <meta name="keywords" content="pregnancy due date calculator, due date calculator, when is my baby due, pregnancy week calculator, estimated due date, EDD calculator">
 <link rel="canonical" href="https://quickagecalc.com/pregnancy-due-date/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -239,7 +239,7 @@
     </div>
 
     <div class="disclaimer">
-      ⚕️ This calculator provides estimates based on standard 40-week pregnancy. Always consult your healthcare provider for medical advice and accurate dating.
+      ⚕️ This calculator provides estimates based on standard pregnancy-dating conventions. Always consult your healthcare provider for medical advice and for confirmation of gestational age and due date.
     </div>
   </div>
 
@@ -247,28 +247,41 @@
 
   <div class="card content">
     <h2>How is the Due Date Calculated?</h2>
-    <p>The most common method is Naegele's Rule — add 280 days (40 weeks) to the first day of your last menstrual period (LMP). This assumes a standard 28-day cycle with ovulation on day 14. Our calculator automatically adjusts for your cycle length.</p>
-    <p>If you know your conception date, the due date is calculated by adding 266 days (38 weeks) from conception, since fertilization typically occurs about 14 days after your LMP.</p>
-    <p>Only about 5% of babies are born on their exact due date. Most births occur within two weeks before or after the estimated due date (EDD).</p>
+    <p>The standard LMP method estimates the due date at 280 days (40 weeks) from the first day of the last menstrual period for a regular 28-day cycle. For regular cycles of a different length, this calculator adjusts the estimate by the difference between your cycle length and 28 days.</p>
+    <p>If you know your conception date, the calculator adds 266 days (38 weeks). Conception dates can be difficult to know precisely unless timing is medically established.</p>
+    <p>An estimated due date is a guide, not a guaranteed delivery date. ACOG notes that only about 1 in 20 women give birth on their exact due date, and first-trimester ultrasound is the most accurate method to establish or confirm gestational age.</p>
+  </div>
+
+  <div class="card content" id="pregnancy-methodology">
+    <h2>Sources &amp; Methodology</h2>
+    <p>QuickAgeCalc uses standard calendar formulas for an initial estimate:</p>
+    <ul style="margin:0 0 14px 20px;line-height:1.8;color:#374151;font-size:14px;">
+      <li><strong>Regular 28-day cycle:</strong> LMP + 280 days.</li>
+      <li><strong>Regular non-28-day cycle:</strong> LMP + 280 days + (cycle length − 28 days).</li>
+      <li><strong>Known conception date:</strong> conception + 266 days.</li>
+    </ul>
+    <p><a href="https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener noreferrer">ACOG: Methods for Estimating the Due Date</a> explains that first-trimester ultrasound is the most accurate method to establish or confirm gestational age and that assisted-reproduction pregnancies should use ART-specific dating.</p>
+    <p><a href="https://www.merckmanuals.com/professional/gynecology-and-obstetrics/approach-to-the-pregnant-woman-and-prenatal-care/evaluation-of-the-obstetric-patient" target="_blank" rel="noopener noreferrer">Merck Manual: Estimated Date of Delivery</a> gives the cycle-adjusted formula used here. The <a href="https://www.nhs.uk/pregnancy/finding-out/due-date-calculator/" target="_blank" rel="noopener noreferrer">NHS due date guidance</a> also notes that cycle length can affect the estimate and that an antenatal scan can provide more accurate dating.</p>
+    <p><strong>Important:</strong> This calculator is for general information and is not a substitute for prenatal care. IVF and other assisted-reproduction pregnancies require method-specific dating by the treating clinician.</p>
   </div>
 
   <div class="card">
     <h2 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:14px;">Frequently Asked Questions</h2>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">How accurate is a due date calculator?</div>
-      <div class="faq-a">A due date calculator gives an estimate based on your last period or conception date. It's accurate to within 1–2 weeks in most cases. An ultrasound in the first trimester provides the most accurate dating. Only about 5% of babies arrive on their exact due date.</div>
+      <div class="faq-a">A due date calculator provides an estimate from the information entered. ACOG states that first-trimester ultrasound is the most accurate method to establish or confirm gestational age, so your healthcare provider may confirm or revise an LMP-based estimate.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">What is a full-term pregnancy?</div>
-      <div class="faq-a">A full-term pregnancy is 39–40 weeks. Early term is 37–38 weeks. Late term is 41 weeks. Post-term is 42 weeks or more. Babies born before 37 weeks are considered premature.</div>
+      <div class="faq-a">A full-term pregnancy is 39–40 weeks. Early term is 37–38 weeks. Late term is 41 weeks. Post-term is 42 weeks or more. Babies born before 37 weeks are considered preterm.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">What are the three trimesters?</div>
-      <div class="faq-a">The first trimester covers weeks 1–13, the second trimester weeks 14–27, and the third trimester weeks 28–40. Each trimester brings different developmental milestones for your baby.</div>
+      <div class="faq-a">The first trimester covers weeks 1–13, the second trimester weeks 14–27, and the third trimester begins at week 28. Each trimester brings different developmental milestones.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q" onclick="toggleFaq(this)">My cycle is not 28 days — does that affect my due date?</div>
-      <div class="faq-a">Yes. If your cycle is longer than 28 days, ovulation happens later, so your due date is later. If your cycle is shorter, your due date is earlier. Our calculator accounts for your cycle length automatically.</div>
+      <div class="faq-a">Yes. For regular cycles longer than 28 days, the calendar estimate is moved later by the difference; for shorter regular cycles, it is moved earlier. Irregular cycles and uncertain LMP dates are better assessed with your healthcare provider and ultrasound dating.</div>
     </div>
   </div>
 
@@ -313,7 +326,7 @@ function calculate() {
     const cycle = parseInt(document.getElementById('cycleLength').value);
     lmpDate = new Date(y, m - 1, d);
     const adjustment = cycle - 28;
-    lmpDate.setDate(lmpDate.getDate() - adjustment);
+    lmpDate.setDate(lmpDate.getDate() + adjustment);
   } else {
     const m = parseInt(document.getElementById('concMonth').value);
     const d = parseInt(document.getElementById('concDay').value);
@@ -368,9 +381,9 @@ function calculate() {
     { week: 24, label: 'Viability milestone' },
     { week: 27, label: 'Second trimester complete' },
     { week: 28, label: 'Third trimester begins' },
-    { week: 36, label: 'Baby considered early term' },
-    { week: 37, label: 'Full term begins' },
-    { week: 40, label: '🎉 Due date!' },
+    { week: 37, label: 'Early term begins' },
+    { week: 39, label: 'Full term begins' },
+    { week: 40, label: '🎉 Estimated due date' },
   ];
 
   const ml = document.getElementById('milestoneList');
