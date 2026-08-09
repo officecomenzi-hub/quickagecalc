@@ -195,7 +195,7 @@ def main() -> None:
     core.main()
     public_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "public")
     updated_by_decade = add_static_contextual_links(public_dir)
-    copy_results = add_copy_result_to_birth_years(public_dir, (1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968))
+    copy_results = add_copy_result_to_birth_years(public_dir, (1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971))
     summary = ", ".join(
         f"{count} {decade} pages" for decade, count in updated_by_decade.items()
     )
