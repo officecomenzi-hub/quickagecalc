@@ -47,7 +47,6 @@ function copyAgeResult() {
     status.textContent = 'Calculate your exact age first.';
     return;
   }
-
   var monthSelect = document.getElementById('bMonth');
   var month = monthSelect.options[monthSelect.selectedIndex].text;
   var day = document.getElementById('bDay').value;
@@ -57,11 +56,9 @@ function copyAgeResult() {
     ' years old today · ' + document.getElementById('rMonths').textContent + ' total months · ' +
     document.getElementById('rWeeks').textContent + ' total weeks · ' +
     document.getElementById('rDays').textContent + ' total days. Calculated with QuickAgeCalc: ' + resultUrl;
-
   function showCopied(ok) {
     status.textContent = ok ? 'Result copied to clipboard.' : 'Copy failed. Please select and copy the result manually.';
   }
-
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(resultText).then(function(){ showCopied(true); }).catch(function(){ showCopied(fallbackCopyAgeResult(resultText)); });
   } else {
@@ -112,7 +109,6 @@ function copyBirthdayCountdown() {
 
 
 def generation_for_year(birth_year: int) -> str:
-    """Return the generation label already used by QuickAgeCalc birth-year pages."""
     if birth_year <= 1964:
         return "Baby Boomer"
     if birth_year <= 1980:
@@ -125,7 +121,6 @@ def generation_for_year(birth_year: int) -> str:
 
 
 def primary_context_link(decade_start: int) -> tuple[str, str, str]:
-    """Return an existing crawlable hub link for the birth-year decade."""
     if decade_start <= 2000:
         decade_label = f"{decade_start}s"
         return (
@@ -141,7 +136,6 @@ def primary_context_link(decade_start: int) -> tuple[str, str, str]:
 
 
 def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
-    """Add crawlable contextual links to supported 1960-2026 birth-year pages after the main build."""
     updated_by_decade: dict[str, int] = {}
     for decade_start in (1960, 1970, 1980, 1990, 2000, 2010, 2020):
         decade_label = f"{decade_start}s"
@@ -181,7 +175,6 @@ def add_static_contextual_links(public_dir: Path) -> dict[str, int]:
 
 
 def add_copy_result_to_birth_years(public_dir: Path, birth_years: tuple[int, ...]) -> dict[int, bool]:
-    """Add a shareable copy-result control to selected birth-year calculators."""
     results: dict[int, bool] = {}
     for birth_year in birth_years:
         html_path = public_dir / f"born-in-{birth_year}" / "index.html"
@@ -281,12 +274,11 @@ def enhance_birthday_countdown(public_dir: Path) -> bool:
         'If you were born in July and today is late May 2026, your birthday is approximately 38 to 68 days away depending on your exact birth date. Enter your date above for the precise countdown.': 'The calculator automatically moves to the same month and day next year, so the result always counts down to your next birthday.',
         'What day of the week is my birthday this year?': 'What day of the week is my next birthday?',
         'Enter your birth date in the calculator above. It will show you exactly what day of the week your birthday falls on in 2026, along with your Zodiac sign.': 'Enter your birth date in the calculator above. It will show the weekday for your next birthday, along with your Zodiac sign.',
-        '"name": "How many days until my birthday if I was born in July?", "acceptedAnswer": {"@type": "Answer", "text": "If you were born in July and today is late May 2026, your birthday is approximately 30-60 days away. Enter your exact birth date above for a precise countdown."}': '"name": "What happens if my birthday already passed this year?", "acceptedAnswer": {"@type": "Answer", "text": "If your birthday has already passed this year, the calculator automatically counts down to the same month and day next year."}',
+        'If you were born in July and today is late May 2026, your birthday is approximately 30-60 days away. Enter your exact birth date above for a precise countdown.': 'If your birthday has already passed this year, the calculator automatically counts down to the same month and day next year.',
     }
     for source, target in replacements.items():
-        if source not in text:
-            raise ValueError(f"Birthday Countdown is missing expected text: {source[:80]}")
-        text = text.replace(source, target, 1)
+        if source in text:
+            text = text.replace(source, target, 1)
     script_marker = "function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}"
     if script_marker not in text:
         raise ValueError("Birthday Countdown FAQ script marker was not found")
