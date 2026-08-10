@@ -197,7 +197,7 @@ def main() -> None:
     priority_updates = apply_analytics_priority_enhancements(public_dir)
     core.main()
     updated_by_decade = add_static_contextual_links(public_dir)
-    copy_results = add_copy_result_to_birth_years(public_dir, tuple(range(1961, 2008)))
+    copy_results = add_copy_result_to_birth_years(public_dir, tuple(range(1961, 2011)))
     priority_summary = ", ".join(
         f"{page}: {'updated' if changed else 'unchanged'}" for page, changed in priority_updates.items()
     )
