@@ -27,6 +27,15 @@ COPY_RESULT_STYLE = '''<style id="qac-copy-result-style">
 .qac-copy-status{min-height:18px;margin-top:7px;text-align:center;font-size:12px;color:#6b7280}
 </style>'''
 
+MILESTONE_STYLE = '''<style id="qac-milestone-style">
+.qac-age-timeline h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:8px}
+.qac-age-timeline>p{font-size:14px;line-height:1.65;color:#6b7280;margin-bottom:14px}
+.qac-milestone-table{width:100%;border-collapse:collapse;font-size:14px}
+.qac-milestone-table th,.qac-milestone-table td{padding:10px 12px;border-bottom:1px solid #e2e6ea;text-align:left}
+.qac-milestone-table th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280}
+.qac-milestone-table td:last-child{font-weight:700;color:#2563eb}
+</style>'''
+
 COPY_RESULT_SCRIPT = '''function fallbackCopyAgeResult(text) {
   var area = document.createElement('textarea');
   area.value = text;
@@ -192,12 +201,62 @@ def add_copy_result_to_birth_years(public_dir: Path, birth_years: tuple[int, ...
     return results
 
 
+def add_milestone_timelines(public_dir: Path, birth_years: tuple[int, ...]) -> dict[int, bool]:
+    """Add a compact milestone timeline to selected high-demand birth-year pages."""
+    results: dict[int, bool] = {}
+    milestone_ages = (18, 21, 30, 40, 50, 60, 65, 70)
+
+    for birth_year in birth_years:
+        html_path = public_dir / f"born-in-{birth_year}" / "index.html"
+        if not html_path.exists():
+            raise FileNotFoundError(f"Expected {birth_year} page is missing: {html_path}")
+
+        text = html_path.read_text(encoding="utf-8")
+        if 'id="qac-age-timeline"' in text:
+            results[birth_year] = False
+            continue
+
+        if 'id="qac-milestone-style"' not in text:
+            if "</head>" not in text:
+                raise ValueError(f"{html_path} does not contain </head>")
+            text = text.replace("</head>", MILESTONE_STYLE + "\n</head>", 1)
+
+        rows = "\n".join(
+            f"      <tr><td>{'Turned' if birth_year + age <= 2026 else 'Turns'} {age}</td><td>{birth_year + age}</td></tr>"
+            for age in milestone_ages
+        )
+        section = f'''<section id="qac-age-timeline" class="card qac-age-timeline" aria-labelledby="qac-age-timeline-title">
+    <h2 id="qac-age-timeline-title">Age Timeline for Someone Born in {birth_year}</h2>
+    <p>These milestone years come directly from adding each age to {birth_year}. Your exact birthday determines the day within each milestone year.</p>
+    <table class="qac-milestone-table">
+      <thead><tr><th>Milestone</th><th>Year</th></tr></thead>
+      <tbody>
+{rows}
+      </tbody>
+    </table>
+  </section>'''
+
+        marker = "  <!-- FAQ -->"
+        if marker not in text:
+            raise ValueError(f"{html_path} does not contain the expected FAQ marker")
+        text = text.replace(marker, section + "\n\n" + marker, 1)
+
+        if f'Age Timeline for Someone Born in {birth_year}' not in text:
+            raise ValueError(f"{html_path} milestone timeline was not generated")
+
+        html_path.write_text(text, encoding="utf-8")
+        results[birth_year] = True
+
+    return results
+
+
 def main() -> None:
     public_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "public")
     priority_updates = apply_analytics_priority_enhancements(public_dir)
     core.main()
     updated_by_decade = add_static_contextual_links(public_dir)
     copy_results = add_copy_result_to_birth_years(public_dir, tuple(range(1960, 2026)))
+    milestone_results = add_milestone_timelines(public_dir, (1999,))
     priority_summary = ", ".join(
         f"{page}: {'updated' if changed else 'unchanged'}" for page, changed in priority_updates.items()
     )
@@ -210,6 +269,10 @@ def main() -> None:
         f"{year}: {'added' if added else 'already present'}" for year, added in copy_results.items()
     )
     print(f"Copy-result controls: {copy_summary}.")
+    milestone_summary = ", ".join(
+        f"{year}: {'added' if added else 'already present'}" for year, added in milestone_results.items()
+    )
+    print(f"Milestone timelines: {milestone_summary}.")
 
 
 if __name__ == "__main__":
