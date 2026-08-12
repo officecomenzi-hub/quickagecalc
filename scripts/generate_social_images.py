@@ -256,7 +256,7 @@ def main() -> None:
     core.main()
     updated_by_decade = add_static_contextual_links(public_dir)
     copy_results = add_copy_result_to_birth_years(public_dir, tuple(range(1960, 2026)))
-    milestone_results = add_milestone_timelines(public_dir, (1999,))
+    milestone_results = add_milestone_timelines(public_dir, (1999, 2000))
     priority_summary = ", ".join(
         f"{page}: {'updated' if changed else 'unchanged'}" for page, changed in priority_updates.items()
     )
