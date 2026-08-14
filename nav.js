@@ -93,7 +93,7 @@
       '/what-year-was-i-born/': { iso: '2026-07-18', label: 'July 18, 2026' },
       '/what-generation-am-i/': { iso: '2026-07-28', label: 'July 28, 2026' },
       '/age-questions/': { iso: '2026-07-28', label: 'July 28, 2026' },
-      '/born-in-year/': { iso: '2026-07-29', label: 'July 29, 2026' }
+      '/born-in-year/': { iso: '2026-08-09', label: 'August 9, 2026' }
     };
     var review = reviewedPages[current];
     if (!review || document.getElementById('qac-last-reviewed')) {
@@ -114,6 +114,13 @@
 
   function addDogAgeMethodologyNote(current) {
     if (current !== '/dog-age/' || document.getElementById('qac-dog-age-methodology')) {
+      return;
+    }
+
+    var existingMethodology = Array.prototype.some.call(document.querySelectorAll('h2'), function (heading) {
+      return heading.textContent.trim() === 'Methodology & Sources' || heading.textContent.trim() === 'Sources & Methodology';
+    });
+    if (existingMethodology) {
       return;
     }
 
