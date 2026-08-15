@@ -212,7 +212,8 @@ def add_milestone_timelines(public_dir: Path, birth_years: tuple[int, ...]) -> d
             raise FileNotFoundError(f"Expected {birth_year} page is missing: {html_path}")
 
         text = html_path.read_text(encoding="utf-8")
-        if 'id="qac-age-timeline"' in text:
+        existing_heading = f"Age Timeline for Someone Born in {birth_year}"
+        if 'id="qac-age-timeline"' in text or existing_heading in text or 'class="timeline-list"' in text:
             results[birth_year] = False
             continue
 
@@ -237,9 +238,23 @@ def add_milestone_timelines(public_dir: Path, birth_years: tuple[int, ...]) -> d
   </section>'''
 
         marker = "  <!-- FAQ -->"
-        if marker not in text:
-            raise ValueError(f"{html_path} does not contain the expected FAQ marker")
-        text = text.replace(marker, section + "\n\n" + marker, 1)
+        if marker in text:
+            text = text.replace(marker, section + "\n\n" + marker, 1)
+        elif "Frequently Asked Questions" in text:
+            faq_index = text.index("Frequently Asked Questions")
+            card_index = text.rfind('<div class="card', 0, faq_index)
+            if card_index < 0:
+                raise ValueError(f"{html_path} FAQ heading has no containing card")
+            text = text[:card_index] + section + "\n\n  " + text[card_index:]
+        elif '<div class="card links">' in text:
+            marker = '<div class="card links">'
+            text = text.replace(marker, section + "\n\n" + marker, 1)
+        elif "<footer>" in text:
+            text = text.replace("<footer>", section + "\n\n  <footer>", 1)
+        elif "</body>" in text:
+            text = text.replace("</body>", section + "\n</body>", 1)
+        else:
+            raise ValueError(f"{html_path} has no safe milestone insertion point")
 
         if f'Age Timeline for Someone Born in {birth_year}' not in text:
             raise ValueError(f"{html_path} milestone timeline was not generated")
@@ -256,7 +271,7 @@ def main() -> None:
     core.main()
     updated_by_decade = add_static_contextual_links(public_dir)
     copy_results = add_copy_result_to_birth_years(public_dir, tuple(range(1960, 2026)))
-    milestone_results = add_milestone_timelines(public_dir, (1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002))
+    milestone_results = add_milestone_timelines(public_dir, tuple(range(1960, 2027)))
     priority_summary = ", ".join(
         f"{page}: {'updated' if changed else 'unchanged'}" for page, changed in priority_updates.items()
     )
