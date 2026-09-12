@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday in Numbers – Personalized Birthday Gift | QuickAgeCalc</title>
+<meta name="description" content="Turn a birthday into a personalized digital gift. Calculate exact age, days alive, minutes, estimated heartbeats, generation, zodiac sign and more, then choose a Birthday in Numbers gift pack.">
+<meta name="keywords" content="birthday in numbers, personalized birthday gift, digital birthday gift, birthday statistics, days alive, birthday age calculator, life in numbers">
+<link rel="canonical" href="https://quickagecalc.com/birthday-in-numbers/">
+<meta property="og:title" content="Birthday in Numbers – Turn a Life Into a Gift">
+<meta property="og:description" content="Create a personalized birthday preview with age, days alive, minutes, heartbeats, generation, zodiac sign and more.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://quickagecalc.com/birthday-in-numbers/">
+<meta name="theme-color" content="#0b1639">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<script src="/nav.js"></script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebPage",
+  "name":"Birthday in Numbers",
+  "url":"https://quickagecalc.com/birthday-in-numbers/",
+  "description":"Create a personalized birthday preview with age, days alive, minutes, estimated heartbeats, generation, zodiac sign and more."
+}
+</script>
+<style>
+:root{
+  --navy:#07132f;
+  --navy2:#101f4b;
+  --ink:#10162f;
+  --gold:#ffd66b;
+  --gold2:#ffb948;
+  --pink:#ff66b3;
+  --cyan:#72ddff;
+  --violet:#9d79ff;
+  --white:#ffffff;
+  --muted:#b8c3e0;
+  --glass:rgba(255,255,255,.09);
+  --glass2:rgba(255,255,255,.14);
+  --line:rgba(255,255,255,.16);
+  --shadow:0 24px 70px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;background:#f7f8fa;color:#111827}
+.qac-global-header{margin-bottom:0!important}
+.page-shell{position:relative;overflow:hidden;background:
+  radial-gradient(circle at 12% 14%,rgba(114,221,255,.16),transparent 24%),
+  radial-gradient(circle at 88% 9%,rgba(255,102,179,.19),transparent 23%),
+  radial-gradient(circle at 73% 69%,rgba(157,121,255,.16),transparent 27%),
+  linear-gradient(145deg,var(--navy) 0%,#0d1b45 48%,#171747 100%);color:#fff;min-height:100vh}
+.page-shell:before,.page-shell:after{content:"";position:absolute;border-radius:999px;filter:blur(2px);pointer-events:none}
+.page-shell:before{width:420px;height:420px;right:-170px;top:460px;background:radial-gradient(circle,rgba(255,214,107,.18),transparent 67%);animation:floatGlow 9s ease-in-out infinite}
+.page-shell:after{width:360px;height:360px;left:-160px;top:850px;background:radial-gradient(circle,rgba(255,102,179,.16),transparent 67%);animation:floatGlow 11s ease-in-out infinite reverse}
+@keyframes floatGlow{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-34px) scale(1.08)}}
+.wrap{max-width:1160px;margin:0 auto;padding:56px 22px 78px;position:relative;z-index:2}
+.sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.sparkles i{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 12px #fff,0 0 24px var(--gold);animation:twinkle 2.6s ease-in-out infinite}
+.sparkles i:nth-child(1){left:7%;top:5%;animation-delay:.2s}.sparkles i:nth-child(2){left:19%;top:22%;animation-delay:1.1s}.sparkles i:nth-child(3){left:37%;top:9%;animation-delay:.6s}.sparkles i:nth-child(4){left:56%;top:20%;animation-delay:1.8s}.sparkles i:nth-child(5){left:82%;top:12%;animation-delay:.4s}.sparkles i:nth-child(6){left:92%;top:31%;animation-delay:1.4s}.sparkles i:nth-child(7){left:12%;top:55%;animation-delay:2.1s}.sparkles i:nth-child(8){left:47%;top:49%;animation-delay:.9s}.sparkles i:nth-child(9){left:75%;top:62%;animation-delay:1.6s}.sparkles i:nth-child(10){left:89%;top:78%;animation-delay:.7s}.sparkles i:nth-child(11){left:25%;top:82%;animation-delay:1.3s}.sparkles i:nth-child(12){left:60%;top:91%;animation-delay:.3s}
+@keyframes twinkle{0%,100%{opacity:.18;transform:scale(.7)}50%{opacity:1;transform:scale(1.7)}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid rgba(255,214,107,.35);background:rgba(255,214,107,.08);border-radius:999px;color:#ffe8a1;font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:17px}
+.eyebrow:before{content:'✦';font-size:13px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(360px,.98fr);gap:42px;align-items:center;margin-bottom:52px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.7rem);line-height:.95;letter-spacing:-.04em;margin-bottom:20px}
+.hero h1 .shine{display:block;background:linear-gradient(100deg,#fff 0%,#fff 18%,var(--gold) 40%,#fff 58%,var(--pink) 77%,#fff 100%);background-size:220% auto;color:transparent;-webkit-background-clip:text;background-clip:text;animation:shimmer 5s linear infinite}
+@keyframes shimmer{to{background-position:220% center}}
+.hero .lead{font-size:clamp(1.08rem,2vw,1.32rem);line-height:1.65;color:#d7def2;max-width:650px;margin-bottom:26px}
+.hero-points{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.hero-points span{padding:8px 11px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);border-radius:9px;color:#edf2ff;font-size:13px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 19px;border-radius:12px;border:1px solid transparent;font-weight:900;font-size:14px;text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;font-family:'Lato',sans-serif}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#2d1c00;box-shadow:0 10px 30px rgba(255,190,72,.28)}
+.btn-secondary{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff}
+.live-preview{position:relative;padding:1px;border-radius:28px;background:linear-gradient(145deg,rgba(255,214,107,.9),rgba(255,102,179,.72),rgba(114,221,255,.82));box-shadow:var(--shadow)}
+.preview-inner{position:relative;overflow:hidden;border-radius:27px;background:linear-gradient(160deg,#10204e,#0b1537 64%,#24134d);padding:30px;min-height:530px}
+.preview-inner:after{content:"";position:absolute;width:240px;height:240px;right:-100px;top:-85px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,107,.26),transparent 68%)}
+.preview-badge{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#cbd5f0;font-size:11px;text-transform:uppercase;font-weight:900;letter-spacing:.12em;margin-bottom:32px}
+.preview-badge span:last-child{color:#ffe4a0}
+.preview-name{font-family:'Playfair Display',serif;font-size:clamp(2.3rem,5vw,4rem);line-height:1;color:#fff;margin-bottom:8px;word-break:break-word}
+.preview-date{font-size:15px;color:var(--gold);font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+.preview-big{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);border-radius:18px;padding:20px;margin-bottom:16px}
+.preview-big strong{display:block;font-family:'Playfair Display',serif;font-size:clamp(2.7rem,7vw,4.6rem);line-height:1;color:#fff}
+.preview-big span{display:block;margin-top:7px;color:#b8c3e0;font-size:12px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mini{padding:13px;border-radius:13px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1)}
+.mini strong{display:block;color:#fff;font-size:18px}.mini span{font-size:10px;color:#aebad9;text-transform:uppercase;font-weight:900;letter-spacing:.07em}
+.preview-footer{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#aebad9;font-size:11px}.preview-footer b{color:#fff}
+.confetti-dot{position:absolute;width:9px;height:18px;border-radius:4px;opacity:.7;animation:drift 6s ease-in-out infinite}.c1{right:38px;bottom:96px;background:var(--gold);transform:rotate(24deg)}.c2{right:86px;bottom:50px;background:var(--pink);transform:rotate(-31deg);animation-delay:1.2s}.c3{left:34px;bottom:54px;background:var(--cyan);transform:rotate(13deg);animation-delay:2.3s}.c4{left:68px;top:140px;background:#fff;transform:rotate(-17deg);animation-delay:.7s}
+@keyframes drift{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -16px;rotate:18deg}}
+.section{margin-top:54px}
+.section-head{text-align:center;max-width:760px;margin:0 auto 25px}.section-head .kicker{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.section-head h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin:8px 0 10px}.section-head p{color:#c5cee5;line-height:1.7}
+.builder{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;align-items:start}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.18);backdrop-filter:blur(12px)}
+.form-card{padding:25px;position:sticky;top:18px}.form-card h3{font-family:'Playfair Display',serif;font-size:1.65rem;margin-bottom:7px}.form-card>p{color:#b9c4df;font-size:14px;line-height:1.55;margin-bottom:20px}
+.field{margin-bottom:15px}.field label{display:block;font-size:12px;font-weight:900;color:#eef3ff;margin-bottom:7px}.field input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(8,17,43,.72);color:#fff;font:400 16px 'Lato',sans-serif;outline:none}.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,214,107,.12)}.field input::placeholder{color:#7885a8}.field small{display:block;margin-top:5px;color:#8f9bb9;font-size:11px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.builder-button{width:100%;margin-top:5px}
+.form-message{min-height:20px;margin-top:10px;color:#ffb6ce;font-size:12px;font-weight:700}
+.results-card{padding:25px}.results-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px}.results-top h3{font-family:'Playfair Display',serif;font-size:1.7rem}.results-top p{color:#b7c1da;font-size:13px;margin-top:5px}.results-chip{white-space:nowrap;border-radius:999px;padding:7px 10px;background:rgba(114,221,255,.11);border:1px solid rgba(114,221,255,.25);color:#a9edff;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.07em}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.stat{min-height:110px;padding:16px;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.105);display:flex;flex-direction:column;justify-content:center}.stat .icon{font-size:20px;margin-bottom:8px}.stat strong{font-family:'Playfair Display',serif;font-size:1.45rem;line-height:1.05;color:#fff;overflow-wrap:anywhere}.stat span{font-size:10px;color:#9faccc;text-transform:uppercase;font-weight:900;letter-spacing:.07em;margin-top:6px}.stat.accent{background:linear-gradient(145deg,rgba(255,214,107,.13),rgba(255,255,255,.04));border-color:rgba(255,214,107,.25)}.stat.accent strong{color:#ffe59c}.stat.pink{background:linear-gradient(145deg,rgba(255,102,179,.12),rgba(255,255,255,.04));border-color:rgba(255,102,179,.22)}
+.story-line{margin-top:16px;padding:17px;border-radius:15px;background:linear-gradient(135deg,rgba(157,121,255,.12),rgba(114,221,255,.08));border:1px solid rgba(157,121,255,.23);color:#edf1ff;line-height:1.6;font-size:14px}.story-line strong{color:var(--gold)}
+.disclaimer{margin-top:12px;color:#8794b4;font-size:11px;line-height:1.5}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.feature{padding:21px;border-radius:18px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.12)}.feature .fi{font-size:28px;margin-bottom:12px}.feature h3{font-size:15px;margin-bottom:7px}.feature p{font-size:12px;color:#aeb9d6;line-height:1.55}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}.price-card{position:relative;padding:26px;border-radius:22px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.13);display:flex;flex-direction:column}.price-card.popular{background:linear-gradient(160deg,rgba(255,214,107,.16),rgba(255,102,179,.10),rgba(255,255,255,.07));border-color:rgba(255,214,107,.42);box-shadow:0 18px 60px rgba(255,190,72,.10)}.popular-tag{position:absolute;right:18px;top:18px;padding:6px 9px;border-radius:999px;background:var(--gold);color:#2c1b00;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}.price-card h3{font-family:'Playfair Display',serif;font-size:1.45rem;padding-right:75px}.price{font-family:'Playfair Display',serif;font-size:2.8rem;color:#fff;margin:13px 0 4px}.price small{font:700 12px 'Lato',sans-serif;color:#9faccc}.price-card>p{color:#aeb9d6;font-size:13px;line-height:1.55;margin-bottom:16px}.price-card ul{list-style:none;margin-bottom:20px;flex:1}.price-card li{font-size:13px;color:#e8edff;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08)}.price-card li:before{content:'✓';color:#8ff0bc;font-weight:900;margin-right:8px}.price-card .btn{width:100%}.manual-note{text-align:center;color:#8f9bb9;font-size:11px;margin-top:13px}
+.order-panel{padding:26px;text-align:center;background:linear-gradient(135deg,rgba(255,214,107,.11),rgba(255,102,179,.08));border:1px solid rgba(255,214,107,.27)}.order-panel h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:8px}.order-panel p{color:#bec8e1;line-height:1.65;max-width:740px;margin:0 auto 19px}.selected-pack{display:inline-block;margin-bottom:17px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:900}
+.faq{max-width:860px;margin:0 auto}.faq-item{border-bottom:1px solid rgba(255,255,255,.12)}.faq-q{width:100%;background:none;border:0;color:#fff;text-align:left;padding:18px 0;font:900 15px 'Lato',sans-serif;display:flex;justify-content:space-between;gap:20px;cursor:pointer}.faq-q:after{content:'+';color:var(--gold);font-size:22px}.faq-item.open .faq-q:after{content:'−'}.faq-a{display:none;padding:0 0 18px;color:#abb7d2;font-size:13px;line-height:1.65}.faq-item.open .faq-a{display:block}
+.bottom-note{text-align:center;margin-top:48px;color:#7987aa;font-size:11px;line-height:1.6}
+@media(max-width:960px){.hero-grid,.builder{grid-template-columns:1fr}.form-card{position:static}.feature-grid{grid-template-columns:repeat(2,1fr)}.pricing-grid{grid-template-columns:1fr}.hero-grid{gap:28px}.live-preview{max-width:680px;margin:0 auto;width:100%}}
+@media(max-width:650px){.wrap{padding:38px 15px 62px}.hero h1{font-size:3.2rem}.preview-inner{padding:22px;min-height:500px}.form-row{grid-template-columns:1fr}.stat-grid{grid-template-columns:1fr 1fr}.feature-grid{grid-template-columns:1fr 1fr}.results-top{flex-direction:column}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.price-card{padding:22px}.preview-name{font-size:2.7rem}}
+@media(max-width:420px){.stat-grid,.feature-grid,.mini-grid{grid-template-columns:1fr}.hero h1{font-size:2.75rem}.preview-inner{min-height:auto}.preview-big strong{font-size:3rem}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.sparkles i,.page-shell:before,.page-shell:after,.hero h1 .shine,.confetti-dot{animation:none!important}}
+</style>
+</head>
+<body>
+<main class="page-shell">
+  <div class="sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <section class="hero-grid hero">
+      <div>
+        <div class="eyebrow">A personalized digital birthday gift</div>
+        <h1>Turn a birthday into <span class="shine">a story in numbers.</span></h1>
+        <p class="lead">Enter a birth date and instantly reveal the numbers behind a life: exact age, days alive, minutes, estimated heartbeats, generation, zodiac sign, day of birth and more. Then turn it into a gift worth sharing.</p>
+        <div class="hero-points">
+          <span>🎂 Personalized</span><span>⚡ Instant preview</span><span>🎁 Gift-ready</span><span>📱 Made for sharing</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#create">Create a Free Preview →</a>
+          <a class="btn btn-secondary" href="#gift-packs">See Gift Packs</a>
+        </div>
+      </div>
+
+      <div class="live-preview" aria-label="Birthday in Numbers example preview">
+        <div class="preview-inner">
+          <span class="confetti-dot c1"></span><span class="confetti-dot c2"></span><span class="confetti-dot c3"></span><span class="confetti-dot c4"></span>
+          <div class="preview-badge"><span>Birthday in Numbers</span><span>Live preview</span></div>
+          <div class="preview-name" id="posterName">Alex</div>
+          <div class="preview-date" id="posterBirthDate">Born September 14, 1991</div>
+          <div class="preview-big"><strong id="posterDays">12,784</strong><span>days alive</span></div>
+          <div class="mini-grid">
+            <div class="mini"><strong id="posterAge">35 years</strong><span>exact age</span></div>
+            <div class="mini"><strong id="posterMinutes">18.4M</strong><span>minutes</span></div>
+            <div class="mini"><strong id="posterHeartbeats">1.29B</strong><span>heartbeats*</span></div>
+            <div class="mini"><strong id="posterGeneration">Millennial</strong><span>generation</span></div>
+          </div>
+          <div class="preview-footer"><span>Your life, turned into numbers.</span><b>QuickAgeCalc</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="create">
+      <div class="section-head">
+        <div class="kicker">Try it now</div>
+        <h2>Create your Birthday in Numbers</h2>
+        <p>Use the birthday and celebration date to build a personalized preview. The calculations happen in your browser.</p>
+      </div>
+
+      <div class="builder">
+        <div class="glass form-card">
+          <h3>Who is the gift for?</h3>
+          <p>Use a first name or nickname. You can also leave the name blank.</p>
+          <div class="field"><label for="recipientName">Recipient name (optional)</label><input id="recipientName" type="text" maxlength="28" placeholder="e.g. Emily" value="Alex"></div>
+          <div class="field"><label for="birthDate">Date of birth</label><input id="birthDate" type="date" value="1991-09-14" required></div>
+          <div class="field"><label for="celebrationDate">Celebration date</label><input id="celebrationDate" type="date" value="2026-09-14" required><small>This can be the birthday itself, today, or any date you want to celebrate.</small></div>
+          <button class="btn btn-primary builder-button" type="button" id="calculateBtn">✨ Reveal the Numbers</button>
+          <div class="form-message" id="formMessage" aria-live="polite"></div>
+        </div>
+
+        <div class="glass results-card" id="resultsCard">
+          <div class="results-top">
+            <div><h3 id="resultTitle">Alex's life in numbers</h3><p id="resultSubtitle">As of September 14, 2026</p></div>
+            <span class="results-chip">Personalized preview</span>
+          </div>
+          <div class="stat-grid">
+            <div class="stat accent"><div class="icon">🎂</div><strong id="ageStat">35 years</strong><span>Exact age</span></div>
+            <div class="stat accent"><div class="icon">☀️</div><strong id="daysStat">12,784</strong><span>Days alive</span></div>
+            <div class="stat"><div class="icon">📅</div><strong id="weeksStat">1,826</strong><span>Weeks alive</span></div>
+            <div class="stat"><div class="icon">⏰</div><strong id="hoursStat">306,816</strong><span>Hours alive</span></div>
+            <div class="stat"><div class="icon">⏳</div><strong id="minutesStat">18.4M</strong><span>Minutes alive</span></div>
+            <div class="stat pink"><div class="icon">❤️</div><strong id="heartbeatsStat">1.29B</strong><span>Estimated heartbeats</span></div>
+            <div class="stat"><div class="icon">🗓️</div><strong id="bornDayStat">Saturday</strong><span>Born on</span></div>
+            <div class="stat"><div class="icon">👥</div><strong id="generationStat">Millennial</strong><span>Generation</span></div>
+            <div class="stat"><div class="icon">✨</div><strong id="zodiacStat">Virgo</strong><span>Zodiac sign</span></div>
+            <div class="stat"><div class="icon">🌍</div><strong id="sunTripsStat">35.0</strong><span>Trips around the Sun</span></div>
+            <div class="stat"><div class="icon">🎉</div><strong id="birthdaysStat">35</strong><span>Birthdays completed</span></div>
+            <div class="stat"><div class="icon">⏱️</div><strong id="nextBirthdayStat">365 days</strong><span>Until next birthday</span></div>
+          </div>
+          <div class="story-line" id="storyLine"><strong>Alex</strong> has already lived more than <strong>12,784 days</strong> — and the story is still counting.</div>
+          <div class="disclaimer">* Heartbeats are an estimate using 70 beats per minute. Hours and minutes use date-only calculations because birth time is not entered. Generation ranges can vary by source.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div class="kicker">More than an age calculator</div><h2>What makes the gift feel personal</h2><p>The pack combines useful calculations with shareable, emotional details that work beautifully in a birthday card, PDF or short video.</p></div>
+      <div class="feature-grid">
+        <div class="feature"><div class="fi">🔢</div><h3>Life statistics</h3><p>Age, total days, weeks, hours, minutes and estimated heartbeats.</p></div>
+        <div class="feature"><div class="fi">📆</div><h3>Birth-day facts</h3><p>The weekday they were born plus a countdown to the next birthday.</p></div>
+        <div class="feature"><div class="fi">👥</div><h3>Generation</h3><p>Millennial, Gen X, Gen Z and other commonly used generation labels.</p></div>
+        <div class="feature"><div class="fi">✨</div><h3>Zodiac sign</h3><p>A familiar birthday detail that makes the keepsake feel instantly personal.</p></div>
+        <div class="feature"><div class="fi">🌍</div><h3>Trips around the Sun</h3><p>A visual way to turn years lived into a celebratory life milestone.</p></div>
+        <div class="feature"><div class="fi">🎨</div><h3>Gift-ready design</h3><p>A polished visual format designed for mobile sharing and birthday messages.</p></div>
+        <div class="feature"><div class="fi">📱</div><h3>Social-ready</h3><p>Perfect for WhatsApp, Instagram, Facebook, email and birthday Stories.</p></div>
+        <div class="feature"><div class="fi">💝</div><h3>Made for someone</h3><p>Add the recipient's name to transform statistics into a personal digital gift.</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="gift-packs">
+      <div class="section-head"><div class="kicker">Choose a gift</div><h2>Birthday in Numbers Gift Packs</h2><p>Start with a quick shareable card or choose the complete digital pack for the strongest birthday surprise.</p></div>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3>Birthday Stats Card</h3>
+          <div class="price">$2.99 <small>one-time</small></div>
+          <p>A personalized visual card for a quick birthday surprise.</p>
+          <ul><li>Personalized name and date</li><li>Key life statistics</li><li>Generation and zodiac</li><li>Shareable digital format</li></ul>
+          <button class="btn btn-secondary choose-pack" type="button" data-pack="Birthday Stats Card — $2.99">Order by email</button>
+        </article>
+        <article class="price-card">
+          <h3>Birthday Life Report</h3>
+          <div class="price">$4.99 <small>one-time</small></div>
+          <p>A fuller keepsake with the story behind the birthday numbers.</p>
+          <ul><li>Everything in the Stats Card</li><li>More life statistics</li><li>Birthday facts and milestones</li><li>Printable digital report</li></ul>
+          <button class="btn btn-secondary choose-pack" type="button" data-pack="Birthday Life Report — $4.99">Order by email</button>
+        </article>
+        <article class="price-card popular">
+          <div class="popular-tag">Most popular</div>
+          <h3>Complete Birthday Pack</h3>
+          <div class="price">$9.99 <small>one-time</small></div>
+          <p>The full birthday gift experience for maximum shareability.</p>
+          <ul><li>Animated birthday reel</li><li>Personalized birthday card</li><li>Birthday Life Report</li><li>All calculated life statistics</li><li>Gift-ready digital delivery</li></ul>
+          <button class="btn btn-primary choose-pack" type="button" data-pack="Complete Birthday Pack — $9.99">Order by email →</button>
+        </article>
+      </div>
+      <p class="manual-note">Current beta ordering is handled by email. Online checkout can be added next without changing the product page.</p>
+    </section>
+
+    <section class="section glass order-panel" id="order">
+      <h2>Ready to turn a birthday into a gift?</h2>
+      <p>Your preview is free. Choose a pack and we will prepare an email with the recipient details so you can send the order request in one click.</p>
+      <div class="selected-pack" id="selectedPack">Selected: Complete Birthday Pack — $9.99</div><br>
+      <button class="btn btn-primary" type="button" id="orderBtn">Prepare My Order Email →</button>
+    </section>
+
+    <section class="section faq">
+      <div class="section-head"><div class="kicker">Questions</div><h2>Birthday in Numbers FAQ</h2></div>
+      <div class="faq-item open"><button class="faq-q" type="button">What is Birthday in Numbers?</button><div class="faq-a">It is a personalized digital birthday concept that turns a date of birth into memorable life statistics, such as exact age, total days alive, minutes, estimated heartbeats, generation and other birthday facts.</div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Are the heartbeat numbers exact?</button><div class="faq-a">No. Heartbeats are clearly marked as estimates and use an average rate of 70 beats per minute. Real lifetime heartbeats vary from person to person.</div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Can I choose a different celebration date?</button><div class="faq-a">Yes. Use the birthday itself, today's date, an upcoming party date or another meaningful date. The preview recalculates the statistics for that day.</div></div>
+      <div class="faq-item"><button class="faq-q" type="button">Can I use a nickname instead of a full name?</button><div class="faq-a">Yes. A first name or nickname is ideal for a birthday card or video. You can also leave the name blank.</div></div>
+      <div class="faq-item"><button class="faq-q" type="button">What will the Complete Birthday Pack include?</button><div class="faq-a">The planned complete pack includes a personalized animated reel, a shareable birthday card and a fuller digital life-statistics report.</div></div>
+    </section>
+
+    <p class="bottom-note">QuickAgeCalc calculations are for informational and entertainment purposes. Date-only totals do not include the person's exact birth time.</p>
+  </div>
+</main>
+
+<script>
+(function(){
+  'use strict';
+  var MS_DAY = 86400000;
+  var birthInput = document.getElementById('birthDate');
+  var asOfInput = document.getElementById('celebrationDate');
+  var nameInput = document.getElementById('recipientName');
+  var msg = document.getElementById('formMessage');
+  var selectedPack = 'Complete Birthday Pack — $9.99';
+
+  function parseDateOnly(value){
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null;
+    var parts = value.split('-').map(Number);
+    var d = new Date(Date.UTC(parts[0],parts[1]-1,parts[2]));
+    if(d.getUTCFullYear()!==parts[0] || d.getUTCMonth()!==parts[1]-1 || d.getUTCDate()!==parts[2]) return null;
+    return d;
+  }
+  function daysInMonth(y,m){return new Date(Date.UTC(y,m+1,0)).getUTCDate();}
+  function isLeap(y){return y%4===0 && (y%100!==0 || y%400===0);}
+  function birthdayInYear(birth, year){
+    var m=birth.getUTCMonth(), d=birth.getUTCDate();
+    if(m===1 && d===29 && !isLeap(year)) d=28;
+    return new Date(Date.UTC(year,m,d));
+  }
+  function exactAge(birth,end){
+    var y=end.getUTCFullYear()-birth.getUTCFullYear();
+    var m=end.getUTCMonth()-birth.getUTCMonth();
+    var d=end.getUTCDate()-birth.getUTCDate();
+    if(d<0){
+      m--;
+      var prevMonth=end.getUTCMonth()-1;
+      var prevYear=end.getUTCFullYear();
+      if(prevMonth<0){prevMonth=11;prevYear--;}
+      d += daysInMonth(prevYear,prevMonth);
+    }
+    if(m<0){y--;m+=12;}
+    return {years:y,months:m,days:d};
+  }
+  function formatLong(d){return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric',timeZone:'UTC'});}
+  function weekday(d){return d.toLocaleDateString('en-US',{weekday:'long',timeZone:'UTC'});}
+  function compact(n){
+    if(n>=1e9) return (n/1e9).toFixed(n>=1e10?1:2).replace(/\.0+$/,'').replace(/(\.\d)0$/,'$1')+'B';
+    if(n>=1e6) return (n/1e6).toFixed(n>=1e7?1:2).replace(/\.0+$/,'').replace(/(\.\d)0$/,'$1')+'M';
+    if(n>=1e3) return (n/1e3).toFixed(n>=1e4?1:2).replace(/\.0+$/,'').replace(/(\.\d)0$/,'$1')+'K';
+    return n.toLocaleString('en-US');
+  }
+  function generation(year){
+    if(year<=1927) return 'Greatest Generation';
+    if(year<=1945) return 'Silent Generation';
+    if(year<=1964) return 'Baby Boomer';
+    if(year<=1980) return 'Gen X';
+    if(year<=1996) return 'Millennial';
+    if(year<=2012) return 'Gen Z';
+    if(year<=2024) return 'Gen Alpha';
+    return 'Gen Beta';
+  }
+  function zodiac(month,day){
+    var cut=[20,19,21,20,21,21,23,23,23,23,22,22];
+    var signs=['Capricorn','Aquarius','Pisces','Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn'];
+    return day < cut[month-1] ? signs[month-1] : signs[month];
+  }
+  function setText(id,text){var el=document.getElementById(id);if(el)el.textContent=text;}
+  function calculate(){
+    var birth=parseDateOnly(birthInput.value);
+    var asOf=parseDateOnly(asOfInput.value);
+    if(!birth || !asOf){msg.textContent='Please enter both dates.';return;}
+    if(asOf<birth){msg.textContent='The celebration date must be on or after the birth date.';return;}
+    msg.textContent='';
+    var age=exactAge(birth,asOf);
+    var totalDays=Math.floor((asOf-birth)/MS_DAY);
+    var weeks=Math.floor(totalDays/7);
+    var hours=totalDays*24;
+    var minutes=hours*60;
+    var heartbeats=Math.round(minutes*70);
+    var gen=generation(birth.getUTCFullYear());
+    var sign=zodiac(birth.getUTCMonth()+1,birth.getUTCDate());
+    var bornDay=weekday(birth);
+    var sunTrips=totalDays/365.2425;
+    var next=birthdayInYear(birth,asOf.getUTCFullYear());
+    if(next<=asOf) next=birthdayInYear(birth,asOf.getUTCFullYear()+1);
+    var daysNext=Math.round((next-asOf)/MS_DAY);
+    var displayName=(nameInput.value || '').trim();
+    var labelName=displayName || 'This person';
+    var possessive=displayName ? (displayName.endsWith('s') ? displayName+"'" : displayName+"'s") : 'Their';
+    var ageShort=age.years+' year'+(age.years===1?'':'s');
+    var ageExact=age.years+'y '+age.months+'m '+age.days+'d';
+
+    setText('resultTitle',displayName ? possessive+' life in numbers' : 'Life in numbers');
+    setText('resultSubtitle','As of '+formatLong(asOf));
+    setText('ageStat',ageExact);
+    setText('daysStat',totalDays.toLocaleString('en-US'));
+    setText('weeksStat',weeks.toLocaleString('en-US'));
+    setText('hoursStat',hours.toLocaleString('en-US'));
+    setText('minutesStat',compact(minutes));
+    setText('heartbeatsStat',compact(heartbeats));
+    setText('bornDayStat',bornDay);
+    setText('generationStat',gen);
+    setText('zodiacStat',sign);
+    setText('sunTripsStat',sunTrips.toFixed(1));
+    setText('birthdaysStat',age.years.toLocaleString('en-US'));
+    setText('nextBirthdayStat',daysNext+' day'+(daysNext===1?'':'s'));
+    document.getElementById('storyLine').innerHTML='<strong>'+escapeHtml(labelName)+'</strong> has already lived more than <strong>'+totalDays.toLocaleString('en-US')+' days</strong> — and the story is still counting.';
+
+    setText('posterName',displayName || 'Birthday Story');
+    setText('posterBirthDate','Born '+formatLong(birth));
+    setText('posterDays',totalDays.toLocaleString('en-US'));
+    setText('posterAge',ageShort);
+    setText('posterMinutes',compact(minutes));
+    setText('posterHeartbeats',compact(heartbeats));
+    setText('posterGeneration',gen);
+  }
+  function escapeHtml(value){return String(value).replace(/[&<>'"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c];});}
+  function choosePack(pack){selectedPack=pack;setText('selectedPack','Selected: '+pack);document.getElementById('order').scrollIntoView({behavior:'smooth',block:'center'});}
+  function prepareEmail(){
+    var birth=parseDateOnly(birthInput.value), asOf=parseDateOnly(asOfInput.value);
+    if(!birth || !asOf){document.getElementById('create').scrollIntoView({behavior:'smooth'});msg.textContent='Please enter both dates before preparing the order.';return;}
+    var recipient=(nameInput.value || '').trim() || 'Not provided';
+    var subject='Birthday in Numbers order — '+selectedPack;
+    var body='Hello QuickAgeCalc,\n\nI would like to order: '+selectedPack+'\n\nRecipient name: '+recipient+'\nDate of birth: '+birthInput.value+'\nCelebration date: '+asOfInput.value+'\n\nPlease send me the next steps for payment and delivery.\n';
+    window.location.href='mailto:hello@quickagecalc.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  }
+
+  document.getElementById('calculateBtn').addEventListener('click',calculate);
+  nameInput.addEventListener('input',function(){if(nameInput.value.length<=28) calculate();});
+  birthInput.addEventListener('change',calculate);
+  asOfInput.addEventListener('change',calculate);
+  document.querySelectorAll('.choose-pack').forEach(function(btn){btn.addEventListener('click',function(){choosePack(btn.getAttribute('data-pack'));});});
+  document.getElementById('orderBtn').addEventListener('click',prepareEmail);
+  document.querySelectorAll('.faq-q').forEach(function(btn){btn.addEventListener('click',function(){btn.parentElement.classList.toggle('open');});});
+  calculate();
+})();
+</script>
+</body>
+</html>
