@@ -27,7 +27,7 @@ jobs:
       - name: Prepare public folder
         run: |
           mkdir -p public
-          cp -r index.html robots.txt sitemap.xml favicon.ico social-card.jpg nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s age-questions age-in-any-year what-year-was-i-born what-generation-am-i public/
+          cp -r index.html robots.txt sitemap.xml favicon.ico social-card.jpg nav.js about age-difference birthday-countdown contact date-difference privacy retirement-calculator born-in-year pregnancy-due-date dog-age cat-age how-old-am-i-in-days how-old-am-i-in-weeks how-old-am-i-in-months how-old-am-i-in-hours how-old-am-i-in-minutes born-in-the-1960s age-questions age-in-any-year what-year-was-i-born what-generation-am-i public/
           cp -r born-pages/* public/
 
       - name: Apply global metadata annual updates analytics and homepage links
