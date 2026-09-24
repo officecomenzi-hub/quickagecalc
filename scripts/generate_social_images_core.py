@@ -88,6 +88,8 @@ def category_for(slug: str) -> str:
         return "PREGNANCY & BABY"
     if "dog-age" in slug:
         return "DOG AGE"
+    if "cat-age" in slug:
+        return "CAT AGE"
     if "retirement" in slug:
         return "RETIREMENT"
     if "date-difference" in slug:
