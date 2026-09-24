@@ -45,10 +45,28 @@
 @keyframes qacGiftPop{0%{transform:scale(.9);filter:brightness(.8)}65%{transform:scale(1.025);filter:brightness(1.08)}100%{transform:scale(1);filter:none}}
 @media(prefers-reduced-motion:reduce){.qac-party-confetti,.qac-party-balloon,.results.qac-reveal,.results.qac-reveal .stat,.gift-card.qac-gift-pop{animation:none!important}}
 
+
+/* Always-visible festive birthday atmosphere */
+.ambient-party{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.ambient-party .float-balloon{position:absolute;width:66px;height:84px;border-radius:50% 50% 46% 46%;background:linear-gradient(145deg,var(--fb1),var(--fb2));box-shadow:inset -13px -16px 20px rgba(0,0,0,.15),inset 12px 10px 18px rgba(255,255,255,.44),0 14px 34px rgba(0,0,0,.18);opacity:.7;animation:floatBalloon 7s ease-in-out infinite}
+.ambient-party .float-balloon:before{content:"";position:absolute;left:15px;top:13px;width:16px;height:26px;border-radius:50%;background:rgba(255,255,255,.5);transform:rotate(24deg);filter:blur(.5px)}
+.ambient-party .float-balloon:after{content:"";position:absolute;left:50%;top:84px;width:1.5px;height:110px;background:rgba(255,255,255,.34);transform:translateX(-50%)}
+.fb1{left:1.5%;top:11%;--fb1:#ffd66b;--fb2:#d89b20}
+.fb2{right:1.5%;top:16%;--fb1:#a988ff;--fb2:#6241b3;animation-delay:1.3s}
+.fb3{left:3%;top:55%;--fb1:#ff8fc9;--fb2:#d7448c;animation-delay:2.4s;width:55px!important;height:70px!important}
+.fb4{right:3%;top:63%;--fb1:#77e0ff;--fb2:#3aa8d6;animation-delay:3.2s;width:58px!important;height:74px!important}
+@keyframes floatBalloon{0%,100%{translate:0 0;rotate:-4deg}50%{translate:0 -18px;rotate:5deg}}
+.ambient-party .streamer{position:absolute;width:8px;height:18px;border-radius:3px;opacity:.5;animation:streamerDrift 5.2s ease-in-out infinite}
+.st1{left:11%;top:8%;background:#ffd66b}.st2{left:20%;top:31%;background:#ff6eb6;animation-delay:.7s}.st3{right:17%;top:28%;background:#77e0ff;animation-delay:1.4s}.st4{right:8%;top:48%;background:#9d7cff;animation-delay:2.1s}.st5{left:10%;top:75%;background:#77e0ff;animation-delay:2.8s}.st6{right:20%;top:82%;background:#ffd66b;animation-delay:3.5s}
+@keyframes streamerDrift{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(10px) rotate(180deg)}}
+@media(max-width:900px){.ambient-party .float-balloon{opacity:.46}.fb1,.fb3{left:-18px}.fb2,.fb4{right:-18px}}
+@media(prefers-reduced-motion:reduce){.ambient-party .float-balloon,.ambient-party .streamer{animation:none!important}}
+
 </style>
 </head>
 <body>
 <div class="shell">
+<div class="ambient-party" aria-hidden="true"><i class="float-balloon fb1"></i><i class="float-balloon fb2"></i><i class="float-balloon fb3"></i><i class="float-balloon fb4"></i><i class="streamer st1"></i><i class="streamer st2"></i><i class="streamer st3"></i><i class="streamer st4"></i><i class="streamer st5"></i><i class="streamer st6"></i></div>
 <div class="sparkles"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <main class="wrap">
 <section class="hero">
