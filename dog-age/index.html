@@ -184,7 +184,7 @@
   <div class="card content">
     <h2>How Are Dog Years Calculated?</h2>
     <p>The old "1 dog year = 7 human years" rule is an oversimplification. Dogs age much faster in their early years and more slowly as they get older. A 1-year-old dog is roughly equivalent to a 15-year-old human in terms of maturity.</p>
-    <p>Breed size also matters significantly. Smaller dogs live longer than larger breeds. A 10-year-old small dog is around 56 in human years, while a 10-year-old giant breed is closer to 66. Our calculator uses size-adjusted tables based on veterinary research.</p>
+    <p>Breed size also matters significantly. Smaller dogs live longer than larger breeds. A 10-year-old small dog is around 56 in human years, while a 10-year-old large dog is around 66 and a 10-year-old giant breed is around 80. These are practical estimates, and exact conversions vary by source, breed and individual dog.</p>
     <p>A 2020 Cell Systems study comparing DNA methylation in Labrador retrievers and humans found a non-linear relationship between canine and human aging, reinforcing that dog age cannot be reduced to a simple multiplier.</p>
     <h2>Methodology &amp; Sources</h2>
     <p>This calculator uses a practical size-adjusted comparison table rather than claiming a single biological-age formula for every breed. Dog-to-human age conversions are estimates: breed, body size, health and individual variation all affect aging and lifespan.</p>
@@ -230,7 +230,7 @@ let selectedSize = 'small';
 const dogData = {
   small: {
     lifeExpect: 15,
-    years: [15,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100],
+    years: [0,15,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96],
     stages: [
       { max: 1, label: 'Puppy', desc: 'Rapid growth, learning basic behaviors, socialization period.' },
       { max: 3, label: 'Junior', desc: 'Full size reached, still energetic and playful, social development.' },
@@ -242,7 +242,7 @@ const dogData = {
   },
   medium: {
     lifeExpect: 13,
-    years: [15,24,28,32,36,42,47,51,56,61,65,70,74,78,83,87,92,96,101,105,109],
+    years: [0,15,24,28,32,36,42,47,51,56,61,65,70,74,78,83,87,92,96,101,105],
     stages: [
       { max: 1, label: 'Puppy', desc: 'Rapid growth, learning basic behaviors, socialization period.' },
       { max: 3, label: 'Junior', desc: 'Full size reached, still energetic and playful.' },
@@ -254,7 +254,7 @@ const dogData = {
   },
   large: {
     lifeExpect: 11,
-    years: [15,24,28,32,36,45,50,55,61,66,72,77,82,88,93,99,104,109,115,120,125],
+    years: [0,15,24,28,32,36,45,50,55,61,66,72,77,82,88,93,99,104,109,115,120],
     stages: [
       { max: 1, label: 'Puppy', desc: 'Fast growth phase, bones still developing.' },
       { max: 2, label: 'Junior', desc: 'Reaching physical maturity, still high energy.' },
@@ -266,7 +266,7 @@ const dogData = {
   },
   giant: {
     lifeExpect: 9,
-    years: [15,22,31,38,45,49,56,61,66,71,76,80,85,90,95,99,104,109,113,118,123],
+    years: [0,15,24,31,38,45,52,59,66,73,80,87,94,101,108,115,122,129,136,143,150],
     stages: [
       { max: 1, label: 'Puppy', desc: 'Extremely fast growth, careful nutrition essential.' },
       { max: 2, label: 'Junior', desc: 'Still maturing, bones and joints developing.' },
@@ -293,8 +293,10 @@ function updateSlider() {
 function calculate() {
   const dogAge = parseFloat(document.getElementById('dogAgeSlider').value);
   const data = dogData[selectedSize];
-  const idx = Math.min(Math.floor(dogAge), data.years.length - 1);
-  const humanAge = data.years[idx];
+  const lower = Math.max(0, Math.min(Math.floor(dogAge), data.years.length - 1));
+  const upper = Math.max(0, Math.min(Math.ceil(dogAge), data.years.length - 1));
+  const fraction = dogAge - lower;
+  const humanAge = Math.round(data.years[lower] + (data.years[upper] - data.years[lower]) * fraction);
   const lifePercent = Math.round((dogAge / data.lifeExpect) * 100);
 
   const sizeLabels = { small: 'Small breed', medium: 'Medium breed', large: 'Large breed', giant: 'Giant breed' };
@@ -312,13 +314,13 @@ function calculate() {
 
   const tableData = [
     [1, 15, 15, 15, 15],
-    [2, 24, 24, 24, 22],
+    [2, 24, 24, 24, 24],
     [3, 28, 28, 28, 31],
     [5, 36, 36, 36, 45],
-    [7, 44, 47, 50, 56],
-    [10, 56, 65, 66, 71],
-    [12, 64, 74, 77, 80],
-    [15, 76, 87, 93, 95],
+    [7, 44, 47, 50, 59],
+    [10, 56, 61, 66, 80],
+    [12, 64, 70, 77, 94],
+    [15, 76, 83, 93, 115],
   ];
 
   const tbody = document.getElementById('compTableBody');
