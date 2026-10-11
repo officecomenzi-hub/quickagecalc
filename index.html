@@ -259,6 +259,132 @@
   .tool-card .tc-name { font-size: 14px; font-weight: 700; }
   .tool-card .tc-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
+
+  /* Christmas Countdown 2026 */
+  .qac-xmas-live {
+    background: linear-gradient(135deg, #0f172a 0%, #123b2a 55%, #7f1d1d 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin: 0 0 24px;
+    box-shadow: 0 8px 28px rgba(0,0,0,.15);
+    text-align: center;
+  }
+  .qac-xmas-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .qac-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 0 5px rgba(239,68,68,.18);
+    animation: qacPulse 1.5s infinite;
+  }
+  @keyframes qacPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(.82); opacity: .65; }
+  }
+  .qac-xmas-live h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 5vw, 2.35rem);
+    margin: 0 0 7px;
+    color: #fff;
+  }
+  .qac-xmas-sub {
+    margin: 0 auto 18px;
+    max-width: 560px;
+    color: rgba(255,255,255,.82);
+    font-size: 14px;
+  }
+  .qac-countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 0 auto 14px;
+    max-width: 650px;
+  }
+  .qac-time-box {
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 12px;
+    padding: 14px 7px 11px;
+  }
+  .qac-time-number {
+    display: block;
+    font-size: clamp(1.8rem, 7vw, 3rem);
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .qac-time-label {
+    display: block;
+    margin-top: 7px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: rgba(255,255,255,.72);
+    font-weight: 700;
+  }
+  .qac-xmas-note {
+    font-size: 12px;
+    color: rgba(255,255,255,.66);
+    margin-bottom: 16px;
+  }
+  .qac-xmas-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .qac-xmas-btn {
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 11px 16px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .qac-xmas-btn-primary { background: #ef4444; color: #fff; }
+  .qac-xmas-btn-secondary {
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.18);
+  }
+  .qac-live-player { margin-top: 18px; display: none; }
+  .qac-live-player.is-active { display: block; }
+  .qac-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #000;
+    border: 1px solid rgba(255,255,255,.16);
+  }
+  .qac-video-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .qac-christmas-done {
+    display: none;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    margin: 14px 0;
+  }
+
   /* FAQ */
   .faq h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 14px; }
   .faq-item { border-bottom: 1px solid var(--border); }
@@ -289,6 +415,12 @@
   footer a:hover { color: var(--accent); }
 
   @media (max-width: 540px) {
+
+    .qac-xmas-live { padding: 20px 12px; }
+    .qac-countdown-grid { gap: 6px; }
+    .qac-time-box { padding: 12px 4px 10px; }
+    .qac-time-number { font-size: clamp(1.55rem, 9vw, 2.25rem); }
+    .qac-time-label { font-size: 9px; }
     .input-row, .date-row { grid-template-columns: 1fr 1fr; }
     .card { padding: 20px 16px; }
     .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -400,6 +532,36 @@
       <div id="factsList"></div>
     </div>
   </div>
+
+
+  <!-- CHRISTMAS COUNTDOWN 2026 -->
+  <section class="qac-xmas-live" aria-labelledby="qacChristmasTitle">
+    <div class="qac-xmas-kicker"><span class="qac-live-dot" aria-hidden="true"></span>Christmas Countdown 2026</div>
+    <h2 id="qacChristmasTitle">How Long Until Christmas? 🎄</h2>
+    <p class="qac-xmas-sub">Watch the countdown update live, second by second, until Christmas Day.</p>
+
+    <div id="qacCountdown" class="qac-countdown-grid" aria-live="off">
+      <div class="qac-time-box"><span class="qac-time-number" id="qacDays">00</span><span class="qac-time-label">Days</span></div>
+      <div class="qac-time-box"><span class="qac-time-number" id="qacHours">00</span><span class="qac-time-label">Hours</span></div>
+      <div class="qac-time-box"><span class="qac-time-number" id="qacMinutes">00</span><span class="qac-time-label">Minutes</span></div>
+      <div class="qac-time-box"><span class="qac-time-number" id="qacSeconds">00</span><span class="qac-time-label">Seconds</span></div>
+    </div>
+
+    <div id="qacChristmasDone" class="qac-christmas-done">Merry Christmas! 🎄</div>
+    <div class="qac-xmas-note">Countdown to December 25, 2026 at 12:00 AM in New York.</div>
+
+    <div class="qac-xmas-actions">
+      <a id="qacYouTubeButton" class="qac-xmas-btn qac-xmas-btn-primary" href="https://www.youtube.com/@quickagecalc/live" target="_blank" rel="noopener">🔴 Watch on YouTube</a>
+      <a class="qac-xmas-btn qac-xmas-btn-secondary" href="/birthday-countdown/">Try Birthday Countdown</a>
+    </div>
+
+    <div id="qacLivePlayer" class="qac-live-player">
+      <div class="qac-video-frame">
+        <iframe id="qacYouTubeFrame" title="QuickAgeCalc Christmas Countdown Live" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
 
   <!-- AD MID -->
   <div class="ad-slot" style="height:250px;margin-bottom:24px;">Advertisement (300×250)</div>
@@ -583,6 +745,52 @@ function calculate() {
   r.style.display = 'block';
   r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
+
+
+(function(){
+  const CHRISTMAS_TARGET_UTC = Date.parse('2026-12-25T05:00:00Z');
+  const YOUTUBE_LIVE_VIDEO_ID = '';
+
+  const daysEl = document.getElementById('qacDays');
+  const hoursEl = document.getElementById('qacHours');
+  const minutesEl = document.getElementById('qacMinutes');
+  const secondsEl = document.getElementById('qacSeconds');
+  const countdownEl = document.getElementById('qacCountdown');
+  const doneEl = document.getElementById('qacChristmasDone');
+  const pad2 = n => String(n).padStart(2, '0');
+
+  function updateChristmasCountdown() {
+    const remaining = CHRISTMAS_TARGET_UTC - Date.now();
+    if (remaining <= 0) {
+      daysEl.textContent = '00';
+      hoursEl.textContent = '00';
+      minutesEl.textContent = '00';
+      secondsEl.textContent = '00';
+      countdownEl.style.display = 'none';
+      doneEl.style.display = 'block';
+      return;
+    }
+
+    const totalSeconds = Math.floor(remaining / 1000);
+    daysEl.textContent = String(Math.floor(totalSeconds / 86400));
+    hoursEl.textContent = pad2(Math.floor((totalSeconds % 86400) / 3600));
+    minutesEl.textContent = pad2(Math.floor((totalSeconds % 3600) / 60));
+    secondsEl.textContent = pad2(totalSeconds % 60);
+  }
+
+  updateChristmasCountdown();
+  setInterval(updateChristmasCountdown, 1000);
+
+  if (YOUTUBE_LIVE_VIDEO_ID) {
+    const frame = document.getElementById('qacYouTubeFrame');
+    const player = document.getElementById('qacLivePlayer');
+    const button = document.getElementById('qacYouTubeButton');
+
+    frame.src = 'https://www.youtube.com/embed/' + encodeURIComponent(YOUTUBE_LIVE_VIDEO_ID) + '?rel=0';
+    button.href = 'https://www.youtube.com/watch?v=' + encodeURIComponent(YOUTUBE_LIVE_VIDEO_ID);
+    player.classList.add('is-active');
+  }
+})();
 
 function toggleFaq(el) {
   el.closest('.faq-item').classList.toggle('open');
